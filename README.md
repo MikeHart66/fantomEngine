@@ -2,7 +2,7 @@
 fantomEngine - A game framework for Monkey X
 
 ## Description
-fantomEngine is a 2D game framework (module) for Monkey X that was created to give game developers more time to work on the actual game play than on setting up render routines, update process chains and stuff like that. 
+[fantomEngine](http://www.fantomgl.com) is a 2D game framework (module) for [Monkey X](http://www.monkey-x.com) that was created to give game developers more time to work on the actual game play than on setting up render routines, update process chains and stuff like that. 
 
 With fantomEngine you will write only fractions of the code you did before. 
 
