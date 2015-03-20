@@ -10,8 +10,8 @@ With fantomEngine you will write only fractions of the code you did before.
 
 fantomEngine provides a lot of feature like these:
 
-*Various objects like images, tile maps, graphic primitives, sounds, collision zones and layers.
-*Automatic processes to create, update and render objects.
+  * Various objects like images, tile maps, graphic primitives, sounds, collision zones and layers.
+  * Automatic processes to create, update and render objects.
 *Callback methods which are called during the handling of an object, layer, timer and transitions.
 *Layer transitions with callback methods.
 *Object transitions for position, rotation, scaling and alpha values with callback methods.
