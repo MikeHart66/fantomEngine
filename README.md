@@ -1,5 +1,5 @@
-# fantomEngine
-fantomEngine - A game framework for Monkey X
+# ![fe_logo](http://www.whiteskygames.com/files/fe_logo_small.png) fantomEngine 
+A 2D game framework for Monkey X 
 
 ## Description
 [fantomEngine](http://www.fantomgl.com) is a 2D game framework (module) for [Monkey X](http://www.monkey-x.com) that was created to give game developers more time to work on the actual game play than on setting up render routines, update process chains and stuff like that. 
@@ -42,7 +42,7 @@ fantomEngine provides a lot of feature like these:
   * **Automatic object pooling**.
 
 
-## License
+## License (MIT)
 Copyright (c) 2011-2015 Michael Hartlef
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the software, and to permit persons to whom the software is furnished to do so, subject to the following conditions:
