@@ -20,7 +20,7 @@ fantomEngine provides a lot of feature like these:
   * **Different collision methods** with callback methods.
   * Touch input handling with callback methods.
   * Organize your objects in layers.
-  * Automatic content scaling via providing a virtual canvas setup.
+  * **Automatic content scaling** via providing a virtual canvas setup.
   * Simple **high-score** list loading, saving and updating.
   * Simple sound loading which handles the proper file extension depending on the chosen platform. 
   * Support for **bitmap font text** objects which load EzGUI font descriptions.
