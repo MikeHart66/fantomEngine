@@ -1,12 +1,13 @@
 # fantomEngine
 fantomEngine - A game framework for Monkey X
 
+## Description
 fantomEngine is a 2D game framework (module) for Monkey X that was created to give game developers more time to work on the actual game play than on setting up render routines, update process chains and stuff like that. 
 
 With fantomEngine you will write only fractions of the code you did before. 
 
 
-
+## License
 Copyright (c) 2011-2015 Michael Hartlef
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the software, and to permit persons to whom the software is furnished to do so, subject to the following conditions:
