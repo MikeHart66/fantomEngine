@@ -1,0 +1,326 @@
+# Module cftWaypoints
+
+The waypoint module lets you create paths of waypoints by hand. Then you can create a marker that you can let run along the path. Also you can connect an object to that marker. Another functionality is A* path finding.
+
+# Import fantomEngine
+
+# Class cftWaypoints.ftMarker
+
+The ftMarker class defines a marker that runs along a path.
+
+# Method ConnectObj:Void(obj:ftObject, flag:Bool = True)
+
+*Description*
+
+Connects an object to an existing marker	.
+
+# Method GetCurrAngle:Float()
+
+*Description*
+
+Returns the current angle of a marker in degree.
+
+# Method GetCurrDestPos:Float[]()
+
+*Description*
+
+Returns the current destination waypoint X/Y/Z position.
+
+# Method GetCurrDestWP:ftWaypoint()
+
+*Description*
+
+Returns the current destination waypoint.
+
+# Method GetCurrDist:Float()
+
+*Description*
+
+Returns the current distance of the marker.
+
+# Method GetCurrPos:Float[]()
+
+*Description*
+
+Returns the current X/Y/Z position of the marker.
+
+# Method GetCurrSrcWP:ftWaypoint()
+
+*Description*
+
+Returns the source destination waypoint.
+
+# Method GetFinal:Bool()
+
+*Description*
+
+Returns if the marker reached the end of a path.
+
+# Method MoveToWP:Void(index:Int=1)
+
+*Description*
+
+Moves a marker to a waypoint with a given index. Index starts with 1.
+
+# Method MoveToWP:Void(waypoint:ftWaypoint)
+
+*Description*
+
+Moves a marker to a specific waypoint.
+
+# Method Remove:Void()
+
+*Description*
+
+Removes a marker.
+
+# Method Render:Void(renderType:Int=0)
+
+*Description*
+
+Renders a marker at its current position.
+
+*Details*
+
+A renderType of 0 renders a box, every other value a circle.
+
+# Method SetDirection:Void(dir:Int = ftPath.mdForward)
+
+*Description*
+
+Sets the direction of a marker.
+
+# Method SetInterpolationMode:Void(mode:Int = ftPath.imLinear)
+
+*Description*
+
+Sets the interpolation mode of a marker.
+
+# Method SetMoveMode:Void(mode:Int = ftPath.mmStop)
+
+*Description*
+
+Sets the move mode of a marker.
+
+# Method SetSensivity:Void(sensivityFactor:Float = 0.1)
+
+*Description*
+
+Sets the sensivity of a marker.
+
+*Details*
+
+The sensivity controls when a marker reaches its next waypoint. It is the minimum distance in pixel.
+
+# Method SetSpeed:Void(speedFactor:Float = 1.0)
+
+*Description*
+
+Sets the speed of a marker.
+
+# Method Update:Float(speedFactor:Float = 1.0)
+
+*Description*
+
+Updates a marker and a connected object.
+
+# Class cftWaypoints.ftPath
+
+The ftPath class defines a path created by hand.
+
+# Method AddWP:ftWaypoint(xpos:Float, ypos:Float, relative:Bool = False)
+
+*Description*
+
+This method adds a new waypoint to an existing path and returns it.
+
+# Method CleanupLists:Void()
+
+# Method CreateMarker:ftMarker(speed:Float= 1.0, dir:Int = mdForward, mode:Int = mmStop)
+
+*Description*
+
+This method creates a new marker for an existing path.
+
+# Method FindClosestWP:ftWaypoint(xpos:Float, ypos:Float)
+
+*Description*
+
+To find the closest waypoint of a path to a given position, use this method.
+
+# Method GetAngle:Float()
+
+*Description*
+
+Returns the angle of the path.
+
+# Method GetPos:Float[]()
+
+*Description*
+
+Returns the position of the path inside an array.
+
+# Method GetScale:Float[]()
+
+*Description*
+
+Returns the scale factors of the path inside an array.
+
+# Method GetWP:ftWaypoint(index:Int)
+
+*Description*
+
+Get a the waypoint with the given index. Index starts with 1.
+
+# Method GetWPCount:Int()
+
+*Description*
+
+Returns the waypoint count of the path.
+
+# Method LoadFromString:Void(ps:String)
+
+*Description*
+
+Load a path from a string.
+
+# Method Remove:Void()
+
+*Description*
+
+Remove a path and its content.
+
+# Method RemoveAllMarkers:Void()
+
+*Description*
+
+Removes all markers of the path.
+
+# Method RemoveAllWP:Void()
+
+*Description*
+
+Removes all waypoints of the path.
+
+# Method RemoveWP:Void(index:Int)
+
+*Description*
+
+Returns a waypoint with the given index. Index starts with 1.
+
+# Method RenderAllMarker:Void(type:Int=0)
+
+*Description*
+
+Render all markers of a path. You can use this for debugging.
+
+*Details*
+
+A type value of 0 renders a square, any other value renders a circle.
+
+# Method RenderAllWP:Void(type:Int=0)
+
+*Description*
+
+Render all waypoints of a path. You can use this for debugging.
+
+*Details*
+
+A type value of 0 renders a square, any other value renders a circle.
+
+# Method SaveToString:String()
+
+*Description*
+
+Save a path to a string.
+
+# Method SetAngle:Void(a:Float, relative:Bool = False)
+
+*Description*
+
+Sets the angle of a path and position its waypoints regarding the angle.
+
+# Method SetPos:Void(x:Float, y:Float, relative:Bool = False)
+
+*Description*
+
+Sets the position of a path and its waypoints.
+
+# Method SetPosX:Void(x:Float, relative:Bool = False)
+
+*Description*
+
+Sets the X position of a path and its waypoints.
+
+# Method SetPosY:Void(y:Float, relative:Bool = False)
+
+*Description*
+
+Sets the Y position of a path and its waypoints.
+
+# Method SetScale:Void(x:Float, y:Float, relative:Bool = False)
+
+*Description*
+
+Sets the scale of a path and position its waypoints regarding the angle.
+
+# Method UpdateAllMarker:Void(speedFactor:Float = 1.0)
+
+*Description*
+
+Updates all markers of a path.
+
+# Const imCatmull:Int
+
+# Const imLinear:Int
+
+# Const mdBackwards:Int
+
+# Const mdForward:Int
+
+# Const mmBounce:Int
+
+# Const mmCircle:Int
+
+# Const mmStop:Int
+
+# Const mmWarp:Int
+
+# Class cftWaypoints.ftWaypoint
+
+The ftWaypoint class defines a single waypoint in a path.
+
+# Method GetIndex:Int()
+
+*Description*
+
+Returns the path index of a waypoint. Index start with 1
+
+# Method GetPos:Float[]()
+
+*Description*
+
+Returns the X/Y position of a waypoint.
+
+# Method Remove:Void()
+
+*Description*
+
+Removes a waypoint from its path.
+
+# Method Render:Void(renderType:Int=0)
+
+*Description*
+
+Renders a waypoint at its current position.
+
+*Details*
+
+A renderType of 0 renders a box, every other value a circle.
+
+# Method SetPos:Void(xpos:Float, ypos:Float, relative:Bool = False)
+
+*Description*
+
+Sets the position of a waypoint inside a path.
+

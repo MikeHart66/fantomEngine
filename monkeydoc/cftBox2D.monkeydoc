@@ -1,0 +1,500 @@
+# Module cftBox2D
+
+The cftBox2D module hosts an optional Box2D integration class. At the moment, not all functionality of Box2D is integrated but you can create objects, joints, do collision detection and even raycasting.
+
+# Import box2d.collision
+
+# Import box2d.collision.shapes
+
+# Import box2d.common
+
+# Import box2d.common.math
+
+# Import box2d.dynamics
+
+# Import box2d.dynamics.contacts
+
+# Import box2d.dynamics.controllers
+
+# Import box2d.dynamics.joints
+
+# Import box2d.dynamics.joints
+
+# Import box2d.flash.flashtypes
+
+# Import fantomEngine
+
+# Class cftBox2D.ftBox2D
+
+The ftBox2D class integrates some functionality of Box2D into your project. With it you can connect ftObjects with Box2D bodies. For feature requests, please contact Michael about what you need.
+
+# Method AddPolygon:Void(tmpObj:ftObject, vec:Float[])
+
+*Description*
+
+Adds a polygon shape to an existing polygon physics body.
+
+# Method ApplyForce:Void(tmpObj:ftObject, forceX:Float, forceY:Float, pointX:Float, pointY:Float)
+
+*Description*
+
+Applies force to the connected body of a ftObject.
+
+# Method ApplyImpulse:Void(tmpObj:ftObject, impulseX:Float, impulseY:Float, pointX:Float, pointY:Float)
+
+*Description*
+
+Applies an impulse to the connected body of a ftObject.
+
+# Method ApplyTorque:Void(tmpObj:ftObject, torque:Float, degree:Bool=True)
+
+*Description*
+
+Applies torque to the connected body of a ftObject.
+
+# Method ConnectBody:Void(tmpObj:ftObject, body:b2Body)
+
+*Description*
+
+Connects the body to an ftObject.
+
+# Method CreateBox:b2Body(width:Float,height:Float, xpos:Float, ypos:float)
+
+*Description*
+
+Create a box shaped B2Body object.
+
+# Method CreateCircle:b2Body(radius:Float, xpos:Float, ypos:float)
+
+*Description*
+
+Create a circle shaped B2Body object.
+
+# Method CreateDistantJoint:b2DistanceJoint(bodyA:b2Body, bodyB:b2Body)
+
+*Description*
+
+Create a distant joint.
+
+# Method CreateMouseJoint:b2MouseJoint(groundBody:b2Body, targetBody:b2Body, targetX:Float, targetY:Float, maxForce:Float, collideConnect:Bool = True, frequencyHz:Float = 5.0, dampingRatio:Float = 0.7)
+
+*Description*
+
+Create a mouse joint.
+
+# Method CreateObject:b2Body(tmpObj:ftObject, btype:Int = b2Body.b2_Body)
+
+*Description*
+
+Create a B2Body object based on a ftObject. It will also connect it to the ftObject.
+
+# Method CreatePolygon:b2Body(vec:Float[], xpos:Float, ypos:Float, btype:Int = b2Body.b2_Body)
+
+*Description*
+
+Create a polygon shaped B2Body object.
+
+# Method CreatePolygon:b2Body(filename:String, subBodyName:String, xpos:Float, ypos:Float)
+
+*Description*
+
+Create a polygon shaped B2Body object from a PhysicsEditor compatible json file.
+
+# Method CreateRevoluteJoint:b2RevoluteJoint(bodyA:b2Body, bodyB:b2Body, startX:Float, startY:Float, lowerAngle:Float, upperAngle:Float, degree:Bool = True)
+
+*Description*
+
+Create a revolute joint.
+
+# Method CreateRopeJoint:b2RopeJoint(bodyA:b2Body, bodyB:b2Body, maxDistance:Float, collideConnect:Bool = True)
+
+*Description*
+
+Create a rope joint.
+
+# Method CreateWeldJoint:b2WeldJoint(bodyA:b2Body, bodyB:b2Body)
+
+*Description*
+
+Create a weld joint.
+
+# Method CreateWorld:b2World()
+
+*Description*
+
+Create a B2World object.
+
+# Method DestroyBody:Void(tmpObj:ftObject)
+
+*Description*
+
+Disconnects and destroys the connected body of an ftObject.
+
+# Method DestroyJoint:Void(joint:b2Joint)
+
+*Description*
+
+Destroys a joint.
+
+# Method GetAngle:Float(tmpObj:ftObject, degree:Bool = True)
+
+*Description*
+
+Returns the angle of the connected body.
+
+# Method GetAngularDamping:Float(tmpObj:ftObject)
+
+*Description*
+
+Returns the angular damping of a connected body.
+
+# Method GetAngularVelocity:Float(tmpObj:ftObject, degree:Bool = True)
+
+*Description*
+
+Returns the angular velocity of a connected body.
+
+# Method GetBody:b2Body(tmpObj:ftObject)
+
+*Description*
+
+Returns the connected body of a ftObject.
+
+# Method GetDensity:Float(tmpObj:ftObject, fIndex:Int = 1)
+
+*Description*
+
+Returns the density of the fixture with the given index.
+
+# Method GetFilterCategoryBits:Int(tmpObj:ftObject, fIndex:Int = 1)
+
+*Description*
+
+Returns the filter category bits of the fixture with the given index.
+
+# Method GetFilterGroupIndex:Int(tmpObj:ftObject, fIndex:Int = 1)
+
+*Description*
+
+Returns the filter mask bits of the fixture with the given index.
+
+# Method GetFilterMaskBits:Int(tmpObj:ftObject, fIndex:Int = 1)
+
+*Description*
+
+Returns the filter mask bits of the fixture with the given index.
+
+# Method GetFixture:b2Fixture(tmpObj:ftObject, fIndex:Int = 1)
+
+*Description*
+
+Returns the fixture of a objects connected body with the given index.
+
+# Method GetFixtureCount:Int(tmpObj:ftObject)
+
+*Description*
+
+Returns the number of fixtures of a connected body.
+
+# Method GetFriction:Float(tmpObj:ftObject, fIndex:Int = 1)
+
+*Description*
+
+Returns the friction of the fixture with the given index.
+
+# Method GetLastRayCastHit:Float[]()
+
+*Description*
+
+Returns the postion of the last raycast hit.
+
+# Method GetLinearDamping:Float(tmpObj:ftObject)
+
+*Description*
+
+Returns the linear damping of a connected body.
+
+# Method GetLinearVelocity:float[](tmpObj:ftObject)
+
+*Description*
+
+Returns the linear velocity of a connected body.
+
+# Method GetMassData:Float[](tmpObj:ftObject)
+
+*Description*
+
+Returns the mass data of a connected body.
+
+*Details*
+
+It will return an array with the following float values
+
+<ul><li>index #0 -> mass
+
+<li>index #1 -> centerX
+
+<li>index #2 -> centerY
+
+<li>index #3 -> I
+
+</ul>
+
+# Method GetPosition:Float[](tmpObj:ftObject)
+
+*Description*
+
+Returns the postion of a connected body.
+
+# Method GetRestitution:Float(tmpObj:ftObject, fIndex:Int = 1)
+
+*Description*
+
+Returns the restitution of the fixture with the given index.
+
+# Method GetSensor:bool(tmpObj:ftObject, fIndex:Int = 1)
+
+*Description*
+
+Returns the sensor flag of the fixture with the given index.
+
+# Method GetType:Int(tmpObj:ftObject)
+
+*Description*
+
+Returns the type of a connected body.
+
+# Method InitDebugDraw:Void()
+
+*Description*
+
+This method initialized the debug drawing of box2D.
+
+*Details*
+
+To actually draw it, use the RenderDebugDraw method.
+
+# Method New:none(eng:ftEngine)
+
+*Description*
+
+This method creates a new box2D instance and connects it with the given ftEngine
+
+# Method OnBeginContact:Void(contact:b2Contact)
+
+*Description*
+
+This callback method is called when a collision contact has begun.
+
+# Method OnEndContact:Void(contact:b2Contact)
+
+*Description*
+
+This callback method is called when a collision contact has ended.
+
+# Method OnPostSolve:Void(contact:b2Contact, impulse:b2ContactImpulse)
+
+*Description*
+
+This callback method is called after the collision has been solved.
+
+# Method OnPreSolve:Void(contact:b2Contact, manifold:b2Manifold)
+
+*Description*
+
+This callback method is called before the collision has been solved.
+
+# Method OnRayCast:Void(rayFraction:Float, rayVec:b2Vec2, hitNormal:b2Vec2, hitPoint:b2Vec2, nextPoint:b2Vec2, fixture:b2Fixture, obj:ftObject)
+
+*Description*
+
+This callback method is called when a raycast was successful.
+
+# Method RayCast:Bool(x1:Float, y1: Float, x2:Float, y2: Float)
+
+*Description*
+
+Cast a ray and returns TRUE if a shape was hit.
+
+*Details*
+
+If a body was hit, the OnRayCast method will be called.
+
+# Method RenderDebugDraw:Void()
+
+*Description*
+
+Renders the debug information of the box2D world.
+
+# Method ResetMassData:Void(tmpObj:ftObject)
+
+*Description*
+
+Resets the mass data of a connected body.
+
+# Method SetActive:Void(tmpObj:ftObject, flag:bool)
+
+*Description*
+
+Set the active flag of a connected body.
+
+# Method SetAngle:Void(tmpObj:ftObject, bodyAngle:Float, degree:Bool=True)
+
+*Description*
+
+Set the angle of a connected body.
+
+# Method SetAngularDamping:Void(tmpObj:ftObject, damping:Float)
+
+*Description*
+
+Sets the angular damping of a connected body.
+
+# Method SetAngularVelocity:Void(tmpObj:ftObject, velocity:Float, degree:Bool=True)
+
+*Description*
+
+Set the angular velocity of a connected body.
+
+# Method SetAwake:Void(tmpObj:ftObject, flag:bool)
+
+*Description*
+
+Set the awake flag of a connected body.
+
+# Method SetBullet:Void(tmpObj:ftObject, flag:bool)
+
+*Description*
+
+Sets the bullet flag of a connected body.
+
+# Method SetDensity:Void(tmpObj:ftObject, density:Float, fIndex:Int = 1)
+
+*Description*
+
+Sets the density of the fixture with the given index.
+
+# Method SetEngine:none(eng:ftEngine)
+
+*Description*
+
+This method connects it with the given ftEngine
+
+# Method SetFilterCategoryBits:Void(tmpObj:ftObject, categorybits:Int, fIndex:Int = 1)
+
+*Description*
+
+Sets the filter category bits of the fixture with the given index.
+
+# Method SetFilterGroupIndex:Void(tmpObj:ftObject, groupIndex:Int, fIndex:Int = 1)
+
+*Description*
+
+Sets the filter group index of the fixture with the given index.
+
+# Method SetFilterMaskBits:Void(tmpObj:ftObject, maskbits:Int, fIndex:Int = 1)
+
+*Description*
+
+Sets the filter mask bits of the fixture with the given index.
+
+# Method SetFixedRotation:Void(tmpObj:ftObject, flag:bool)
+
+*Description*
+
+Sets the fixed rotation flag of a connected body.
+
+# Method SetFriction:Void(tmpObj:ftObject, friction:Float, fIndex:Int = 1)
+
+*Description*
+
+Sets the friction of the fixture with the given index.
+
+# Method SetGravity:Void(gravX:Float, gravY:Float)
+
+*Description*
+
+Sets the gravity of the world.
+
+# Method SetLinearDamping:Void(tmpObj:ftObject, damping:Float)
+
+*Description*
+
+Sets the linear damping of a connected body.
+
+# Method SetLinearVelocity:Void(tmpObj:ftObject, vx:Float, vy:Float)
+
+*Description*
+
+Sets the linear velocity of a connected body.
+
+# Method SetMassData:Void(tmpObj:ftObject, mass:Float, massCenterX:Float, massCenterY:Float, i:Float)
+
+*Description*
+
+Sets the mass data of a connected body.
+
+# Method SetPhysicScale:Void(scale:Float = 30.0)
+
+*Description*
+
+Sets the physic scale of the world.
+
+# Method SetPosition:Void(tmpObj:ftObject, xpos:Float, ypos:Float)
+
+*Description*
+
+Sets the position of a connected body and the ftObject itself.
+
+# Method SetRestitution:Void(tmpObj:ftObject, restitution:Float, fIndex:Int = 1)
+
+*Description*
+
+Sets the restitution of the fixture with the given index.
+
+# Method SetSensor:Void(tmpObj:ftObject, sensorFlag:Bool, fIndex:Int = 1)
+
+*Description*
+
+Sets the sensor flag of the fixture with the given index.
+
+# Method SetSleepingAllowed:Void(tmpObj:ftObject, flag:Bool)
+
+*Description*
+
+Sets the sleeping allowed flag of a connected body.
+
+# Method SetType:Void(tmpObj:ftObject, type:Int)
+
+*Description*
+
+Sets the type of a connected body.
+
+# Method UpdateObj:Void(tmpObj:ftObject)
+
+*Description*
+
+Updates a ftObject regarding its connected Box2D body.
+
+*Details*
+
+It will update ist position and angle.
+
+# Method UpdateObjAngle:Void(tmpObj:ftObject)
+
+*Description*
+
+Updates the angle of a ftObject regarding its connected Box2D body.
+
+# Method UpdateObjPos:Void(tmpObj:ftObject)
+
+*Description*
+
+Updates the position of a ftObject regarding its connected Box2D body.
+
+# Method UpdateWorld:Void(timeStep:Float=1.0/60.0, velocityIterations:Int = 10, positionIterations:Int= 10)
+
+*Description*
+
+Updates the physical simulation of the box2D world.
+

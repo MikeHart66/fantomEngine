@@ -1,0 +1,204 @@
+# Module cftTileMap
+
+The cftTileMap file provides the ftMapObj class that holds datas from map objects. Also it provides the ftTileMap class which stores the tilemap itself.
+
+# Import fantomEngine
+
+# Class cftTileMap.ftMapObj
+
+The ftMapObj class stores and deals with map objects provided by a Tiled compatible map.
+The content of each object is only defined by the content of the map. So for an example, the object type
+can be set by the map creator and you have to make sure that your app acts accordingly.
+
+# Method GetAlpha:Float()
+
+*Description*
+
+Get the alpha value of a map object.
+
+# Method GetHeight:Float()
+
+*Description*
+
+Get the height of a map object.
+
+# Method GetLayerName:String()
+
+*Description*
+
+Returns the name of the map layer, NOT the ftLayer.
+
+# Method GetName:String()
+
+*Description*
+
+Returns the name of map object.
+
+# Method GetPolyLine:Float[]()
+
+*Description*
+
+Returns the polyline of a map object.
+
+# Method GetPolygon:Float[]()
+
+*Description*
+
+Returns the polygon of a map object.
+
+# Method GetPos:Float[]()
+
+*Description*
+
+Returns the objects X and Y position in a 2D Float array. This is NOT the position of the ftObject.
+
+# Method GetPosX:Float()
+
+*Description*
+
+Get the X position of a map object. This is NOT the position of the ftObject.
+
+# Method GetPosY:Float()
+
+*Description*
+
+Get the Y position. This is NOT the position of the ftObject.
+
+# Method GetProperty:String(key:String)
+
+*Description*
+
+Get the value of a specific property of a map object.
+
+# Method GetPropertyCount:Int()
+
+*Description*
+
+Get number of properties of a map object.
+
+# Method GetType:String()
+
+*Description*
+
+Returns the type of map object.
+
+# Method GetVisible:Bool()
+
+*Description*
+
+Get the visible flag of a map object.
+
+# Method GetWidth:Float()
+
+*Description*
+
+Get the width of a map object.
+
+# Field properties:StringMap<String>
+
+# Class cftTileMap.ftTileSet
+
+The ftTileSet class stores tileSet information.
+
+# Method GetTileAt:Int(xp:Int,yp:Int)
+
+*Description*
+
+Returns the tile index at the given canvas coordinates, starting from zero.
+
+# Method GetTileCount:Int()
+
+*Description*
+
+Returns the total number of tiles of a tilemap.
+
+# Method GetTileCountX:Int()
+
+*Description*
+
+Returns the number of tiles in the X direction.
+
+# Method GetTileCountY:Int()
+
+*Description*
+
+Returns the number of tiles in the Y direction.
+
+# Method GetTileHeight:Int(index:Int)
+
+*Description*
+
+Returns the height of a tile with the given index. Index starts at 0.
+
+# Method GetTileID:Int(index:Int)
+
+*Description*
+
+Returns the ID of the tiles texture map, at the given index, starting from zero.
+
+*Details*
+
+It returns -1 if there is no tile.
+
+# Method GetTileID:Int(column:Int, row:Int)
+
+*Description*
+
+Returns the ID of the tiles texture map, at the given map row and column, starting from zero.
+
+*Details*
+
+It returns -1 if there is no tile.
+
+# Method GetTileIDAt:Int(xp:Int,yp:Int)
+
+*Description*
+
+Returns the ID of the tiles texture, at the given canvas coordinates, starting from zero.
+
+*Details*
+
+It returns -1 if there is no tile.
+
+# Method GetTilePosX:Float(index:Int)
+
+*Description*
+
+Returns the X position of a tile with the given index. Index starts with 0.
+
+# Method GetTilePosY:Float(index:Int)
+
+*Description*
+
+Returns the Y position of a tile with the given index. Index starts with 0.
+
+# Method GetTileSetIndex:Int(tileID:Int)
+
+*Description*
+
+Returns the tileSetIndex of a given tile ID
+
+# Method GetTileWidth:Int(index:Int)
+
+*Description*
+
+Returns the width of a tile with the given index. Index starts at 0.
+
+# Method Remove:Void()
+
+*Description*
+
+Removes the tilemap from the corresponding ftObject.
+
+# Method SetTileID:Void(column:Int, row:Int, id:Int)
+
+*Description*
+
+Sets the ID of the tiles texture map, at the given map row and column, starting from zero.
+
+# Method SetTileSModXY:Void(xMod:Float, yMod:Float)
+
+*Description*
+
+Sets the tile scale modification factors which are used during rendering.
+

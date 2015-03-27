@@ -1,0 +1,14 @@
+# Module cftMisc
+
+# Import fantomEngine
+
+# Function GetPitchRate:Float(halfStep:Float, base:Float=1.0)
+
+*Description*
+
+Calculates the pitchrate for the amount of given halfsteps.
+
+*Details*
+
+The default base note is 'A4'
+

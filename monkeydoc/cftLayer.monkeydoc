@@ -1,0 +1,274 @@
+# Module cftLayer
+
+The module *cftLayer* contains the ftLayer class and the lObjList class with is a sub object for the ftLayer class.
+
+# Import fantomEngine
+
+# Class cftLayer.ftLayer
+
+The class *ftLayer* groups assigned objects. A layer then will update, render, touch and collision check all its objects together in one batch.
+
+# Method CollisionCheck:Void()
+
+*Description*
+
+Does a collision check on all active objects of this layer with a assigned collision group.
+
+*Details*
+
+If a collision appears, ftEngine.OnObjectCollision is called.	
+
+# Method CollisionCheck:Void(obj:ftObject)
+
+*Description*
+
+Does a collision check on the given object.
+
+*Details*
+
+The object needs to be active. If a collision appears, ftEngine.OnObjectCollision is called.
+
+# Method CreateTransAlpha:ftTrans(alpha:Float, duration:Float, relative:Int, transId:Int=0)
+
+*Description*
+
+Create an alpha transition for the layer.
+
+*Details*
+
+The duration is the time in milliseconds, the transition takes to complete. Only a transID > 0 will fire the <b>ftEngine.OnLayerTrans</b> method.
+
+# Method CreateTransPos:ftTrans(xt:Float, yt:Float, duration:Float, relative:Int, transId:Int=0)
+
+*Description*
+
+Create a position transition.
+
+*Details*
+
+The duration is the time in milliseconds, the transition takes to complete. Only a transID > 0 will fire the <b>ftEngine.OnLayerTrans</b> method.
+
+# Method GetActive:Bool()
+
+*Description*
+
+Returns if a layer is active or not.
+
+# Method GetAlpha:Float()
+
+*Description*
+
+Returns the alpha value of a given layer, ranging from 0.0 to 1.0.
+
+# Method GetID:Int()
+
+*Description*
+
+Returns the layer ID value.
+
+# Method GetObj:ftObject(index:Int)
+
+*Description*
+
+Returns the object with the given index of a layer. Index starts with 1.
+
+# Method GetObjAt:ftObject(x:Float, y:Float)
+
+*Description*
+
+Returns the first active object found at the given coordinates.
+
+# Method GetObjCount:Int(countType:Int=0)
+
+*Description*
+
+Returns the number of objects in a layer.
+
+*Details*
+
+Type=0 >>> All objects are counted
+
+Type=1 >>> Only active objects are counted
+
+Type=2 >>> Only active and visible objects are counted
+
+# Method GetObjTransCount:Int()
+
+*Description*
+
+Returns the number of active transitions from all objects in a layer.
+
+# Method GetPos:Float[]()
+
+*Description*
+
+Returns the position of a layer in a 2D Float array.
+
+# Method GetPosX:Float()
+
+*Description*
+
+Returns the X position of a layer.
+
+# Method GetPosY:Float()
+
+*Description*
+
+Returns the Y position of a layer.
+
+# Method GetScale:Float()
+
+*Description*
+
+Returns the scale factor of a layer.
+
+# Method GetTag:Int()
+
+*Description*
+
+Returns the layer tag value.
+
+# Method GetTransitionCount:Int()
+
+*Description*
+
+Returns the amount of active transitions of the layer.
+
+# Method GetVisible:Bool()
+
+*Description*
+
+Returns if a given layer is visible or not.
+
+# Method Remove:Void(delObjects:Bool = False)
+
+*Description*
+
+Removes this layer from the engine. If the delObjects flag is set to TRUE, then it will remove all attached objects too.
+
+# Method RemoveAllObjects:Void()
+
+*Description*
+
+Removes all objects assigned to a layer.
+
+# Method RemoveAllObjectsByID:Void(objID:Int)
+
+*Description*
+
+Removes all objects with the given ID and assigned to the layer.
+
+# Method Render:Void()
+
+*Description*
+
+Render all visible and active objects of a layer.
+
+*Details*
+
+Objects are normally rendered in their order of creation, unless you have sorted the objects of a layer via the ftLayer.SortObjects method. 
+
+Child objects are rendered right after their parent.
+
+# Method SetActive:Void(activeFlag:Bool)
+
+*Description*
+
+Set the active flag of a layer.
+
+# Method SetAlpha:Void(newAlpha:Float, relative:Int=False)
+
+*Description*
+
+Set the alpha value of a layer, ranging from 0.0 (invisible) to 1.0 (fully visible).
+
+# Method SetGUI:Void(guiFlag:Bool)
+
+*Description*
+
+Sets the layer GUI flag. When rendering a GUI layer, camera positions are not taken into a calculation of the position of this layer.
+
+# Method SetID:Void(layerID:Int)
+
+*Description*
+
+Sets the layer ID field with any value.
+
+# Method SetLayerScissor:Void(offX:Float = 0.0, offY:Float = 0.0, offWidth:Float = 0.0, offHeight:Float = 0.0)
+
+*Description*
+
+Sets the offset of the scissor for this layer.
+
+# Method SetPos:Void(x:Float, y:Float, relative:Int = False)
+
+*Description*
+
+Set the X and Y position of a layer.
+
+# Method SetPosX:Void(x:Float, relative:Int = False)
+
+*Description*
+
+Set the X position of a layer.
+
+# Method SetPosY:Void(y:Float, relative:Int = False)
+
+*Description*
+
+Set the Y position of a layer.
+
+# Method SetScale:Void(scaleFactor:Float, relative:Int = False)
+
+*Description*
+
+Set the scale factor of a layer.
+
+# Method SetTag:Void(newTag:Int)
+
+*Description*
+
+Sets the layer tag field with any value.
+
+# Method SetVisible:Void(visibleFlag:Bool)
+
+*Description*
+
+Set the visible flag of a layer.
+
+# Method SortObjects:Void()
+
+*Description*
+
+Sorts the object list of a layer.
+
+*Details*
+
+Internally it will call the ftEngine.OnObjectSort method. 
+
+Overwrite that method to get a different sorting. The default sorting will sort objects by their Z coordinate.
+
+# Method TouchCheck:Void(x:Float, y:Float, touchID:Int)
+
+*Description*
+
+Executes a touch check to each object at the given position.
+
+*Details*
+
+The object has to have a touchmode > 0 and needs to be active.
+
+If a touch of an object was detected, then the ftEngine.OnObjectTouch method is called with the object and the touchID as a parameter.
+
+# Method Update:Void(speed:Float=1.0)
+
+*Description*
+
+Updates all transitions and objects of a layer.
+
+*Details*
+
+The speed parameter will be used to automatically update the objects.
+
+After the layer was updated and the engine is not paused, the ftEngine.OnLayerUpdate method is called.
+

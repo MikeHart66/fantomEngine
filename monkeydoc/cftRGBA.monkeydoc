@@ -1,0 +1,30 @@
+# Module cftRGBA
+
+The cftRGBA module provides a RGBA color class.
+
+# Import fantomEngine
+
+# Class cftRGBA.ftRGBA
+
+# Method Add:Void(_red:Float, _green:Float, _blue:Float, _alpha:Float=-1.0)
+
+# Method Add:Void(color:ftRGBA)
+
+# Method Copy:ftRGBA()
+
+# Method Inverse:Void(inklAlpha:Bool = False)
+
+# Method Multiply:Void(_red:Float, _green:Float, _blue:Float, _alpha:Float=-1.0)
+
+# Method Multiply:Void(color:ftRGBA)
+
+# Method New:none(_red:Float, _green:Float, _blue:Float, _alpha:Float=-1.0)
+
+# Method Set:Void(color:ftRGBA)
+
+# Method Set:Void(_red:Float, _green:Float, _blue:Float, _alpha:Float=-1.0)
+
+# Method Sub:Void(_red:Float, _green:Float, _blue:Float, _alpha:Float=-1.0)
+
+# Method Sub:Void(color:ftRGBA)
+

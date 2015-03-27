@@ -1,0 +1,82 @@
+# Module cftSound
+
+# Import fantomEngine
+
+# Class cftSound.ftSound
+
+The class *ftSound* is an object to play sounds easily.
+
+# Method GetFreeSoundChannel:Int()
+
+*Description*
+
+Returns a free sound channel index.
+
+# Method GetPan:Float()
+
+*Description*
+
+Returns the pan value of a sound.
+
+# Method GetPaused:Bool()
+
+*Description*
+
+Returns the flag of a sound.
+
+# Method GetPitchRate:Float()
+
+*Description*
+
+Returns the pitch rate of a sound.
+
+# Method GetVolume:Float()
+
+*Description*
+
+Returns the volume of a sound. Ranges from 0.0 to 1.0.
+
+# Method Play:Int(c:Int = -1)
+
+*Description*
+
+Plays a sound. If no channel is provided, fantomEngine will determine the channel automatically.
+
+# Method SetPan:Void(channelPan:Float = 0.0)
+
+*Description*
+
+Set the pan value of a sound. Ranges from -1.0 to 1.0.
+
+*Details*
+
+A value of -1.0 is on the left side, a value of 1.0 represents the right side.
+
+# Method SetPaused:Void(pauseFlag:Bool)
+
+*Description*
+
+Pause/resume a sound or a music.
+
+# Method SetPitchRate:Void(channelRate:Float = 1.0)
+
+*Description*
+
+Set the rate of a sound.
+
+*Details*
+
+The default base note (1.0) is 'A4'. You can use the GetPitchRate("C3") function to determine the rate from a given note.
+
+# Method SetVolume:Void(vol:Float = 1.0)
+
+*Description*
+
+Set the volume of a sound. Ranges from 0.0 to 1.0.
+
+# Method Stop:Void(c:Int=-1)
+
+*Description*
+
+Stop playing the sound. If a channel is given, it will stop that specific sound channel.
+

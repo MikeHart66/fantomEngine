@@ -1,0 +1,95 @@
+# Module fantomEngine
+
+The module *fantomEngine* is a 2D game framework which supplies you with huge set of game object related functionalities.
+
+To use fantomEngine in your game, simply add "Import fantomEngine" at the top of your program.
+
+<h2>Introduction</h2>
+<b>fantomEngine</b> is a 2D game framework (module) for <a href="http://www.monkey-x.com" target="_blank">Monkey X</a> that was created to give game developers more time to work on the actual game play than on setting up render routines, update process chains and stuff like that. 
+
+With <b>fantomEngine</b> you will write only fractions of the code you did before. 
+<h2>Website, bug reports and forum support</h2>The most current version of <b>fantomEngine</b> is now hosted at <a href="http://www.fantomgl.com" target="_blank">www.fantomgl.com</a> as Google doesn't let someone create new downloads anymore. You can post issues/bug reports at the new <a href="http://forum.fantomgl.com" target="_blank">support forum</a>. 
+The forum is also a good place to ask your questions about how to use <b>fantomEngine</b> or make suggestions about needed features.
+<h2>Features</h2><b>fantomEngine</b> currently supports the following features: 
+<ul><li>Various objects like images, tile maps, graphic primitives, sounds, collision zones and layers.
+<li>Automatic processes to create, update and render objects.
+<li>Callback methods which are called during the handling of an object, layer, timer and transitions.
+<li>Layer transitions with callback methods.
+<li>Object transitions for position, rotation, scaling and alpha values with callback methods.
+<li>Several equation and ease types for object and layer transitions.
+<li>Object timers with callback methods.
+<li>Different collision methods with callback methods.
+<li>Touch input handling with callback methods.
+<li>Organize your objects in layers.
+<li>Automatic content scaling via providing a virtual canvas setup.
+<li>Simple high-score list loading, saving and updating.
+<li>Simple sound loading which handles the proper file extension depending on the chosen platform. 
+<li>Support for bitmap font text objects which load EzGUI font descriptions.
+<li>Build-in frames per second calculator.
+<li>Extensive handling methods for the engine's objects.
+<li>Simple camera support which you can move around to render parts of your scenery.
+<li>Support for texture maps (atlas) created by the tool TexturePacker.
+<li>Support for tile maps created by the tool Tiled.
+<li>Engine time scaling supporting object updates, timers and transitions.
+<li>Automatic swipe gesture detection with event method.
+<li>Path/Waypoint handling. Let your objects follow them.
+<li>A* pathfinding und user definable grids of nodes. It doesn't have to be a grid of squares!
+<li>Easy integration of Box2D powered physics including ray casting. Physics definition created by the tool PhysicsEditor are supported too.
+<li>Localize your game easily with easy support of multiple languages.
+<li>Support different key maps for different controllers or user definitions.
+<li>Embedded objects inside a Tiled map will be stored and are accessable.
+<li>Easy scene/room management.
+<li>Objects can be composed of several single images.
+<li>Automatic object pooling.</ul>
+# Import brl.pool
+
+# Import fantomEngine.cftAStar
+
+# Import fantomEngine.cftBox2D
+
+# Import fantomEngine.cftEngine
+
+# Import fantomEngine.cftFont
+
+# Import fantomEngine.cftFunctions
+
+# Import fantomEngine.cftHighscore
+
+# Import fantomEngine.cftImageMng
+
+# Import fantomEngine.cftKeyMapping
+
+# Import fantomEngine.cftLayer
+
+# Import fantomEngine.cftLocalization
+
+# Import fantomEngine.cftMisc
+
+# Import fantomEngine.cftObjAnimMng
+
+# Import fantomEngine.cftObject
+
+# Import fantomEngine.cftRGBA
+
+# Import fantomEngine.cftScene
+
+# Import fantomEngine.cftSound
+
+# Import fantomEngine.cftSpriteAtlas
+
+# Import fantomEngine.cftSwipe
+
+# Import fantomEngine.cftTileMap
+
+# Import fantomEngine.cftTimer
+
+# Import fantomEngine.cftTrans
+
+# Import fantomEngine.cftVec2D
+
+# Import fantomEngine.cftWaypoints
+
+# Import json
+
+# Import mojo
+

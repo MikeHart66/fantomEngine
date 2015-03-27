@@ -1,0 +1,22 @@
+# Module cftFont
+
+The module cftFont hosts several classes which add bitmap font drawing to fantomEngine. Bitmap fonts are important if you need to show text information inside your game fast and easy.
+
+# Import fantomEngine
+
+# Class cftFont.ftFont
+
+The class ftFont provides a few methods regarding the definition of a loaded font.
+
+# Method Height:Int()
+
+*Description*
+
+Returns the maximum height of the font.
+
+# Method Length:Int(t:String)
+
+*Description*
+
+Returns the length in pixel of the given text string.
+

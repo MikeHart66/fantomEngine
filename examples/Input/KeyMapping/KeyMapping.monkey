@@ -1,0 +1,121 @@
+Strict
+
+#rem
+	Script:			KeyMapping.monkey
+	Description:	Sample script that shows how to use the ftKeyMapping class
+	Author: 		Michael Hartlef
+	Version:      	1.01
+#End
+
+' Import the fantomEngine framework which imports mojo itself
+Import fantomEngine
+
+' The _g variable holds an instance to the cGame class
+Global _g:cGame
+
+'***************************************
+' The cGame class controls the app
+Class cGame Extends App
+	' Create a field to store the instance of the cEngine class, which is an instance
+	' of the ftEngine class itself
+	Field fE:cEngine
+	
+	' Create a field for the instance of the key mapping class
+	Field cKeyMap:ftKeyMapping
+	
+	' Create an object to be controlled by keys
+	Field oCircle:ftObject
+	
+	'------------------------------------------
+	Method OnCreate:Int()
+		' Set the update rate of Mojo's OnUpdate events to be determined by the devices refresh rate.
+		SetUpdateRate(0)
+		
+		' Create an instance of the fantomEngine, which was created via the cEngine class
+		fE = New cEngine
+		
+		' Create an instance of the key mapping class
+		cKeyMap = New ftKeyMapping
+		
+		' Create the map string so instead of pressing A/D/W/S to move the circle, you can press the cursor keys
+		Local mapStr:String  = KEY_A + ";" + KEY_LEFT + "~n" + KEY_D + ";" + KEY_RIGHT + "~n" + KEY_W + ";" + KEY_UP + "~n" + KEY_S + ";" + KEY_DOWN
+
+		' Load key mapping class from a string
+		cKeyMap.LoadFromString(mapStr)
+		
+		' Create a circle and store the object so we can control it
+		oCircle = fE.CreateCircle(20,320,240)
+		
+		' Print some info text into the console
+		Print ("Instead of pressing A/D/W/S to move the circle, you can press the cursor keys to control the circle.") 
+		Return 0
+	End
+	'------------------------------------------
+	Method OnUpdate:Int()
+		' Exit the app if the ESCAPE key was hit
+		If KeyHit( KEY_ESCAPE ) Then fE.ExitApp()
+		
+		' Move the circle corresponding to the key presses
+		If KeyDown( cKeyMap.GetKey(KEY_A) )
+			oCircle.SetPos(-2,0,True)
+		Endif
+		If KeyDown( cKeyMap.GetKey(KEY_D) )
+			oCircle.SetPos( 2,0,True)
+		Endif
+		If KeyDown( cKeyMap.GetKey(KEY_W) )
+			oCircle.SetPos(0,-2,True)
+		Endif
+		If KeyDown( cKeyMap.GetKey(KEY_S) )
+			oCircle.SetPos(0,2,True)
+		Endif
+		
+		' Determine the delta time and the update factor for the engine
+		Local d:Float = Float(fE.CalcDeltaTime())/60.0
+
+		' Update all objects of the engine
+		If fE.GetPaused() = False Then
+			fE.Update(d)
+		Endif
+		Return 0
+	End
+	'------------------------------------------
+	Method OnRender:Int()
+		' Check if the engine is not paused
+		If fE.GetPaused() = False Then
+			' Clear the screen 
+			Cls 
+		
+			' Render all visible objects of the engine
+			fE.Render()
+		Endif
+		Return 0
+	End
+	'------------------------------------------
+	Method OnResume:Int()
+		' Set the pause flag of the engine to FALSE so objects, timers and transitions are updated again
+		fE.SetPaused(False)
+		
+		Return 0
+	End
+	'------------------------------------------
+	Method OnSuspend:Int()
+		' Set the pause flag of the engine to TRUE so objects, timers and transitions are paused (not updated)
+		fE.SetPaused(True)
+		
+		Return 0
+	End
+End	
+
+'***************************************
+' The cEngine class extends the ftEngine class to override the On... methods
+Class cEngine Extends ftEngine
+	' No On.. callback methods are used in this example
+End
+
+'***************************************
+Function Main:Int()
+	' Create an instance of the cGame class and store it inside the global var 'g'
+	_g = New cGame
+	
+	Return 0
+End

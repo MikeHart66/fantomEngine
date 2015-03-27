@@ -1,0 +1,68 @@
+# Module cftSpriteAtlas
+
+The class *ftSpriteAtlas* manages spritesheets inside the fantomEngine. It reduces the call to the device storage by imprting all relevant data into memory.
+
+# Import fantomEngine
+
+# Class cftSpriteAtlas.ftSpriteAtlas
+
+# Method GetAngleOffset:Float(imageName:String)
+
+*Description*
+
+Returns the angle offset of an image.
+
+# Method GetHeight:Int(imageName:String)
+
+*Description*
+
+Returns the height of an image.
+
+# Method GetImage:Image(imageName:String)
+
+*Description*
+
+Returns the image with the given name.
+
+# Method GetImageCount:Int()
+
+*Description*
+
+Returns the number of images in the sprite atlas.
+
+# Method GetImageHeight:Float(imageName:String)
+
+*Description*
+
+Returns the height of the subimage with the given name.
+
+# Method GetImageWidth:Float(imageName:String)
+
+*Description*
+
+Returns the width of the subimage with the given name.
+
+# Method GetRotated:Bool(imageName:String)
+
+*Description*
+
+Returns TRUE if the image with the given name is rotated inside the sprite atlas.
+
+# Method GetWidth:Int(imageName:String)
+
+*Description*
+
+Returns the width of an image.
+
+# Method Load:Void(imgName:String, dataName:String)
+
+*Description*
+
+Loads a sprite atlas from the given image and data file name.
+
+# Method Remove:Void(discard:Bool = False)
+
+*Description*
+
+Remove a sprite atlas. Set discard to TRUE if you want the corresponding images to be discarded.
+

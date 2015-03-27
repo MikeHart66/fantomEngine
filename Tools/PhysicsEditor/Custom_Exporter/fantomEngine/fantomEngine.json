@@ -1,0 +1,23 @@
+{ 
+	"bodies":[ {% for body in bodies %}{% if not forloop.first %},{% endif %}
+		{
+			"name": "{{body.name}}",
+			"isDynamic": {{body.dynamic}},
+			"isBullet": {{body.bullet}},
+			"fixedRotation": {{body.fixedRotation}},
+			"linearDamping": {{body.linearDamping}},
+			"angularDamping": {{body.angularDamping}},
+			"fixtures":[{% for fixture in body.fixtures %}{% if not forloop.first %},{% endif %}{% for polygon in fixture.polygons %}{% if not forloop.first %},{% endif %}
+				{
+					"density": {{fixture.density}},
+					"friction": {{fixture.friction}},
+					"restitution": {{fixture.bounce}},
+					"isSensor": {{fixture.isSensor}},
+					"filterGroupIndex": {{fixture.filter_groupIndex}},
+					"filter": { "categoryBits": {{fixture.filter_categoryBits}}, "maskBits": {{fixture.filter_maskBits}} },
+					"shape": [ {% for point in polygon %} {% if not forloop.first %}, {% endif %} {{point.x}}, {{point.y}} {% endfor %} ]
+				} {% endfor %} {% endfor %}
+			]
+		}{% endfor %}
+	]
+}

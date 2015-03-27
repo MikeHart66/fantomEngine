@@ -1,0 +1,644 @@
+Version 1.56
+
+*New functionalities*
+
+  - fantomEngine now automatically pools ftObject.
+  - New method ftObject.GetColor:Float[]() - Returns the color of an object in an array
+  - You can use custom objects now with basically all type of fantomEngine objects.
+  - Added GetCam:Float[](), GetCamX:Float() and GetCamY:Float() methods to the ftEngine class.
+  - When returning TRUE from ftEngine.OnObjectTouch, no further touch checks are performed this frame.
+  - When returning TRUE from ftEngine.OnObjectCollision, no further collision checks of this object are done in this frame.
+  - Use ftObject.GetTileMap:ftTileMap() to return the ftTileMap object of your ftObject.
+  - fantomEngine now supports Tiled maps with multiple tilesets.
+  
+*Fixes*
+
+  - fixed constant ftEngine.otPivot which caused points not to be rendered since version 1.55.
+  - fixed Platformer example which didn't show the whole screen anymore.
+  - fixed ftObject.CheckTouchHit when object has the touchmode ftEngine.tmBox and was rotated.
+  
+*Changes*
+
+  - Cleanup sources from Print statements.
+  - Changed all Error messages to only be checked and shown in DEBUG mode.
+  - Moved ftObject tilemap properties and duplicate methods into the new ftTileMap class.
+  - ftEngine.TouchCheck:Void(touchID:Int=0) will now check the layer in the backwards order. The last created layer (the top one) at first.
+  - Changed all ftObject._internalPointInside... methods so the check includes the borders of an object too, not only inside the object.  
+  
+*New example*
+
+  - Objects/Creation/PoolingObjects/PoolingObjects.monkey
+  - TileMaps/EndlessMap/EndlessMap.monkey 
+  - TileMaps/Tiled/MultiTileSets.monkey 
+  
+-----------------------------------------------------------------------------------------
+Version 1.55
+
+*New functionalities*
+
+  - Added ftAstar.GetAngle:Float() to retrieve the angle of the grid.
+  - Added ftAstar.GetScaleX:Float() to retrieve the X scale factor of the grid.
+  - Added ftAstar.GetScaleY:Float() to retrieve the X scale factor of the grid.
+  - Added ftLayer.GetTransitionCount:Int() to retrieve the current number of transitions.
+  - Added ftLayer.SetLayerScissor:Void(..) so you can set the render scissor offset for each layer.
+  - Added ftEngine.GetLocalX:Float(...) and ftEngine.GetLocalY:Float(...) to convert virtual coordinates to device coordinates.
+  - Added ftEngine.GetWorldX:Float(...) and ftEngine.GetWorldY:Float(...) to convert device coordinates to virtual coordinates.
+  - Added ftEngine.CreateSpriteAtlas(...) to setup a sprite atlas in one step.
+  - Added ftSpriteAtlas.GetImageHeight(...) and ftSpriteAtlas.GetImageWidth(...) to retrieve the proportions of a sub image.
+  
+*Fixes*
+
+  - Fixed ftPath.RenderAllWP and ftPath.RenderAllMarker to take virtual canvas sizes into the render calculation.
+  
+*Changes*
+
+  - Various changes regarding the calling of ftAstar.SetAngle and ftAstar.SetScale to 
+    avoid multiple calculation and floating point errors when setting grid node positions or adding grid nodes. 
+  - Changed ftLayer.Render to react on a layer individual scissor offset.
+  - Changed ftEngine.CreateTileMap to support isometric tilemaps. 
+  - Changed ftObject.Render to support isometric tilemaps.
+  - Changed ftEngine.LoadImage(...) to use Image.MidHandle as the default flag.
+
+  
+*New example*
+
+  - TileMaps/Tiled/TiledIsometric.monkey
+  - SpriteSheets/SheetAnim/SheetAnim.monkey
+  
+*Fixed example*
+
+  - Objects/Behaviour/ObjectMovement/ObjectMovement2      - fixed setting the ID of a shot
+   
+-----------------------------------------------------------------------------------------
+Version 1.54
+
+*New functionalities*
+
+  - Added ftVec2D.Perp:Void() function
+  - Added ftObject.SetAnimRepeatCount(repeatCount:Int = -1) function
+  - Added _repeatCount parameter to ftObject.CreateAnim.
+  - Added ftEngine.OnObjectAnim method, which is called when one loop of an animation is finished
+  - Added support to load fonts create via FontMachine. They have to be "packed".
+  - Added ftEngine.CreatePivot method so you can create an empty object which you can parent other objects to.
+  - Added ftObject.SetAngleOffset method so you can manually set the offset for the drawing angle.
+  
+*Fixes*
+
+  - Fixed collision routines regarding the usage of the collision scale factor 
+  - Fixed ftSpriteAtlas.Load when using a sprite atlas data file where the lines are delimited by CR13 CR10.
+  - Fixed ftEngine.CreateImage when using a sprite atlas data file where the lines are delimited by CR13 CR10.
+  - Fixed ftFont.Load when using a data file where the lines are delimited by CR13 CR10.
+  - Fixed reading Image rotation when using ftSpriteAtlas class. Use ftSpriteAtlas.GetAngleOffset to read the rotation offset.
+  - Fixed ftObject.Render with images. They had disappeared at the edges of the Canvas when scaled up.
+  - Fixed ftScene.CreateTransAlpha and ftScene.CreateTransPos to return the transition object (ftTrans).
+  
+*Changes*
+
+  - ftEngine.CopyObject now copies assigned children too.
+
+  
+*New example*
+
+  - Misc/UpdateObjects
+  - Objects/Collision/Collision
+  - Objects/Collision/CollisionBoxes
+  - Timers/Timers
+  
+*Changed example*
+
+  - Objects/Creation/CopyObject  ->  added a child
+  - BaseScript/BaseScript -> added new OnObjectAnim method
+   
+*Notes*
+  - fantomEngine now ships with 38 sample scripts!!!   
+   
+-----------------------------------------------------------------------------------------
+Version 1.53
+
+*New functionalities*
+
+  - You can create/compose animated objects now from single images.
+  - Added an animation manager that will update the animation of an object now. This changed some fields of the ftEngine class and the ftObject class.
+  - You can pause an animation now.
+  - You can set the number of highscore list entries now via ftHighscore.Setcount(count:Int)
+  - Images grabbed from a spritesheet have their handle now set to the center of the image by default.
+  - Several HTML5 functions that let you resize, maximize and hide the canvas/console.
+  - With ftEngine.RenderLoadingBar you can now render a spinning loading image at the start of your app.
+  - You can de-/activate the sound and music playback now via one call each.
+  - And object can now have several images assigned to it. See the cftImageMng.monkey for all the new functionalities.
+  
+
+*Fixes*
+
+  - ftLayer.TouchCheck didn't took the layer position into the calculation.
+  - ftBox2D.CreateObject determined the box2d angle wrong. Its was off by -90 degrees.
+  - Removed a debugging PRINT command from ftLocalization.LoadFromString.
+  - Fixed a bug in ftLocalization.GetString regarding the language key.
+  - Fixed the removal of waypoints and markers.
+  - Fixed ftObject.SetScaleY regarding assigning absolute values.  
+
+*Changes*
+
+  - The objects have now an array of assigned images instead just one. This was needed to be able to compose an animated obejct of single images.
+
+*New example*
+
+  - Objects/Creation/AnimObject
+  - TileMaps/Platformer
+  
+-----------------------------------------------------------------------------------------
+Version 1.52
+
+*New functionalities*
+
+  - The free texture packer tool called MakeAtlas can be used now to create Sparrow compatible (.xml) sprite sheets.
+  - The new ftSpriteAtlas class handles sprite sheets much easier. No need to constantly read from the device storage when you access the spritesheet files.
+  - You can read TWL Theme Editor compatible font files now. Like with Hiero, just rename the font file from .fnt to .txt
+  - No need to remove file paths from images in Tiled json map files as ftEngine.CreateTileMap will ignore the path if the image is not located there.
+  - New ftScene class which groups layers. Then you can create a transition of set their active/visible flag in one batch. 
+  - You can do raycasting with the ftBox2D class now. A hit will be reported via the ftBox2D.OnRayCast method. 
+  - The bodies created via the ftBox2D class will now store the connected ftObject inside the body's userData field.
+  - Via ftObject.GetClosestObj(), you can now determine the closest ftObject to another ftObject 
+  - There is a ftImageMng class now which takes care of all images loaded via fantomEngine and makes sure that no image is loaded twice.
+  - For the rest, please have a look inside modules help files.
+
+*Fixes*
+
+  - Fixed a bug in ftFont.Draw that was showing up when the character you want to draw is not on the map.  
+  - SetCanvasSize now reads the device camvas size again so you can act on device rotation properly.
+  - several more
+
+*Changes*
+
+  - Localized text needs to be formated newly. See the ftLocalization class for more info. 
+  - For the rest, please have a look inside modules help files.
+  - When you create objects, the radius is now calculated differently. No multiplication of 1.42 from the max of height and width anymore.
+
+*New example*
+
+  - Misc/MultiClass
+  - Physics/Raycasting
+  - Scenes/SceneCreation
+  
+*Changed example*
+
+  - SpriteSheets/TexturePacker
+  - Localization/Localization
+
+-----------------------------------------------------------------------------------------
+Version 1.51
+
+*New functionalities*
+
+  - With the new class ftKeyMapping, you can support different key maps for different controllers or user definitions.
+  - With the new class ftLocalization, you can support several languages inside your app.
+  - You can pause and resume transitions now.
+  - You can add extra polygon fixtures now to a b2body via ftbox2D.AddPolygon (code provided by the Monkey user CalebDev).
+  - Quite a few sound related commands were added.
+  - You can set now the maximum sound channels to be used via ftEngine.SetMaxSoundChannel.
+  - Because of a typo I had to depreciate ftEngine.GetPause and ftEngine.SetPause. Use GetPaused and SetPaused instead.
+  - Added code and examples from Douglas Williams to provide more primitives (Point, Line, Oval, Polygon, Stickman) to fantomEngine.
+  - Added collision type ftEngine.ctLine% which you can check against now.
+  - Object layers of Tiled maps are parsed now. 
+  - You can set the GUI flag of a layer via ftLayer.SetGUI. A GUI layer is not effected by the camera values.
+  - New class ftMapObj that holds a Tiled map compatible map object (like a polyline, or a rectangle) 
+
+*Changes*
+
+  - Several help descriptions were reworded. 
+  - The folder structure of the example scripts was reorganized.
+  - Fixed several examples regarding useless SetUpdateRate calls in OnResume and OnSuspend events.
+  - Changed the values for touch types again.
+  - Speed up the drawing of tilemaps big time!
+
+*New commands*
+
+  - Please look at the modules help files to see what is new.
+  
+*Fixes*
+
+  - several
+
+*New example*
+
+  - Layer/ScrollingLayers	(by Douglas Williams)
+  - Localization/Localization
+  - Input/KeyMapping
+  - Objects/Appearance/FlashObject2	(by Douglas Williams)
+  - Misc/RunJump	(by Douglas Williams)
+  - Objects/Creation/CreatePrimitives	(by Douglas Williams)
+  - TileMaps/DynamicMap
+
+
+-----------------------------------------------------------------------------------------
+Version 1.50
+
+*New functionalities*
+
+  - You can set the handle of an object now via ftObject.SetHandle.
+  - You can determine the edges of an object easily now via ftObject.GetEdge. Good for platformers.
+  - Box2D integration enhanced. Now support for PhysicsEditor shape files.
+
+*Changes*
+
+  - fantomEngine ships now with the Box2D module v1.0.12 from Damian Sinclair
+
+*New commands*
+  
+  - Please look at the modules help files to see what is new.
+  
+*Fixes*
+  - Made compatible again with Monkey V70 regarding removed "remove" method in lists.
+  - The collision against a rotated box area didn't work correctly. Now it does!  
+  - subImages in TexturePacker sheets with capitalized characters in their names were not found.
+  - Polygon touch check routines were fixed.
+  
+*New example*
+
+  - Physics/MouseJoint
+  - Physics/RevoluteJoint
+
+-----------------------------------------------------------------------------------------
+Version 1.49
+
+*Changes*
+
+  - Put the examples inside parent folders that should categorize them better.
+  
+  - Finished path/waypoint integration.
+  
+  - Finished AStar path finding.
+  
+  - The class ftTrans now lets you set the equation type and ease type of a transition.
+  
+  - ftEngine.OnSwipeDone has now an extra touchIndex parameter that tells you which touch index has fired this event. You can do now multifinger swipes.
+  
+  - Subimages in sprite sheets can be rotated now, as the flag "rotated=true" is recognized now.
+
+*New commands*
+  
+  - See the ftPath and ftWaypoints class documentation for the final implementation.
+  
+  - See the ftAStar class documentation for the final implementation.
+  
+  - Various other new commands. Please look at the modules help files to see what is new.
+  
+*New example*
+
+  - Paths_Waypoints/Pathfinding
+  - Object_Behaviour/ObjectTransition
+
+-----------------------------------------------------------------------------------------
+
+Version 1.48
+
+*Changes*
+
+  - All CreateImage variants use load ftEngine.LoadImage now where it is needed. That takes care of loading an image only once.
+  
+  - Added a reset of the engine color to 255,255,255 before each render task. This should take care that the first objects color gets changed.
+  
+  - CreateTileMap:ftObject(fname:string, startX:Float, startY:Float ) now is able to load maps from a sub folder inside the data directory. Still you need to
+    make sure, that all references of image inside the JSON file are without paths and are located inside the same folder as your JSON file.
+    
+  - All parameter types functions that don't need a return parameters were set to VOID.
+  
+  - All ftEngine.Create"Object" methods will accept an optional object parameter. This way you can extend your own object class from the ftObject class and use this.
+    Be aware that in all event handling methods, the object will be casted into a ftObject. 
+
+  - ftObject.GetSpeed/ftObject.GetSpeedAngle now reported correct values when you used a negative speed on an object
+  
+  - layer/object transitions, object timers are not updated as long as the engine is paused (see ftEngine.SetPause)
+  
+  - Removed the "reflection" dependency by copying an object manually. That should reduce the size of the created native code again.
+  
+  - All methods are documented in a Jungle-IDE compatible style. Also look into the docs folder
+  
+  - Added time scaling in timers, transitions and also object updating. Set the scale via ftEngine.SetTimeScale.
+  
+  
+
+  
+*Fixes*
+
+  - ftObject.SetColWith:Int (s:Int,e:Int,b:Bool) wasn't setting an internal flag so the collision detection for all objects of a layer
+    didn't work if you used that command.
+    
+  - Removed the double call to Cleanuplists inside ftLayer.Update.
+  
+  - ftObject.GetSpin() returned the wrong value
+  
+  
+  
+*New classes*
+
+  - ftBox2D
+    This class integrates the Box2D engine. Just make sure you have a box2D module installed. Have a look at the new example Box2DIntegration.monkey
+    to see how it is working. Please note that you need to add another import statement "Import cftBox2D" at the top.  
+    
+  - ftPath
+    The new path/waypoint class. It supports linear and catmull rom type of path movement between its nodes. 
+
+  - ftMarker
+    A new internal class that deals with running Markers on a path
+    
+  - ftNode
+    A new internal class that represends a node on a path
+    
+  - ftImage
+    A new internal class that keeps a loaded image.
+    
+    
+*New commands*
+
+  - ftEngine.CreatePath:ftPath(xp:Float, yp:Float )
+
+  - ftEngine.GetAccelZ:Float()  
+    Return the accelerometer value for the Z axxis. If oyu are on a desktop, you can use the LEFT/Right key to change its values to -1/+1 accordingly.
+  
+  - ftEngine.GetObjCount:Int()
+    Returns the number of objects inside the engine
+    
+  - ftEngine.GetPause:Bool()
+
+  - ftEngine.GetTime:Float()
+
+  - ftEngine.GetTimeScale:Float()
+
+  - ftEngine.LoadImage(...)
+    Loads an image from the device only if it wasn't loaded before. The image gets stored into the image list of the engine.
+    
+  - ftEngine.OnObjectSort:Int(obj1:ftObject, obj2:ftObject)
+
+  - ftEngine.RemoveAllImages:Void(discard:Bool = False)  
+    Removes all images from the engines image list
+    
+  - ftEngine.RemoveAllLayer:Void()
+
+  - ftEngine.RemoveImage:Void(path:string, discard:Bool = False)  
+    Removes the image with the given path from the image list of the engine
+
+  - ftEngine.RemoveImage:Void(img:Image, discard:Bool = False)  
+    Removes the image with the given IMAGE from the image list of the engine
+
+  - ftEngine.SortObjects:Void()
+  - ftEngine.SortObjects:Void(layer:ftLayer)
+  
+  - ftEngine.SetPause(pauseFlag:Bool)
+  
+  - ftEngine.SetTimeScale(timescale:Float = 1.0)
+    
+  
+  
+   
+  - ftLayer.GetID:Int ()
+  
+  - ftLayer.GetTag:Int ()
+  
+  - ftLayer.SetID:Void (i:Int )
+
+  - ftLayer.SetPosX:Void (x:Float, relative:Int = False )
+  
+  - ftLayer.SetPosY:Void (y:Float, relative:Int = False )
+  
+  - ftLayer.SetTag:Void (t:Int )
+  
+  - ftLayer.SortObjects:Void()
+
+
+
+
+  - ftObject.GetPosZ:Void()
+
+  - ftObject.GetSpeedMin:Float()
+
+  - ftObject.GetSpeedXY:Float[]()
+
+  - ftObject.SetMinSpeed:Void(ms:Float)
+    Sets the minimum speed for objects
+
+  - ftObject.SetPosZ(z:Float, relative:Bool = False)
+    
+
+
+
+
+*New external HTML5 functions*
+
+  - GetBrowserName:String()
+    Will return the name of the HTML5 browser you are playing the game on.
+    
+  - GetBrowserVersion:String()
+    Will return the version number of the HTML5 browser you are playing the game on.
+    
+  - GetBrowserPlatform:String()
+    Will return the platform name of the HTML5 browwser you are playing the game on.
+    
+*New constant*
+
+  - 
+    
+*New sample scripts*
+
+  - Added sample script  Box2DIntegration.monkey
+
+  - Added sample script  Waypoints.monkey
+  
+  - Added sample script  ExtendObject.monkey
+  
+  - Added sample script  JuggleSoccerBall.monkey
+
+  - Added sample script  SortObjects.monkey
+
+  - Added sample script  ParentChild.monkey
+
+   
+-----------------------------------------------------------------------------------------
+
+Version 1.47
+
+*Fixes*
+  - Various fixes regarding ftObject.scale fields and others. These were found because of using reflection
+  - Fixed letterbox scaling when using ftEngine.SetCanvasSize
+  
+*Changes*
+  - Some methods return value type was switched to VOID because they actually don't return a value.
+  - ftFont class got rewritten to use a map to store the characters. It supports now unlimited bitmaps and characters too
+  - ftObject.Render() now sets the blendmode of mojo if an object has a different one.
+  - ftObject.SetText now determines depending if the text is multiline (seperated by ~n) and sets its object type accordingly
+  - ftObject.Render can display multiline text now.
+  
+*New commands*
+  - ftEngine.CopyObject:ftObject(srcObj:ftObject)
+    Copies an existing object and returns a new one. Attention: no timers, transitions, data objects and child objects are copied
+    
+  - ftObject.GetBlendMode:Int()  
+    Returns the blend mode of this object.
+    
+  - ftObject.SetBlendMode:Void(mode:Int = 0)  
+    Set the blend mode of this object.
+    
+*New constant*
+  - ftEngine.otTextMulti% = 7
+    
+*New sample scripts*
+  - Added sample script  CopyObjects.monkey
+  - Added sample script  MultilineText.monkey
+  - Added sample script  BlendMode.monkey
+    
+-----------------------------------------------------------------------------------------
+
+CHANGES V1.46:
+
+	- New Command ftEngine.CreateImage?:ftObject(img:Image, xp:Float, yp:Float) 
+ 	Creates an image object (sprite) from the given image with a center at xPos/yPos. 
+
+  - Fixed ftObject.Render() and ftObject.internal_RotateSpriteCol() 
+    regarding horizontal/vertical flipping of objects. They were assigned wrongly.
+
+  - New event  ftEngine.OnObjectRender:Int(obj:ftObject)
+	This is called after an object is rendered. Can be used to render extra information like a health bar or so.
+
+  - Changed ftObject and several of its methods to use seperate X and Y scale factors. 
+    Were only one factor could be used (circles, etc.), the X-scale factor is the relevant factor. 
+
+  - New Command  ftObject.SetScaleX:Int(sc:Float, relative:Int = False )
+  	Sets the X scale factor (width) of the object.
+  	
+  - New Command  ftObject.SetScaleY:Int(sc:Float, relative:Int = False )
+  	Sets the Y scale factor (height) of the object.
+
+  - Changed Command  ftObject.GetScale:Float()
+  	Returns the X scale factor (width) of the object.
+  	
+  - New Command  ftObject.GetScaleX:Float()
+  	Returns the X scale factor (width) of the object.
+  	
+  - New Command  ftObject.GetScaleY:Float()
+  	Returns the Y scale factor (height) of the object.
+
+  - New Command  ftObject.ActivateUpdateEvent:Int (onOff:Bool = True )
+  	Activates the ftEngine.OnObjectUpdate method to be called for an active object during ftEngine.Update.
+  	When an object is created, this flag is already set to TRUE.
+
+  - New Command  ftObject.ActivateRenderEvent:Int (onOff:Bool = True )
+  	Activates the ftEngine.OnRenderUpdate method to be called for an visible object during ftEngine.Render.
+  	When an object is created, this flag is already set to FALSE.
+  	
+  - Changed ftObject.Render() to recognize missing text align modes
+
+  - New constants for text aligment
+	ftEngine.taTopLeft% = 0
+	ftEngine.taTopCenter% = 1
+	ftEngine.taTopRight% = 2
+
+	ftEngine.taCenterLeft% = 7
+	ftEngine.taCenterCenter% = 3
+	ftEngine.taCenterRight% = 4
+
+	ftEngine.taBottomLeft% = 8
+	ftEngine.taBottomCenter% = 5
+	ftEngine.taBottomRight% = 6
+
+  - New Command  ftObject.GetDataObj:Object()
+  	Returns the data object of this ftObject. Look at the sample UserObjectData.monkey script for the usage of it.
+
+  - New Command  SetDataObj:Int (obj:Object)
+  	Sets the data object of this ftObject. Look at the sample UserObjectData.monkey script for the usage of it.
+
+  - Added sample script ObjectMovement.monkey 
+  - Added sample script UserObjectData.monkey 
+
+-----------------------------------------------------------------------------------------
+
+CHANGES V1.45:
+
+  - Implemented swipe detection via a new class ftSwipe
+
+  - New Command  ftEngine.ActivateSwipe:Int(onOff:Bool=True)
+    To enable swipe detection, you need to activate it
+  
+  - New Command  ftEngine.SwipeUpdate:Int(index:Int = 0)
+  	Call SwipeUpdate in every OnUpdate event after the regular ftEngine.Update method
+
+  - New Command  ftEngine.SetSwipeSnap:Int(degrees:Int = 1)
+  	You can let the swipe angle snap to a fraction of a given degree
+  
+  - New Command  ftEngine.SetSwipeDeadDist:Int(deadDist:Float = 20.0)
+  	Only swipes that are longer than the dead distance are detected.
+  
+  - New Event    ftEngine.OnSwipeDone:Int(sAngle:Float, sDist:Float, sSpeed:float)
+    This event is called when a swipe was detected
+  
+  - Added sample script SwipeDetection.monkey 
+
+-----------------------------------------------------------------------------------------
+
+CHANGES V1.44:
+
+  - Restructured all classes into their own source files
+  
+  - fantomEngine now uses a JSON module created by Damian Sinclair which you have to get here:
+  
+    http://code.google.com/p/monkey-json/
+
+  - New Command ftEngine.CreateImage:ftObject(atl:Image, dataFileName:String, subImageName:String, startX:Float, startY:Float )
+    Loads a subimage from a packed texture created by the tool TexturePacker from www.codeandweb.com.
+    
+  - New Command ftObject.SetRenderArea:Int (renderOffsetX:Float, renderOffsetY:Float, renderw:Float, renderh:Float)
+    Sets the area of an object image that is drawn. Please note that it does't change the object size and bounds.
+    
+  - New Command ftObject.GetType:Int ()
+    Returns the type of the object. Valid constants are
+    
+ 	ftEngine.otImage% = 0
+	ftEngine.otText% = 1
+	ftEngine.otCircle% = 2
+	ftEngine.otBox% = 3
+	ftEngine.otZoneBox% = 4
+	ftEngine.otZoneCircle% = 5
+	ftEngine.otTileMap% = 6
+
+  - New Command ftEngine.CreateTileMap:ftObject(imageAtlas:Image, tilesizeX:Int, tileSizeY:Int, tileCountX:Int, tileCountY:Int, startPosX:Float, startPosY:Float )
+    Manually creates a tile map object with a given tileset image atlas, the tile sizes and the tile count.
+    
+  - New Command ftEngine.CreateTileMap:ftObject(fname:string, startPosX:Float, startPosY:Float )
+    Loads a json map file created by the tool Tiled. The map can only contain one layer and the texturemap is not allowed to have spaces between each tile.
+    
+  - New camera commands
+    Syntax = ftEngine.SetCam:Int (x:Float, y:Float, relative:Int = False )
+    Syntax = ftEngine.SetCamX:Int (x:Float, relative:Int = False )
+    Syntax = ftEngine.SetCamY:Int (y:Float, relative:Int = False )
+    
+  - New Command ftObject.GetTileID:Int(column:Int, row:Int)
+  	Returns the ID of the map tile. Column/Row start from zero. Returns -1 for no tile.
+  
+  - New Command ftObject.GetTileIDAt:Int(xPos:Int, yPos:Int)
+  	Returns the ID of the map tile. xPos/Ypos are canvas coordinates. Can be used to determine if a collision accured. Returns -1 for no tile.
+  
+  - New Command ftObject.SetTileID:Int(column:Int, row:Int, id:Int)
+  	Set the ID of the map tile. Column/Row/ID start from zero.
+
+  - New Command ftObject.SetTileIDAt:Int(xPos:Int, yPos:Int, id:Int)
+  	Set the ID of the map tile. xPos/Ypos are canvas coordinates.
+  
+  - New Command ftObject.SetTileSModXY:Int(xMod:Float, yMod:float)
+  	Add modification factors to the tiles scale factors. Depending on the canvas scale mode
+  	and the scaling of the map itself, you can experience small gaps between the tiles of a map.
+  	To fix this, you can set the scale mod factors which will be added to the scale factor itself.
+  
+  - Added EXAMPLES folder inside the Module folder.
+
+  - Added sample script TexturePacker.monkey 
+  - Added sample script TileMap.monkey 
+    
+  - Fixed bugs/typos in the fttimer.Update Method.
+  
+  - Extended ftEngine.SetCanvasSize with a mode parameter
+    Syntax = SetCanvasSize:Int(w:Int, h:Int, mode:Int = 2)
+    The following constants can be used for he mode parameter
+    
+	ftEngine.cmZoom% = 0		'Old behaviour, canvas will be streched/fitted into the screen. 
+	ftEngine.cmCentered% = 1	'Pixel perfect, canvas will be centered into the screen space. No content scaling.
+	ftEngine.cmLetterbox% = 2	'Default value. Canvas will be scaled to the smaller scale factor of X or Y.
+	ftEngine.cmPerfect% = 3 	'Pixel perfect (Top left). No content/Canvas scaling.

@@ -1,0 +1,1325 @@
+# Module cftObject
+
+The class *ftObject* offers you a huge set of methods to deal with its object. And object can either be an (animated) image, a bitmap font text, a tile map, a primitive (circle, rectangle) or a zone (circle, rectangle).
+
+# Import fantomEngine
+
+# Class cftObject.ftObject
+
+# Method ActivateDeleteEvent:Void(onOff:Bool = True)
+
+*Description*
+
+Activates the ftEngine.OnObjectDelete method to be called for an object when it will be removed through the Remove method with the direct flag.
+
+*Details*
+
+By default this flag is set OFF.
+
+# Method ActivateRenderEvent:Void(onOff:Bool = True)
+
+*Description*
+
+Activates the ftEngine.OnObjectRender method to be called for a visible object during the execution of the ftEngine.Render() method.
+
+*Details*
+
+By default this flag is set OFF.
+
+# Method ActivateUpdateEvent:Void(onOff:Bool = True)
+
+*Description*
+
+Activates the ftEngine.OnObjectUpdate? method to be called for an active object during ftEngine.Update.
+
+*Details*
+
+By default this flag is set ON.
+
+# Method AddAnim:Void(animName:String, imgIndex:Int, _frameStart:Int = 1, _frameEnd:Int = 1)
+
+*Description*
+
+Add to an existing animation. Image and frame indexes start at 1.
+
+# Method AddAnim:Void(animName:String, imgName:String, _frameStart:Int = 1, _frameEnd:Int = 1)
+
+*Description*
+
+Add to an existing animation. Image and frame indexes start at 1.
+
+# Method AddImage:Void(filename:String)
+
+*Description*
+
+Adds a single image (frame) to an object.
+
+# Method AddImage:Void(image:Image)
+
+*Description*
+
+Adds a single image (frame) to an object.
+
+# Method AddImageObj:Void(imageObj:ftImage)
+
+*Description*
+
+Adds a single image object (frame) to an object.
+
+# Method AddSpeed:Void(sp:Float, ang:Float=9876.5)
+
+*Description*
+
+Adds speed to the object. If an angle is given, the speed will be added in that direction. If not, then in the objects angle.
+
+# Method AddTransAlpha:Void(trans:ftTrans, alpha:Float, relative:Int)
+
+*Description*
+
+Add an alpha transition to an existing transition.
+
+# Method AddTransPos:Void(trans:ftTrans, xt:Float, yt:Float, relative:Int)
+
+*Description*
+
+Add a position transition to an existing transition.
+
+# Method AddTransRot:Void(trans:ftTrans, rot:Float, relative:Int)
+
+*Description*
+
+Add a rotation transition to an existing transition.
+
+# Method AddTransScale:Void(trans:ftTrans, sca:Float, relative:Int)
+
+*Description*
+
+Add a scaling transition to an existing transition.
+
+# Method CancelTimerAll:Void()
+
+*Description*
+
+Cancels all timers attached to an object.
+
+# Method CancelTransAll:Void()
+
+*Description*
+
+Cancels all transitions attached to an object.
+
+# Method CheckCollision:Bool(sp2:ftObject)
+
+*Description*
+
+Check if a collision has happened for this object.
+
+*Details*
+
+The following collision types are valid at the moment:
+
+<ul>ftEngine.ctCircle   (Value = 0)
+
+ftEngine.ctBox%   (Value = 1 -> rotated bounding box)
+
+ftEngine.ctBound   (Value = 2 -> non-rotated bounding box)
+
+ftEngine.ctLine   (Value = 3)</ul>
+
+# Method CheckTouchHit:Bool(px:Float, py:Float)
+
+*Description*
+
+Check if a touch has happened.
+
+*Details*
+
+The following touch types are valid at the moment:
+
+<ul>ftEngine.tmCircle   (Value = 1)
+
+ftEngine.tmBound   (Value = 2)
+
+ftEngine.tmBox   (Value = 3)</ul>
+
+# Method CreateAnim:Void(animName:String, imgIndex:Int, _frameStart:Int = 1, _frameEnd:Int = 1, _repeatCount:Int = -1)
+
+*Description*
+
+Add a animation sequence to an object. This way an object becomes animated.
+
+# Method CreateAnim:Void(animName:String, imgName:String, _frameStart:Int = 1, _frameEnd:Int = 1, _repeatCount:Int = -1)
+
+*Description*
+
+Add a animation sequence to an object. This way an object becomes animated.
+
+# Method CreateTimer:ftTimer(timerID:Int, duration:Int, repeatCount:Int = 0)
+
+*Description*
+
+Create a timer for this object.
+
+*Details*
+
+A repeatCount of -1 will let the timer run forever. The duration is the time in milliseconds, after which the <b>ftEngine.OnObjectTimer</b> method is called.
+
+# Method CreateTransAlpha:ftTrans(transAlpha:Float, duration:Float, relative:Int, transId:Int=0)
+
+*Description*
+
+Create an alpha transition.
+
+*Details*
+
+The duration is the time in milliseconds, the transition takes to complete. Only a transID > 0 will fire the <b>ftEngine.OnObjectTrans</b> method.
+
+# Method CreateTransPos:ftTrans(xt:Float, yt:Float, duration:Float, relative:Int, transId:Int=0)
+
+*Description*
+
+Create a position transition.
+
+*Details*
+
+The duration is the time in milliseconds, the transition takes to complete. Only a transID > 0 will fire the <b>ftEngine.OnObjectTrans</b> method.
+
+# Method CreateTransRot:ftTrans(transRotation:Float, duration:Float, relative:Int, transId:Int=0)
+
+*Description*
+
+Create a rotation transition.
+
+*Details*
+
+The duration is the time in milliseconds, the transition takes to complete. Only a transID > 0 will fire the <b>ftEngine.OnObjectTrans</b> method.
+
+# Method CreateTransScale:ftTrans(transScale:Float, duration:Float, relative:Int, transId:Int=0)
+
+*Description*
+
+Create a scaling transition.
+
+*Details*
+
+The duration is the time in milliseconds, the transition takes to complete. Only a transID > 0 will fire the <b>ftEngine.OnObjectTrans</b> method.
+
+# Method GetActive:Bool()
+
+*Description*
+
+Returns the active flag.
+
+# Method GetAlpha:Float()
+
+*Description*
+
+Get the alpha value.
+
+# Method GetAngle:Float()
+
+*Description*
+
+Get the angle the object is heading.
+
+# Method GetAnimCount:Int()
+
+*Description*
+
+Get the number of frame from the active animation.
+
+# Method GetAnimFrame:Float()
+
+*Description*
+
+Get the current frame(time) of the active animation. It starts with 1.
+
+# Method GetAnimName:String()
+
+*Description*
+
+Return the name from the active animation.
+
+# Method GetAnimPaused:Bool()
+
+*Description*
+
+Return the pause flag for the active animation of an animated object.
+
+# Method GetAnimTime:Float()
+
+*Description*
+
+Get the frame time of the current animation.
+
+# Method GetAnimated:Bool()
+
+*Description*
+
+Return the isAnimated flag.
+
+# Method GetBlendMode:Int()
+
+*Description*
+
+Get the blend mode of an object.
+
+*Details*
+
+Used are the regular mojo blend modes.
+
+# Method GetChild:ftObject(index:Int)
+
+*Description*
+
+Get the child object with the given index (Index starts with 1).
+
+# Method GetChildCount:Int()
+
+*Description*
+
+Returns the child count of an object.
+
+# Method GetClosestObj:ftObject(useRadius:Bool = True)
+
+*Description*
+
+Returns the closest active object.
+
+*Details*
+
+If useRadius is set to FALSE, the distance between each object will be calculated from its position, 
+
+without taking its radius into the calculation.
+
+# Method GetColGroup:Int()
+
+*Description*
+
+Returns the collision group of an object.
+
+*Details*
+
+A value of 0 means that collisions for this object are disabled.
+
+# Method GetColType:Int()
+
+*Description*
+
+Returns the collision type of an object.
+
+*Details*
+
+Collision types can be:
+
+<ul><li>Const ctCircle% = 0
+
+<li>Const ctBox% = 1   (this will check against the rotated box of the Object)
+
+<li>Const ctBound% = 2   (This will check against the bounding box of the Object)
+
+<li>Const ctLine% = 3</ul>
+
+# Method GetColor:Float[]()
+
+*Description*
+
+Returns the color of an object in an array.
+
+# Method GetDataObj:Object()
+
+*Description*
+
+Returns the data object of this object.
+
+# Method GetEdge:Float(edge:Int=1, relative:Int = False)
+
+*Description*
+
+Returns an edge position (bottom,top,left,right) of the object.
+
+*Details*
+
+The edge parameter can have the following values:
+
+<ul><li>1 = Bottom edge
+
+<li>2 = Top edge
+
+<li>3 = Left edge
+
+<li>4 = Right edge</ul>
+
+
+
+If the relative flag is set, then you only get the distance in pixel towards that edge
+
+# Method GetFlip:Bool[]()
+
+*Description*
+
+Returns the horizontal and vertical FLIP flags in a Bool array.
+
+*Details*
+
+Index 0 contains the horizontal flag and index 1 of the returned array contains the vertical flag.
+
+# Method GetFlipH:Bool()
+
+*Description*
+
+Returns the horizontal FLIP flag.
+
+# Method GetFlipV:Bool()
+
+*Description*
+
+Returns the vetical FLIP flag.
+
+# Method GetFriction:Float()
+
+*Description*
+
+Get the friction value.
+
+# Method GetGroupID:Int()
+
+*Description*
+
+Returns the group ID of an object.
+
+# Method GetHeight:Float()
+
+*Description*
+
+Get the height of an object.
+
+*Details*
+
+The returned value is the stored height multiplied by the Y scale factor.
+
+# Method GetID:Int()
+
+*Description*
+
+Returns the ID of an object.
+
+# Method GetImage:Image(index:Int = 1)
+
+*Description*
+
+Returns the Image of an object. The index starts with 1.
+
+# Method GetImageCount:Int()
+
+*Description*
+
+Returns the number of images of an object.
+
+# Method GetImageFrameCount:Int(index:Int = 1)
+
+*Description*
+
+Returns the number of subframe from an image of an object. Index starts with 1.
+
+# Method GetImageIndex:Int(imgPath:String)
+
+*Description*
+
+Returns the index of an image with a given name. Index starts with 1.
+
+# Method GetImageObj:ftImage(index:Int = 1)
+
+*Description*
+
+Returns the ftImage of an object. The index starts with 1.
+
+# Method GetImagePath:String(index:Int = 1)
+
+*Description*
+
+Returns the name from an image of an object. Index starts with 1.
+
+# Method GetLayer:ftLayer()
+
+*Description*
+
+Get the objects layer.
+
+# Method GetMapObj:ftMapObj(index:Int)
+
+*Description*
+
+Returns the tile map object with the given index. Index starts with 1.
+
+Example:
+
+<pre>
+' Load the tile map created by Tiled
+Local tm := eng.CreateTileMap("yourMap.json", 0, 0 )
+
+' Determine the number of objects included in the map
+Print ("Number of map objects = " + tm.GetMapObjCount())
+
+' Iterate through the map objects
+For Local moi := 1 To tm.GetMapObjCount()
+	Local mo := tm.GetMapObj(moi)
+	
+	' Determine some of the objects fields/properties
+	Print ("obj #"+moi+"   Name="+mo.GetName())
+	Print ("obj #"+moi+"   Type="+mo.GetType())
+	Print ("obj #"+moi+"   LayerName="+mo.GetLayerName())
+	
+	If mo.GetType() = "typePolyLine" Then
+		Local pl:Float[] = mo.GetPolyLine()
+		Print ("length of polyline = "+pl.Length())
+		For Local pli:= 1 To pl.Length() Step 2
+			Print ("#"+pli+"  = "+pl[pli-1]+":"+pl[pli])
+		Next
+	Endif
+	Print ("")
+Next
+
+</pre>
+# Method GetMapObjCount:Int()
+
+*Description*
+
+Returns the number of tile map objects.
+
+*Details*
+
+The objects were stored when a Tiled compatible map was loaded.
+
+# Method GetName:String()
+
+*Description*
+
+Get the name of an object.
+
+# Method GetParent:ftObject()
+
+*Description*
+
+Get the parent object.
+
+# Method GetPos:Float[]()
+
+*Description*
+
+Returns the objects X and Y position in a 2D Float array.
+
+# Method GetPosX:Float()
+
+*Description*
+
+Get the X position.
+
+# Method GetPosY:Float()
+
+*Description*
+
+Get the Y position.
+
+# Method GetPosZ:Float()
+
+*Description*
+
+Get the Z position.
+
+# Method GetRadius:Float()
+
+*Description*
+
+Returns the radius of an object.
+
+# Method GetScale:Float()
+
+*Description*
+
+Get current scale factor of an object.
+
+# Method GetScaleX:Float()
+
+*Description*
+
+Returns the X scale factor (width) of the object.
+
+# Method GetScaleY:Float()
+
+*Description*
+
+Returns the Y scale factor (height) of the object.
+
+# Method GetSpeed:Float()
+
+*Description*
+
+Get current linear speed of an object.
+
+# Method GetSpeedAngle:Float()
+
+*Description*
+
+Get the current speed angle.
+
+# Method GetSpeedMax:Float()
+
+*Description*
+
+Get the max speed of an object.
+
+# Method GetSpeedMin:Float()
+
+*Description*
+
+Get the minimum speed of an object.
+
+# Method GetSpeedX:Float()
+
+*Description*
+
+Get the current X speed.
+
+# Method GetSpeedXY:Float[]()
+
+*Description*
+
+Get current the X and Y speed of a 2D Float array.
+
+# Method GetSpeedY:Float()
+
+*Description*
+
+Get the current Y speed.
+
+# Method GetSpin:Float()
+
+*Description*
+
+Get the spin speed value.
+
+# Method GetTag:Int()
+
+*Description*
+
+Get the object tag value.
+
+# Method GetTargetAngle:Float(targetObj:ftObject, relative:Int=False)
+
+*Description*
+
+Returns the angle to a target object.
+
+*Details*
+
+If the relative flag is set, then the angle takes the object angle into account.
+
+Example:
+
+<pre>
+' Shooting a shot in the direction of an enemy object
+Const shotID:Int = 1234
+Const shotID:Int = 9876
+
+' First determine the angle of the enemy object compared to the player
+Local targetAngle:Float = playerObj.GetTargetAngle(enemyObj)
+
+' Calculate the starting position of the shot 30 pixels in the direction of the enemy
+Local startPos:Float[] = playerObj.GetVector(30.0, targetAngle )
+
+' Create a shot at the center of the player
+Local shotObj:ftObject = fE.CreateImage( "shoot.png", startPos[0], startPos[1] )
+
+' Give the shot object an ID so we can identify it later
+shotObj.SetID(shotID)
+
+' Set its collision parameters
+shotObj.SetColGroup(shotID)
+shotObj.SetColWith(enemyID)
+
+' Set the angle of the shot
+shotObj.SetAngle(tAngle)
+
+' Give the shot a speed
+shotObj.SetSpeed(10)
+</pre>
+# Method GetTargetDist:Float(targetObj:ftObject, useRadius:Bool = False)
+
+*Description*
+
+Get the distance to a target object.
+
+*Details*
+
+Which the useRadius flag set, it will substract the radius of each object from the distance
+
+# Method GetText:String()
+
+*Description*
+
+Get the text field of an object.
+
+# Method GetTileAt:Int(xp:Int,yp:Int)
+
+*Description*
+
+Returns the tile index at the given canvas coordinates, starting from zero.
+
+# Method GetTileCount:Int()
+
+*Description*
+
+Returns the total number of tiles of a tilemap.
+
+# Method GetTileCountX:Int()
+
+*Description*
+
+Returns the number of tiles in the X direction.
+
+# Method GetTileCountY:Int()
+
+*Description*
+
+Returns the number of tiles in the Y direction.
+
+# Method GetTileHeight:Int(index:Int)
+
+*Description*
+
+Returns the height of a tile with the given index. Index starts at 0.
+
+# Method GetTileID:Int(index:Int)
+
+*Description*
+
+Returns the ID of the tiles texture map, at the given index, starting from zero.
+
+*Details*
+
+It returns -1 if there is no tile.
+
+# Method GetTileID:Int(column:Int, row:Int)
+
+*Description*
+
+Returns the ID of the tiles texture map, at the given map row and column, starting from zero.
+
+*Details*
+
+It returns -1 if there is no tile.
+
+# Method GetTileIDAt:Int(xp:Int,yp:Int)
+
+*Description*
+
+Returns the ID of the tiles texture, at the given canvas coordinates, starting from zero.
+
+*Details*
+
+It returns -1 if there is no tile.
+
+# Method GetTileMap:ftTileMap()
+
+*Description*
+
+Returns the tileMap of this object.
+
+# Method GetTilePosX:Float(index:Int)
+
+*Description*
+
+Returns the X position of a tile with the given index. Index starts with 0.
+
+# Method GetTilePosY:Float(index:Int)
+
+*Description*
+
+Returns the Y position of a tile with the given index. Index starts with 0.
+
+# Method GetTileWidth:Int(index:Int)
+
+*Description*
+
+Returns the width of a tile with the given index. Index starts at 0.
+
+# Method GetTouchMode:Int()
+
+*Description*
+
+Returns the touchmode of an object.
+
+# Method GetTransitionCount:Int()
+
+*Description*
+
+Returns the amount of active transitions of an object.
+
+# Method GetType:Int()
+
+*Description*
+
+Returns the type of an object.
+
+*Details*
+
+The value of the type of an object can be one of the following ones:
+
+<ul><li>ftEngine.otImage   (Value = 0)
+
+<li>ftEngine. otText   (Value = 1)
+
+<li>ftEngine.otCircle   (Value = 2)
+
+<li>ftEngine.otBox   (Value = 3)
+
+<li>ftEngine.otZoneBox   (Value = 4)
+
+<li>ftEngine.otZoneCircle   (Value = 5)
+
+<li>ftEngine.otTileMap   (Value = 6)
+
+<li>ftEngine.otTextMulti   (Value = 7)
+
+<li>ftEngine.otPoint   (Value = 8)
+
+<li>ftEngine.otStickMan   (Value = 9)
+
+<li>ftEngine.otOval   (Value = 10)
+
+<li>ftEngine.otLine   (Value = 11)
+
+<li>ftEngine.otPoly   (Value = 12)
+
+<li>ftEngine.otPivot   (Value = 13)</ul>
+
+# Method GetVector:Float[](vecDistance:Float, vecAngle:Float, relative:Bool=False)
+
+*Description*
+
+Determines a 2D vector from the objects center calculated by the given distance and angle.
+
+# Method GetVectorAngle:Float(vecXPos:Float, vecYPos:Float, relative:Int=False)
+
+*Description*
+
+Get the angle from the objects center to the given vector.
+
+# Method GetVectorDist:Float(vecXPos:Float, vecYPos:Float)
+
+*Description*
+
+Get the distance in pixel from the objects center to the given vector.
+
+# Method GetVisible:Bool()
+
+*Description*
+
+Returns the visible flag.
+
+# Method GetWidth:Float()
+
+*Description*
+
+Returns the width of an object.
+
+*Details*
+
+The returned value is the stored width multiplied by the X scale factor.
+
+# Method PauseTimerAll:Void()
+
+*Description*
+
+Pause all timer of an object.
+
+# Method PauseTransAll:Void()
+
+*Description*
+
+Pause all  transitions attached to an object.
+
+# Method Remove:Void(directFlag:Bool = False)
+
+*Description*
+
+Removes an object.
+
+# Method Render:Void(xoff:Float=0.0, yoff:Float=0.0)
+
+*Description*
+
+Renders an object.
+
+# Method ResumeTimerAll:Void()
+
+*Description*
+
+Resume all paused timer of an object.
+
+# Method ResumeTransAll:Void()
+
+*Description*
+
+Resume all  transitions attached to an object.
+
+# Method SetActive:Void(activeFlag:Bool = True)
+
+*Description*
+
+Set the active flag.
+
+# Method SetActiveAnim:Void(animName:String)
+
+*Description*
+
+Set the current active animation.
+
+# Method SetAlpha:Void(newAlpha:Float, relative:Int=False)
+
+*Description*
+
+Set the alpha value of an object. (Ranging from 0.0 to 1.0)
+
+# Method SetAngle:Void(newAngle:Float, relative:Int = False)
+
+*Description*
+
+Set the objects angle.
+
+# Method SetAngleOffset:Void(angleOffset:Float)
+
+*Description*
+
+Set the objects angle offset manually.
+
+*Details*
+
+Normally it is set from loading an image from a sprite atlas where the image is already rotated.
+
+# Method SetAnimFrame:Void(frame:Float)
+
+*Description*
+
+Set the current animation frame. The frame number starts with 1.
+
+# Method SetAnimPaused:Void(pauseFlag:Bool = False)
+
+*Description*
+
+Set the pause flag for the animation of an animated object.
+
+# Method SetAnimRepeatCount:Void(repeatCount:Int = -1)
+
+*Description*
+
+Set the repeat count of the current animation.
+
+*Details*
+
+The default value of -1 means it runs forever. A value greater than 0 describes how many times the animation repeats itself.
+
+# Method SetAnimTime:Void(time:Float = 10.0)
+
+*Description*
+
+Set the animation range for an animated object.
+
+*Details*
+
+	Method SetAnimRange:Void (startFrame:Float, endFrame:Float )
+
+		Self.frameStart = startFrame
+
+		Self.frameEnd = endFrame
+
+		Self.animTime = (startFrame-1) * Self.frameTime
+
+		Self.frameLength = endFrame - startFrame + 1
+
+	End
+
+Set the factor for the animation frame time.
+
+The default value is 10.0. The higher the value is, the longer a frame is displayed.
+
+# Method SetAnimated:Void(animFlag:Bool = True)
+
+*Description*
+
+Turn the animation of an animated object on/off.
+
+# Method SetBlendMode:Void(blendmode:Int = 0)
+
+*Description*
+
+Set the blend mode of an object.
+
+# Method SetColGroup:Void(collisionGroup:Int)
+
+*Description*
+
+Set the objects collision group.
+
+*Details*
+
+A value of 0 will disable the collision, a value between 1 and 32 will set the collision group.
+
+# Method SetColScale:Void(colScale:Float = 1.0)
+
+*Description*
+
+Sets the collision scale factor of an object.
+
+*Details*
+
+The collision scale affects the calculation of the collision type objects (circle, bounding box, rotated box)
+
+# Method SetColType:Void(colltype:Int)
+
+*Description*
+
+Set the collision type of an object.
+
+*Details*
+
+Collision types can be:
+
+<ul><li>Const ctCircle% = 0
+
+<li>Const ctBox% = 1   (this will check against the rotated box of the object)
+
+<li>Const ctBound% = 2   (This will check against the bounding box of the object)
+
+<li>Const ctLine% = 3</ul>
+
+Example:
+
+<pre>
+Method OnCreate:Int()
+        ' Create an instance of the engine
+        eng = New engine
+        
+        ' Create an image object
+        Local obj:ftObject = eng.CreateImage("spaceship.png", 40, 100)
+        
+        ' Set the collision type to rotated box collision
+        obj.SetcolType(ftEngine.ctBox)
+        Return 0
+End
+</pre>
+# Method SetColWith:Void(startIndex:Int, endIndex:Int, boolFlag:Bool)
+
+*Description*
+
+Set with which collision groups an object can collide.
+
+*Details*
+
+Indexes go from 1 to 32.
+
+# Method SetColWith:Void(index:Int,boolFlag:Int)
+
+*Description*
+
+Set with which collision group an object can collide.
+
+*Details*
+
+Indexes go from 1 to 32.
+
+# Method SetColor:Void(cRed:Float, cGreen:Float, cBlue:Float)
+
+*Description*
+
+Set the color of an object.
+
+# Method SetCurrImage:Void(index:Int, _frameIndex:Int)
+
+*Description*
+
+Sets the current image and frame of the object to be drawn. Image index and frame index start with 1.
+
+# Method SetDataObj:Void(obj:Object)
+
+*Description*
+
+Sets the data object of this object.
+
+# Method SetFlip:Void(vf:Bool,hf:Bool)
+
+*Description*
+
+Activate horizontal and vertical image flip.
+
+# Method SetFlipH:Void(hf:Bool)
+
+*Description*
+
+Activate horizontal image flip.
+
+# Method SetFlipV:Void(vf:Bool)
+
+*Description*
+
+Activate vertical image flip.
+
+# Method SetFriction:Void(newFriction:Float, relative:Int = False)
+
+*Description*
+
+Set the objects friction.
+
+# Method SetGroupID:Void(groupId:Int)
+
+*Description*
+
+Set the objects group ID.
+
+# Method SetHandle:Void(hx:Float, hy:Float)
+
+*Description*
+
+Set the handle/hotspot of an object.
+
+*Details*
+
+The handle determines the relative position of the objects hotspot (images, primitives). 
+
+A handle of 0.5/0.5 is in the center of the object. A handle of 0.0/0.0 is at the top left corner.
+
+# Method SetHeight:Void(height:Float)
+
+*Description*
+
+Set the height of an object.
+
+*Details*
+
+The stored height is the result of the given parameter divided by the current Y scale factor.
+
+# Method SetID:Void(i:Int)
+
+*Description*
+
+Set the object ID.
+
+# Method SetImage:Void(index:Int, filename:String)
+
+*Description*
+
+Sets a single image (frame) of an object at the given index. Index starts at 1.
+
+# Method SetImage:Void(index:Int, image:Image)
+
+*Description*
+
+Sets a single image (frame) of an object at the given index. Index starts at 1.
+
+# Method SetImageObj:Void(index:Int, imageObj:ftImage)
+
+*Description*
+
+Sets a single image object (frame) of an object at the given index. Index starts at 1.
+
+# Method SetLayer:Void(newLayer:ftLayer)
+
+*Description*
+
+Set the layer of an object.
+
+# Method SetMaxSpeed:Void(maxSpeed:Float)
+
+*Description*
+
+Set the maximum speed of an object.
+
+# Method SetMinSpeed:Void(minSpeed:Float)
+
+*Description*
+
+Set the minimum speed of an object.
+
+# Method SetName:Void(newName:String)
+
+*Description*
+
+Set the name of an object.
+
+# Method SetParent:Void(newParent:ftObject)
+
+*Description*
+
+Set the parent of an object.
+
+# Method SetPos:Void(x:Float, y:Float, relative:Int = False)
+
+*Description*
+
+Set the objects X/Y position.
+
+# Method SetPosX:Void(x:Float, relative:Int = False)
+
+*Description*
+
+Set the X-position of an object.
+
+# Method SetPosY:Void(y:Float, relative:Int = False)
+
+*Description*
+
+Set the Y-position of an object.
+
+# Method SetPosZ:Void(z:Float, relative:Int = False)
+
+*Description*
+
+Set the Z-position of an object.
+
+# Method SetRadius:Void(newRadius:Float, relative:Int = False)
+
+*Description*
+
+Set the radius of an object.
+
+# Method SetRenderArea:Void(renderOffsetX:Float, renderOffsetY:Float, renderWidth:Float, renderHeight:Float)
+
+*Description*
+
+Sets the area of an objects texture that is to be drawn.
+
+# Method SetScale:Void(newScale:Float, relative:Int = False)
+
+*Description*
+
+Set the scale of an object.
+
+# Method SetScaleX:Void(newScale:Float, relative:Int = False)
+
+*Description*
+
+Sets the X scale factor (width) of the object.
+
+# Method SetScaleY:Void(newScale:Float, relative:Int = False)
+
+*Description*
+
+Sets the Y scale factor (height) of the object.
+
+# Method SetSpeed:Void(newSpeed:Float, ang:Float=9876.5)
+
+*Description*
+
+Set the speed of an object. If an angle is given, the speed will be added in that direction. If not, then in the objects angle.
+
+# Method SetSpeedAngle:Void(newAngle:Float)
+
+*Description*
+
+Set the objects speed angle.
+
+# Method SetSpeedX:Void(newSpeed:Float)
+
+*Description*
+
+Set the objects X speed.
+
+# Method SetSpeedY:Void(newSpeed:Float)
+
+*Description*
+
+Set the objects Y speed.
+
+# Method SetSpin:Void(newSpin:Float, relative:Int = False)
+
+*Description*
+
+Set the objects spin speed.
+
+# Method SetTag:Void(t:Int)
+
+*Description*
+
+Set the objects tag field.
+
+# Method SetText:Void(t:String)
+
+*Description*
+
+Set the text of an object.
+
+# Method SetTileID:Void(column:Int, row:Int, id:Int)
+
+*Description*
+
+Sets the ID of the tiles texture map, at the given map row and column, starting from zero.
+
+# Method SetTileIDAt:Void(xp:Int,yp:Int, id:Int=-1)
+
+*Description*
+
+Sets the ID of the tiles texture, at the given canvas coordinates, starting from zero.
+
+# Method SetTileSModXY:Void(xMod:Float, yMod:Float)
+
+*Description*
+
+Sets the tile scale modification factors which are used during rendering.
+
+# Method SetTouchMode:Void(touch:Int)
+
+*Description*
+
+Set the objects touch mode.
+
+*Details*
+
+Touch modes can be:
+
+<ul><li>Const tmCircle% = 1
+
+<li>Const tmBound% = 2    (This will check against the bounding box of the object)
+
+<li>Const tmBox% = 3    (this will check against the rotated box of the object)</ul>
+
+# Method SetVisible:Void(visible:Bool = True)
+
+*Description*
+
+Set if an object is visible.
+
+# Method SetWidth:Void(width:Float)
+
+*Description*
+
+Set the width of an object.
+
+*Details*
+
+The stored width is the result of the given parameter divided by the current X scale factor.
+
+# Method SetWrapScreen:Void(ws:Bool)
+
+*Description*
+
+Set if an object will wrap around the screen borders automatically.
+
+# Method SetWrapScreenX:Void(wsx:Bool)
+
+*Description*
+
+Set if an object will wrap around the left/right screen borders automatically.
+
+# Method SetWrapScreenY:Void(wsy:Bool)
+
+*Description*
+
+Set if an object will wrap around the top/bottom screen borders automatically.
+
+# Method Update:Void(delta:Float=1.0)
+
+*Description*
+
+Update an object with the given updatespeed factor.
+

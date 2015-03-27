@@ -1,0 +1,58 @@
+# Module cftVec2D
+
+The cftVec2D module provides a 2D vector class.
+
+# Import fantomEngine
+
+# Class cftVec2D.ftVec2D
+
+# Method Add:Void(vector:ftVec2D)
+
+# Method Add:Void(addX:Float, addY:Float)
+
+# Method Angle:Float(vector:ftVec2D)
+
+# Method Angle:Float(xPos:Float, yPos:Float)
+
+# Method Angle:Float()
+
+# Method Copy:ftVec2D()
+
+# Method Dot:Float(xPos:Float, yPos:Float)
+
+# Method Dot:Float(vector:ftVec2D)
+
+# Method Equals:Bool(vector:ftVec2D)
+
+# Method Inverse:Void()
+
+# Method InverseX:Void()
+
+# Method InverseY:Void()
+
+# Method Length:Float(vector:ftVec2D)
+
+# Method Length:Float(xPos:Float, yPos:Float)
+
+# Method Length:Float()
+
+# Method Mul:Void(scalar:Float)
+
+# Method New:none(xp:Float, yp:Float)
+
+# Method Normalize:Void()
+
+# Method Perp:Void()
+
+# Method Set:Void(setX:Float, setY:Float)
+
+# Method Set:Void(vector:ftVec2D)
+
+# Method Sub:Void(vector:ftVec2D)
+
+# Method Sub:Void(subX:Float, subY:Float)
+
+# Field x:Float
+
+# Field y:Float
+

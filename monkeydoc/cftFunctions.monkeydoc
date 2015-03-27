@@ -1,0 +1,152 @@
+# Module cftFunctions
+
+The module cftFunctions is a collection of several functions for IOS, ANDROID and HTML5 targets to retrieve some device and browser informations.
+
+# Function GetBrowserName:String()
+
+*Description*
+
+Returns the name of the HTML5 browser.
+
+*Details*
+
+Returns valid information on HTML5 only.
+
+# Function GetBrowserPlatform:String()
+
+*Description*
+
+Returns the platform the HTML5 browser is running on.
+
+*Details*
+
+Returns valid information on HTML5 only.
+
+# Function GetBrowserVersion:String()
+
+*Description*
+
+Returns the version of the HTML5 browser.
+
+*Details*
+
+Returns valid information on HTML5 only.
+
+# Function GetDeviceName:String()
+
+*Description*
+
+Returns the name of the device.
+
+*Details*
+
+Returns valid information on Android/iOS only.
+
+# Function GetHardware:String()
+
+*Description*
+
+Returns the hardware of the device.
+
+*Details*
+
+Returns valid information on Android/iOS only.
+
+# Function GetLanguage:String()
+
+*Description*
+
+Returns the language of a browser.
+
+*Details*
+
+Returns valid information on HTML5 only.
+
+# Function GetProduct:String()
+
+*Description*
+
+Return the product of the device.
+
+*Details*
+
+Returns valid information on Android only.
+
+# Function GetSerial:String()
+
+*Description*
+
+Return the serial number of the device.
+
+*Details*
+
+Returns valid information on Android/iOS only.
+
+# Function GetUser:String()
+
+*Description*
+
+Returns the name of the device user.
+
+*Details*
+
+Returns valid information on Android/iOS only.
+
+# Function HideConsole:Void()
+
+*Description*
+
+Hides the HTML5 console.
+
+*Details*
+
+HTML5 only.
+
+Attention: You need to set the variable CANVAS_RESIZE_MODE to 0 in your exported MonkeyGame.html file to make this work correctly!
+
+# Function IsMobileBrowser:Bool()
+
+*Description*
+
+Returns TRUE, if your HTML5 runs on a mobile browser.
+
+*Details*
+
+Returns valid information on HTML5 only.
+
+# Function MaximizeCanvas:Void()
+
+*Description*
+
+Maximizes the HTML5 canvas.
+
+*Details*
+
+HTML5 only.
+
+Attention: You need to set the variable CANVAS_RESIZE_MODE to 0 in your exported MonkeyGame.html file to make this work correctly!
+
+# Function ResizeCanvas:Void(x:Int, y:Int)
+
+*Description*
+
+Resizes the HTML5 canvas to the given proportions.
+
+*Details*
+
+HTML5 only.
+
+Attention: You need to set the variable CANVAS_RESIZE_MODE to 0 in your exported MonkeyGame.html file to make this work correctly!
+
+# Function ResizeConsole:Void(x:Int, y:Int)
+
+*Description*
+
+Resizes the HTML5 console to the given proportions.
+
+*Details*
+
+HTML5 only.
+
+Attention: You need to set the variable CANVAS_RESIZE_MODE to 0 in your exported MonkeyGame.html file to make this work correctly!
+

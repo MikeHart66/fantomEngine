@@ -1,0 +1,74 @@
+td_spritesheet.png
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+TurretBase
+  rotate: false
+  xy: 0, 0
+  size: 128, 128
+  orig: 128, 128
+  offset: 0, 0
+  index: -1
+UFOShot
+  rotate: false
+  xy: 238, 34
+  size: 8, 10
+  orig: 8, 10
+  offset: 1, 0
+  index: -1
+Gold
+  rotate: false
+  xy: 206, 48
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1
+Destroyer
+  rotate: false
+  xy: 0, 128
+  size: 128, 128
+  orig: 128, 128
+  offset: 0, 0
+  index: -1
+TurretBullet
+  rotate: false
+  xy: 238, 16
+  size: 18, 18
+  orig: 18, 18
+  offset: 55, 23
+  index: -1
+Mine
+  rotate: false
+  xy: 160, 74
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1
+EkstraLive
+  rotate: false
+  xy: 128, 74
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1
+Silver
+  rotate: false
+  xy: 206, 16
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1
+TurretHead
+  rotate: false
+  xy: 128, 0
+  size: 78, 74
+  orig: 78, 74
+  offset: 26, 30
+  index: -1
+explosion
+  rotate: false
+  xy: 206, 0
+  size: 48, 16
+  orig: 48, 16
+  offset: 0, 0
+  index: -1

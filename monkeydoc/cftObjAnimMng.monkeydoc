@@ -1,0 +1,102 @@
+# Module cftObjAnimMng
+
+The module cftObjAnimMng contains several classes to manage animated objects inside your game.
+
+# Import fantomEngine
+
+# Class cftObjAnimMng.ftAnim
+
+The ftAnim class represents one animation of an object.
+
+# Method AddFrame:Void(_imgIndex:Int, _frameIndex:Int)
+
+*Description*
+
+Adds a frame to an animated object.
+
+# Method Update:Void(delta:Float = 1.0)
+
+*Description*
+
+Updates the animation of an object.
+
+# Class cftObjAnimMng.ftObjAnimMng
+
+The ftObjAnimMng class manages the animations of an object.
+
+# Method AddAnim:Void(animName:String, imgIndex:Int, _frameStart:Int = 1, _frameEnd:Int = 1)
+
+*Description*
+
+Add to an existing animation. Image and frame indexes start at 1.
+
+# Method CreateAnim:Void(animName:String, imgIndex:Int, _frameStart:Int = 1, _frameEnd:Int = 1)
+
+*Description*
+
+Creates a new animation. Image and frame indexes start at 1.
+
+# Method GetCurrAnimCount:Int()
+
+*Description*
+
+Get the number of frames from the active animation.
+
+# Method GetCurrAnimFrame:Float()
+
+*Description*
+
+Get the current frame of the active animation.
+
+# Method GetCurrAnimName:String()
+
+*Description*
+
+Get the animation name.
+
+# Method GetCurrAnimTime:Float()
+
+*Description*
+
+Get the animation frame time.
+
+# Method RemoveAll:Void()
+
+*Description*
+
+Remove all animations.
+
+# Method SetActiveAnim:Void(animName:String)
+
+*Description*
+
+Set the current active anim
+
+# Method SetCurrAnimFrame:Void(frame:Float)
+
+*Description*
+
+Set the frame of the current animation. The frame number starts with 1.
+
+# Method SetCurrAnimRepeatCount:Void(repeatCount:Int = -1)
+
+*Description*
+
+Set the repeat count of the current animation.
+
+*Details*
+
+The default value of -1 means it runs forever. A value greater than 0 describes how many times the animation repeats itself.
+
+# Method SetCurrAnimTime:Void(time:Float = 10.0)
+
+*Description*
+
+Set the factor for the frame time of the current animation.
+
+*Details*
+
+The default value is 10.0. The higher the value is, the longer a frame is displayed.
+
+# Method UpdateCurrAnim:Void(delta:Float = 1.0)
+

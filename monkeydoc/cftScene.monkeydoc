@@ -1,0 +1,82 @@
+# Module cftScene
+
+The class *ftScene* groups assigned layers and lets you manage them in a combined way. Layers can be connected to several scenes at one time.
+
+# Import fantomEngine
+
+# Class cftScene.ftScene
+
+# Method AddLayer:Void(layer:ftLayer)
+
+*Description*
+
+Add a layer to a scene.
+
+# Method CreateTransAlpha:ftTrans(alpha:Float, duration:Float, relative:Int, transId:Int=0)
+
+*Description*
+
+Create an alpha transition for the scene.
+
+*Details*
+
+The duration is the time in milliseconds, the transition takes to complete. Only a transID > 0 will fire the <b>ftEngine.OnLayerTrans</b> method for the first layer of a scene.
+
+# Method CreateTransPos:ftTrans(xt:Float, yt:Float, duration:Float, relative:Int, transId:Int=0)
+
+*Description*
+
+Create an position transition for the scene.
+
+*Details*
+
+The duration is the time in milliseconds, the transition takes to complete. Only a transID > 0 will fire the <b>ftEngine.OnLayerTrans</b> method for the first layer of a scene.
+
+# Method GetActive:Bool()
+
+*Description*
+
+Returns the active flag of the scene.
+
+# Method GetVisible:Bool()
+
+*Description*
+
+Returns the visible flag of the scene.
+
+# Method Remove:Void()
+
+*Description*
+
+Remove the scene from the engine.
+
+# Method RemoveLayer:Void(layer:ftLayer)
+
+*Description*
+
+Remove a layer from a scene.
+
+# Method SetActive:Void(activeFlag:Bool)
+
+*Description*
+
+Set the active flag of the scenes layers.
+
+# Method SetAlpha:Void(newAlpha:Float, relative:Bool = False)
+
+*Description*
+
+Set the alpha value of each layer in the scene.
+
+# Method SetPos:Void(x:Float, y:Float, relative:Bool = False)
+
+*Description*
+
+Set the position of each layer in the scene.
+
+# Method SetVisible:Void(visibleFlag:Bool)
+
+*Description*
+
+Set the visible flag of the scenes layers.
+

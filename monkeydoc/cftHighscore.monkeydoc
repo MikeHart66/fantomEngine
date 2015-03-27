@@ -1,0 +1,58 @@
+# Module cftHighscore
+
+The module cftHighScore adds an easy to manage local highscore list to your game.
+
+# Import fantomEngine
+
+# Class cftHighscore.ftHighScoreList
+
+The class ftHighScoreList offers a complete set of methods for storing and retrieving high-score list entries.
+
+# Method AddScore:Int(value:Int, n:String="")
+
+*Description*
+
+Tries to add a new entry to the list. Returns the new rank if it is in the list. Returns 0 if not.
+
+# Method Clear:Void()
+
+*Description*
+
+Clears the complete high-score list.
+
+# Method Count:Int()
+
+*Description*
+
+Get the numbers of entries.
+
+# Method GetName:String(i:Int)
+
+*Description*
+
+Get the name of an entry.
+
+# Method GetValue:Int(i:Int)
+
+*Description*
+
+Get the value of an entry.
+
+# Method LoadFromString:Void(hs:String)
+
+*Description*
+
+Load a high-score list from a string.
+
+# Method SaveToString:String()
+
+*Description*
+
+Save the high-score list to a string.
+
+# Method SetCount:Void(count:Int = 10)
+
+*Description*
+
+Set the number of highscore entries.
+

@@ -1,0 +1,56 @@
+# Module cftLocalization
+
+The module *cftLocalization* contains...
+
+# Import fantomEngine
+
+# Class cftLocalization.ftLocalization
+
+The class *ftLocalization* is an object which helps you supporting multiple languages in your app.
+
+# Method Clear:Void()
+
+*Description*
+
+This method clears all the mapping data.
+
+# Method GetDefaultLanguage:String()
+
+*Description*
+
+This method returns the default language.
+
+# Method GetString:String(text:String, langStr:String="")
+
+*Description*
+
+This method returns the translated string.
+
+*Details*
+
+If no langStr is given, it will use the default language.
+
+# Method LoadFromString:Void(locStr:String)
+
+*Description*
+
+This method loads the localization class via a string
+
+*Details*
+
+The format of the string has to be (key%;%LanguageShortCut1%:%Translation1%;%...):
+
+Play%;%DE%:%Spielen
+
+Options%;%DE%:%Optionen
+
+Help%;%DE%:%Hilfe
+
+MultiLine%;%DE%:%Dieser Text%LF%erscheint in 2 Zeilen
+
+# Method SetDefaultLanguage:Void(defLang:String ="EN")
+
+*Description*
+
+This method sets the default language.
+

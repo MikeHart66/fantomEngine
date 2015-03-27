@@ -1,0 +1,72 @@
+# Module cftTrans
+
+The class *ftTrans* controls the way an object or layer does a transition. Starting with version 1.49, it utilizes the tween class from the
+
+'monkey sample script in bananas/skn3/tweening/tween.monkey
+
+# Import cftTween
+
+# Import fantomEngine
+
+# Class cftTrans.ftTrans
+
+# Method GetPaused:Bool()
+
+*Description*
+
+Returns TRUE if a transition is paused.
+
+# Method SetEase:none(easeType:String="EaseIn")
+
+*Description*
+
+Sets the ease type of a transition.
+
+*Details*
+
+This command sets the ease type of a transition. The ease type can be:
+
+<ul><li>EaseIn
+
+<li>EaseOut 
+
+<li>EaseInOut</ul>
+
+# Method SetPaused:Void(pauseFlag:Bool = True)
+
+*Description*
+
+With this method you can pause and resume the transition.
+
+# Method SetType:none(equationType:String="Linear")
+
+*Description*
+
+Sets the equation type of a transition.
+
+*Details*
+
+This command sets the equation type of a transition. The equation type can be:
+
+<ul><li>Linear
+
+<li>Back 
+
+<li>Bounce
+
+<li>Circ
+
+<li>Cubic
+
+<li>Elastic
+
+<li>Expo
+
+<li>Quad
+
+<li>Quart
+
+<li>Quint
+
+<li>Sine</ul>
+

@@ -19,3 +19,15 @@
 !/fantomEngine/Tools/TED_Help_Patcher/*
 
 !/fantomEngine/Todo*
+*.bak
+Tools/TED_Help_Patcher
+Tools/DocMonk
+CleanOSXFiles.ini
+Tools/CleanOSXFiles
+Tools/BMax_Conv
+Tools/createrelease
+fantomEngine.monkey.html
+docInclude
+docCode
+docParse
+ToDo_fantomEngineX.txt

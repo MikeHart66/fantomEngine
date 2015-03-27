@@ -1,0 +1,25 @@
+Play%;%DE%:%Spielen%;%JP%:%遊ぶ
+Options%;%DE%:%Optionen%;%JP%:%オプション
+Help%;%DE%:%Hilfe%;%JP%:%手伝う
+Buy%;%DE%:%Kaufen%;%JP%:%買う
+MultiLine%;%DE%:%Diese Zeile%LF%erscheint in zwei Zeilen
+Score%;%DE%:%Punkte%;%EN%:%Score%;%FR%:%Score
+Back%;%DE%:%Zurück%;%EN%:%Back%;%FR%:%Retour
+Credits%;%DE%:%Credits%;%EN%:%Credits%;%FR%:%Credits
+GameOver%;%DE%:%Spielende%;%EN%:%Game Over%;%FR%:%Game Over
+Sound%;%DE%:%Töne%;%EN%:%Sound%;%FR%:%Son
+Music%;%DE%:%Musik%;%EN%:%Music;%FR%:%Musique
+Highscore%;%DE%:%Rangliste%;%EN%:%Highscorelist%;%FR%:%Highscore
+ShotsFired%;%DE%:%Schüsse abgefeuert%;%EN%:%Shots fired%;%FR%:%Missiles tirés
+BombsHit%;%DE%:%Bomben getroffen%;%EN%:%Bombs hit%;%FR%:%Bombes explosées
+Hitrate%;%DE%:%Trefferquote%;%EN%:%Hitrate%;%FR%:%% de réussite
+NewHighscore%;%DE%:%Neuer Highscore%;%EN%:%New Highscore%;%FR%:%Nouveau Highscore
+BonusActive%;%DE%:%Bonus aktiv%;%EN%:%Bonus active%;%FR%:%Bonus activé
+BonusDeactivated%;%DE%:%Bonus deaktiviert%;%EN%:%Bonus deactivated%;%FR%:%Bonus desactivé
+Level%;%DE%:%Level%;%EN%:%Level%;%FR%:%Niveau
+Reached%;%DE%:%erreicht%;%EN%:%reached%;%FR%:%---
+Loading%;%DE%:%Laden%;%EN%:%Loading%;%FR%:%Chargement
+TouchScreen%;%DE%:%Berühre den Bildschirm%;%EN%:%Touch the screen to go back%;%FR%:%Toucher l'écran pour retourner en arrière
+HowtoPlay%;%DE%:%Anleitung%;%EN%:%How to play%;%FR%:%Comment jouer
+MultiLine%;%DE%:%Dieser Text%LF%erscheint in zwei Zeilen%;%EN%:%This text%LF%appears in two lines
+HowtoPlayText%;%EN%:%Defend your cities against the waves of deadly bombs. Try to destroy the bombs with your rockets.%LF%To fire a rocket, simply touch the screen at the location you want to fire it. But be aware, that you don't have endless energy and watch your energy level closely.%LF%Be quick when the bonus symbol appears and shoot it too. It will help you big time!%;%FR%:%Défendez votre ville des attaques, en détruisant les bombes avec vos missiles.%LF%Pour envoyer un missile, touchez l'écran à l'endroit où vous voulez qu'il explose. Mais attention, votre énergie est limitée, surveillez votre niveau.%LF%Soyez rapide quand les bonus apparaissent pour les toucher, ils vous seront bien utiles!

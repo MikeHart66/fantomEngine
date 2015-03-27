@@ -1,0 +1,112 @@
+# Module cftImageMng
+
+The module cftImageMng contains several classes to manage loaded images inside your game.
+
+# Import fantomEngine
+
+# Class cftImageMng.ftImage
+
+The ftImage class contains a mojo image and some information about.
+
+# Method GetFrameCount:Int()
+
+*Description*
+
+Returns the frame count of a ftImage.
+
+# Method GetFrameHeight:Int()
+
+*Description*
+
+Returns the frame height of a ftImage.
+
+# Method GetFrameWidth:Int()
+
+*Description*
+
+Returns the frame width of a ftImage.
+
+# Method GetImage:Image()
+
+# Method GetPath:String()
+
+*Description*
+
+Returns the path (filename) of a ftImage.
+
+# Method ReLoad:Void()
+
+*Description*
+
+Reloads an image.
+
+# Method Remove:Void(discard:Bool = False)
+
+*Description*
+
+Removes an ftImage.
+
+# Method SetPath:String(filePath:String)
+
+*Description*
+
+Sets the path (filename) of a ftImage.
+
+# Class cftImageMng.ftImageManager
+
+The ftImageManager class handles all images for fantomEngine.
+
+# Method GrabImage:ftImage(atlas:ftImage, frameStartX:Int,frameStartY:Int,frameWidth:Int,frameHeight:Int,frameCount:Int, flags:Int=Image.DefaultFlags)
+
+*Description*
+
+Creates an ftImage by grabbing it from a ftImage atlas.
+
+# Method GrabImage:ftImage(atlas:Image, frameStartX:Int,frameStartY:Int,frameWidth:Int,frameHeight:Int,frameCount:Int, flags:Int=Image.DefaultFlags)
+
+*Description*
+
+Creates an ftImage by grabbing it from a Image atlas.
+
+# Method LoadImage:ftImage(image:Image)
+
+*Description*
+
+Creates an ftImage from an image.
+
+# Method LoadImage:ftImage(path:String, frameCount:Int=1, flags:Int=Image.DefaultFlags)
+
+*Description*
+
+Loads an image like mogo.LoadImage.
+
+# Method LoadImage:ftImage(path:String,  frameWidth:Int, frameHeight:Int, frameCount:Int, flags:Int=Image.DefaultFlags)
+
+*Description*
+
+Loads an image like mogo.LoadImage.
+
+# Method ReLoadAllImages:Void()
+
+*Description*
+
+Reload all images.
+
+# Method RemoveAllImages:Void(discard:Bool = False)
+
+*Description*
+
+Removes all images from the image handler.
+
+# Method RemoveImage:Void(image:Image, discard:Bool = False)
+
+*Description*
+
+Removes an image from the image handler by the given Image handle.
+
+# Method RemoveImage:Void(filepath:String, discard:Bool = False)
+
+*Description*
+
+Removes an image from the image handler by the given filename.
+

@@ -1,0 +1,282 @@
+# Module cftAStar
+
+The cftAStar module hosts several classes that bring A* pathfinding to fantomEngine. The grid of nodes can be of any size and shape.
+
+# Import fantomEngine
+
+# Class cftAStar.ftAStar
+
+The class *ftAStar* provides A-Star pathfinding functionality for fantomEngine. The calculated paths can be used to set up waypoints for the *ftWaypoint* class.
+
+# Method AddNode:ftGridNode(ID:Int, xpos:Float, ypos:Float, relative:Bool = False)
+
+*Description*
+
+Add a node to a grid.
+
+# Method Connect:Void(parentIndex:Int, childIndex:Int, bothSides:Bool = False)
+
+*Description*
+
+Connect a child node to its parent node by their node index.
+
+# Method ConnectByID:Void(parentID:Int, childID:Int, bothSides:Bool = False)
+
+*Description*
+
+Connect a child node to its parent node by their ID values.
+
+# Method FindClosestNode:ftGridNode(xpos:Float, ypos:Float)
+
+*Description*
+
+To find the closest node of a grid to a given position, use this method.
+
+# Method FindPath:Float(startIndex:Int, endIndex:Int)
+
+*Description*
+
+Calculates a path between two grid nodes and return the length of the path in pixel.
+
+# Method GetAngle:Float()
+
+*Description*
+
+Returns the angle of the grid.
+
+# Method GetBlock:bool(index:Int)
+
+*Description*
+
+Returns the block flag of a grid node.
+
+# Method GetChild:ftGridNode(parentIndex:Int, childIndex:Int)
+
+*Description*
+
+Returns the the child grid node of a parent grid node specified both by index. Index start at 1.
+
+# Method GetChildCount:Int(index:Int)
+
+*Description*
+
+Returns the number of child nodes of a child node.
+
+# Method GetNode:ftGridNode(index:Int)
+
+*Description*
+
+Get the node with the given index. Index starts with 1.
+
+# Method GetNodeByID:ftGridNode(id:Int)
+
+*Description*
+
+Get the node with the given ID.
+
+# Method GetNodeCount:Int()
+
+*Description*
+
+Returns the grid node count.
+
+# Method GetNodeID:Int(index:Int)
+
+*Description*
+
+Get the node ID with the given index. Index starts with 1.
+
+# Method GetNodeIndex:Int(id:Int)
+
+*Description*
+
+Get the node index with the given ID. Index starts with 1.
+
+# Method GetPathNode:ftGridNode(index:Int)
+
+*Description*
+
+Get the grid node with the given index. Index starts with 1.
+
+# Method GetPathNodeCount:Int()
+
+*Description*
+
+Returns the path node count of the last calculated path.
+
+# Method GetPos:Float[](index:Int)
+
+*Description*
+
+Returns the X and Y position of a grid node.
+
+# Method GetPosX:Float(index:Int)
+
+*Description*
+
+Returns the X position of a grid node.
+
+# Method GetPosY:Float(index:Int)
+
+*Description*
+
+Returns the Y position of a grid node.
+
+# Method GetScaleX:Float()
+
+*Description*
+
+Returns the X scale factor of the grid.
+
+# Method GetScaleY:Float()
+
+*Description*
+
+Returns the Y scale factor of the grid.
+
+# Method LoadFromString:Void(ps:String)
+
+*Description*
+
+Load a grid from a string.
+
+# Method Remove:Void()
+
+*Description*
+
+Removes the complete grid.
+
+# Method RemoveAllNodes:Void()
+
+*Description*
+
+Removes all grid nodes.
+
+# Method Render:Void(size:Int=20)
+
+*Description*
+
+Render the grid.
+
+# Method SaveToString:String()
+
+*Description*
+
+Save a path to a string.
+
+# Method SetAngle:Void(a:Float, relative:Bool = False)
+
+*Description*
+
+Sets the angle of a grid and position its nodes regarding the angle.
+
+# Method SetBlock:Void(index:Int, blockFlag:Bool)
+
+*Description*
+
+Set the block flag of a grid node.
+
+*Details*
+
+A blocked grid node won't be visited during the path finding
+
+# Method SetPos:Void(x:Float, y:Float, relative:Bool = False)
+
+*Description*
+
+Sets the position of a grid and its nodes.
+
+# Method SetPos:Void(y:Float, relative:Bool = False)
+
+*Description*
+
+Sets the Y position of a grid and its nodes.
+
+# Method SetPosX:Void(x:Float, relative:Bool = False)
+
+*Description*
+
+Sets the X position of a grid and its nodes.
+
+# Method SetScale:Void(x:Float, y:Float, relative:Bool = False)
+
+*Description*
+
+Sets the scale of a grid and position its nodes regarding the angle.
+
+# Class cftAStar.ftGridNode
+
+An instance of the class *ftGridNode* represents one node inside a grid. And after you have found a path via *ftAStar.FindPath*, you get a list of nodes you can travewl along their positions.
+
+# Method GetBlock:Bool()
+
+*Description*
+
+Returns if the node is blocked.
+
+# Method GetChild:ftGridNode(index:Int)
+
+*Description*
+
+Returns the child of a node specified by a given index. Index starts at 1.
+
+# Method GetChildCount:Int()
+
+*Description*
+
+Returns the number of children of a node.
+
+# Method GetID:Int()
+
+*Description*
+
+Returns the ID of a node.
+
+# Method GetIndex:Int()
+
+*Description*
+
+Get the node index Index starts with 1.
+
+# Method GetPos:Float[]()
+
+*Description*
+
+Returns the X and Y position of a node.
+
+# Method GetPosX:Float()
+
+*Description*
+
+Returns the X position of a node.
+
+# Method GetPosY:Float()
+
+*Description*
+
+Returns the Y position of a node.
+
+# Method Remove:Void()
+
+*Description*
+
+Remove a node.
+
+# Method RemoveAllChildren:Void()
+
+*Description*
+
+Remove all connected children of a node.
+
+# Method SetBlock:Void(blockFlag:Bool)
+
+*Description*
+
+Sets the block flag of a node
+
+# Method SetPos:Void(xpos:Float, ypos:Float, relative:Bool = False)
+
+*Description*
+
+Sets the position of a node inside a grid.
+

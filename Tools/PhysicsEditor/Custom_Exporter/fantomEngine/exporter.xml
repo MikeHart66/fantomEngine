@@ -1,0 +1,141 @@
+<exporter>
+	<name>fantomEngine-json</name>
+	<displayName>fantomEngine + Monkey (JSON)</displayName>
+    <description>Exporter for fantomEngine + Monkey, JSON</description>
+	<version>1.0</version>
+	<yAxisDirection>down</yAxisDirection>
+	<physicsEngine>box2d</physicsEngine>
+	<template>fantomEngine.json</template>
+	<fileExtension>json</fileExtension>
+	<anchorPoint>
+		<enabled>no</enabled>
+		
+		<!-- default of the anchor point -->
+		<relX>0.5</relX>		
+		<relY>0.5</relY>
+    </anchorPoint>
+	<origin>
+        <relX>0.5</relX>
+        <relY>0.5</relY>
+        <type>fixed</type>
+    </origin>
+    <!-- Circle support does not work as with standard box2d - you can't change the center
+         or add more than one circle to a shape. This is why it is disabled for now -->
+    <supportsCircles>no</supportsCircles>
+
+    <!-- custom global parameters -->
+	<global>
+	</global>
+    <!-- custom body parameters -->
+    <body>
+        <parameter>
+			<name>dynamic</name>
+			<displayName>Is Dynamic</displayName>
+			<description>If this is unchecked, body will be static, and will not move.</description>
+			<type>bool</type>
+			<default>true</default>
+		</parameter>
+        <parameter>
+			<name>bullet</name>
+			<displayName>Is Bullet</displayName>
+			<description>Is this a fast moving body that should be prevented from tunneling through other moving bodies?</description>
+			<type>bool</type>
+			<default>false</default>
+		</parameter>
+        <parameter>
+			<name>fixedRotation</name>
+			<displayName>Fixed Rotation</displayName>
+			<description>Should this body be prevented from rotating?</description>
+			<type>bool</type>
+			<default>false</default>
+		</parameter>
+        <parameter>
+			<name>linearDamping</name>
+			<displayName>Linear damping</displayName>
+			<description>Linear use(damping) to reduce the linear velocity.</description>
+			<type>float</type>
+            <min>0</min>
+            <max>100</max>
+			<default>0.0</default>
+		</parameter>
+        <parameter>
+			<name>angularDamping</name>
+			<displayName>Angular damping</displayName>
+			<description>Angular use(damping) to reduce the angular velocity.</description>
+			<type>float</type>
+            <min>0</min>
+            <max>1000</max>
+			<default>0.0</default>
+		</parameter>
+    </body>
+    
+    <!-- custom fixture parameters -->
+    
+	<fixture>
+        <parameter>
+            <name>density</name>
+            <displayName>Density (heavyness) </displayName>
+            <type>float</type>
+            <min>-1000</min>
+            <max>1000</max>
+            <default>2.0</default>
+        </parameter>
+        <parameter>
+            <name>bounce</name>
+            <displayName>Bounce (restitution)</displayName>
+            <type>float</type>
+            <min>0</min>
+            <max>1000</max>
+            <default>0.0</default>
+        </parameter>
+        <parameter>
+            <name>friction</name>
+            <displayName>Friction (slippery)</displayName>
+            <type>float</type>
+            <min>0</min>
+            <max>1000</max>
+            <default>0.0</default>
+        </parameter>
+        <parameter>
+            <name>isSensor</name>
+            <displayName>Is Sensor</displayName>
+            <description>If set the physial </description>
+            <type>bool</type>
+            <default>false</default>
+        </parameter>
+
+        <parameter>
+            <name>filter_groupIndex</name>
+            <displayName>Group</displayName>
+            <description>Collision group.</description>
+            <shortDescription></shortDescription>
+            <type>int</type>
+            <default>0</default>
+        </parameter>
+
+        <parameter>
+            <name>filter_bitfield</name>
+            <type>bitfield</type>
+            <size>16</size>
+        </parameter>
+
+        <parameter>
+            <name>filter_categoryBits</name>
+            <displayName>Cat.</displayName>
+            <description>Collision category</description>
+            <shortDescription>Collision category</shortDescription>
+            <type>uint16</type>
+            <default>1</default>
+            <bitfield>yes</bitfield>
+        </parameter>
+        <parameter>
+            <name>filter_maskBits</name>
+            <displayName>Mask</displayName>
+            <description>Collision mask</description>
+            <shortDescription>Collision mask</shortDescription>
+            <type>uint16</type>
+            <default>65535</default>
+            <bitfield>yes</bitfield>
+        </parameter>
+    </fixture>
+</exporter>

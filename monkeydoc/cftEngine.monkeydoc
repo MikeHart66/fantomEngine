@@ -1,0 +1,1883 @@
+# Module cftEngine
+
+The module *cftEngine* contains the ftEngine class, which is the main part of the fantomEngine.
+
+# Import fantomEngine
+
+# Class cftEngine.ftEngine
+
+The class *ftEngine* is the heart of the fantomEngine. After you have created one instance of it, you can let it deal with scenes, layers, objects and all the stuff a game needs.
+
+# Method ActivateMusic:Void(onOff:Bool=True)
+
+*Description*
+
+De-/activates the music playback for the engine.
+
+Example:
+
+<pre>
+Local myEngine = New ftEngine
+myEngine.ActivateMusic(True)
+</pre>
+# Method ActivateSound:Void(onOff:Bool=True)
+
+*Description*
+
+De-/activates the sound playback for the engine.
+
+Example:
+
+<pre>
+Local myEngine = New ftEngine
+' Now deactivate all sound playback
+myEngine.ActivateSound(False)
+</pre>
+# Method ActivateSwipe:Void(onOff:Bool=True)
+
+*Description*
+
+Activates swipe gesture detection.
+
+*Details*
+
+To (de)activate the swipe detection, use ActivateSwipe. To detect(update) a swipe, use SwipeUpdate. If a swipe is detected, fantomEngine will call its OnSwipeDone method. 
+
+Also have a look at the sample script <a href="..\examples\SwipeDetection\SwipeDetection.monkey">SwipeDetection.monkey</a>
+
+Example:
+
+<pre>
+Local myEngine = New ftEngine
+myEngine.ActivateSwipe(True)
+</pre>
+# Method CalcDeltaTime:Int()
+
+*Description*
+
+Returns the delta time in milliseconds since the last call.
+
+*Details*
+
+Calculates the current delta time in milliseconds since the last call of this command. 
+
+Usually you call this command during the OnUpdate event of your app. If you just need to retrieve the delta time and not recalculate it, use GetDeltaTime. 
+
+Example:
+
+<pre>
+Method OnUpdate:Int()
+  Local delta:Float = Float(myEngine.CalcDeltaTime())/60.0
+  myEngine.Update(delta)
+  Return 0
+End
+</pre>
+# Method CancelTimerAll:Void()
+
+*Description*
+
+Cancels all timers attached of the engine.
+
+# Method CollisionCheck:Void()
+
+*Description*
+
+Does a collision check over all layers and active objects which has a collision group assigned to them.
+
+*Details*
+
+To check for collisions via the build-in functionality, use CollisionCheck. Without a parameter, it will check all active objects for collisions. 
+
+ Typically you do this inside mojos' OnUpdate method. If a collision appears, it will call the ftEngine.onObjectCollision method with the two objects as parameters.
+
+ Objects that will be part of a collision need to have a collision group with [ftObject.SetColGroup SetColGroup] assigned to them. 
+
+The objects that then will need to be checked have to be told with which collision group the can collide. You do that with [ftObject.SetColWith SetColWith]. 
+
+Example:
+
+<pre>
+Method OnUpdate:Int()
+        'Determine the delta time and a update factor for the engines next update
+        Local d:Float = Float(eng.CalcDeltaTime())/60.0
+        'Update all objects in the engine
+        eng.Update(d)
+        'Check for collisions of objects 
+        eng.CollisionCheck()
+        Return 0
+End
+</pre>
+# Method CollisionCheck:Void(layer:ftLayer)
+
+*Description*
+
+Does a collision check of the given layer and it's active objects which has a collision group assigned to them.
+
+Example:
+
+<pre>
+Method OnUpdate:Int()
+        'Determine the delta time and a update factor for the engines next update
+        Local d:Float = Float(eng.CalcDeltaTime())/60.0
+        'Update all objects in the engine
+        eng.Update(d)
+        'Check for collisions of objects 
+        eng.CollisionCheck()
+        Return 0
+End
+</pre>
+# Method CollisionCheck:Void(obj:ftObject)
+
+*Description*
+
+Does a collision check of the given active object.
+
+Example:
+
+<pre>
+Method OnUpdate:Int()
+        'Determine the delta time and a update factor for the engines next update
+        Local d:Float = Float(eng.CalcDeltaTime())/60.0
+        'Update all objects in the engine
+        eng.Update(d)
+        'Check for collisions of objects 
+        eng.CollisionCheck()
+        Return 0
+End
+</pre>
+# Method CopyObject:ftObject(srcObj:ftObject)
+
+*Description*
+
+Copies an existing object.
+
+*Details*
+
+This command copies a given object and returns the copy. The new object contains all properties of the source object, but not the following:
+
+<ul><li>user data object
+
+<li>box2D object 
+
+<li>path marker
+
+<li>timer
+
+<li>transitions
+
+<li>tileMaps</ul>
+
+Example:
+
+<pre>
+' Create the 1st object in the middle of the screen
+Local obj1 := eng.CreateBox(20, 20, cw/2, ch/2 )
+
+' Copy the 1st object, which creates the 2nd object
+Local obj2 := eng.CopyObject(obj1)
+</pre>
+# Method CreateAnimImage:ftObject(atl:ftImage, frameStartX:Int, frameStartY:Int, frameWidth:Int, frameHeight:Int, frameCount:Int, xpos:Float, ypos:Float, _ucob:Object=Null)
+
+*Description*
+
+Creates an animated image object (sprite) from the given sprite atlas with a center at xPos/yPos.
+
+*Details*
+
+The texture will be grabbed from frameStartX/frameStartY with the given frameWidth/frameHeight. The number of frames will be taken from the given frameCount.
+
+It creates a DEFAULT animation automatically.
+
+Example:
+
+<pre>
+Method OnCreate:Int()
+        ' Create an instance of the engine
+        eng = New engine
+        
+        ' Preload an image
+        Local spriteSheet:Image = mojo.LoadImage("spritesheet.png")
+
+        ' Create an object from a sprite sheet with 4 animation frames
+        Local obj:ftObject = eng.CreateAnimImage(spriteSheet, 0, 0, 32, 32, 4, 320, 240)
+       
+        Return 0
+End
+</pre>
+# Method CreateAnimImage:ftObject(atl:Image, frameStartX:Int, frameStartY:Int, frameWidth:Int, frameHeight:Int, frameCount:Int, xpos:Float, ypos:Float, _ucob:Object=Null)
+
+*Description*
+
+Creates an animated image object (sprite) from the given sprite atlas with a center at xPos/yPos.
+
+*Details*
+
+The texture will be grabbed from frameStartX/frameStartY with the given frameWidth/frameHeight. The number of frames will be taken from the given frameCount.
+
+It creates a DEFAULT animation automatically.
+
+Example:
+
+<pre>
+Method OnCreate:Int()
+        ' Create an instance of the engine
+        eng = New engine
+        
+        ' Preload an image
+        Local spriteSheet:Image = mojo.LoadImage("spritesheet.png")
+
+        ' Create an object from a sprite sheet with 4 animation frames
+        Local obj:ftObject = eng.CreateAnimImage(spriteSheet, 0, 0, 32, 32, 4, 320, 240)
+       
+        Return 0
+End
+</pre>
+# Method CreateBox:ftObject(width:Float, height:Float, xpos:Float, ypos:Float, _ucob:Object=Null)
+
+*Description*
+
+Creates a rectangle with the given width/height and the center at xpos/ypos.
+
+Example:
+
+<pre>
+Method OnCreate:Int()
+        'Create the instance of the engine
+        Local eng:ftEngine = New ftEngine
+
+        ' Create now the object
+        Local box:ftObject = eng.CreateBox(20, 100, 320, 240)
+        Return 0
+End
+</pre>
+# Method CreateCircle:ftObject(radius:Float, xpos:Float, ypos:Float, _ucob:Object=Null)
+
+*Description*
+
+Creates a circle with the given radius and the center at xpos/ypos.
+
+Example:
+
+<pre>
+Method OnCreate:Int()
+        'Create the instance of the engine
+        Local eng:ftEngine = New ftEngine
+
+        ' Create now the object
+        Local circle:ftObject = eng.CreateCircle(100, 320, 240)
+        Return 0
+End
+</pre>
+# Method CreateImage:ftObject(filename:String, xpos:Float, ypos:Float, _ucob:Object=Null)
+
+*Description*
+
+Creates an image object (sprite) from the given filename with a center at xpos/ypos.
+
+*Details*
+
+To load an animated image object, use CreateAnimImage. 
+
+Example:
+
+<pre>
+Method OnCreate:Int()
+        ' Create an instance of the engine
+        eng = New engine
+        
+        ' Create an image object
+        Local obj:ftObject = eng.CreateImage("spaceship.png", 40, 100)
+
+        ' Preload an image
+        Local tpatlas:Image = mojo.LoadImage("spritesheet.png")
+
+        ' Create an object from a TexturePacker sprite sheet
+        Local obj:ftObject = eng.CreateImage(tpatlas, "PackerFileName.txt", "SpaceShip", 320, 240)
+       
+        Return 0
+End
+
+Class engine Extends ftEngine
+        ' ...
+End
+</pre>
+# Method CreateImage:ftObject(image:Image, xpos:Float, ypos:Float, _ucob:Object=Null)
+
+*Description*
+
+Creates an image object (sprite) from the given image with a center at xpos/ypos.
+
+Example:
+
+<pre>
+Method OnCreate:Int()
+        ' Create an instance of the engine
+        eng = New engine
+        
+        ' Create an image object
+        Local obj:ftObject = eng.CreateImage("spaceship.png", 40, 100)
+
+        ' Preload an image
+        Local tpatlas:Image = mojo.LoadImage("spritesheet.png")
+
+        ' Create an object from a TexturePacker sprite sheet
+        Local obj:ftObject = eng.CreateImage(tpatlas, "PackerFileName.txt", "SpaceShip", 320, 240)
+       
+        Return 0
+End
+
+Class engine Extends ftEngine
+        ' ...
+End
+</pre>
+# Method CreateImage:ftObject(atlas:Image, x:Int, y:Int, width:Int, height:Int, xpos:Float, ypos:Float, _ucob:Object=Null)
+
+*Description*
+
+Creates an image object (sprite) from the given sprite atlas with a center at xPos/yPos. The texture will be grabbed from x/y with the given width/height.
+
+Example:
+
+<pre>
+Method OnCreate:Int()
+        ' Create an instance of the engine
+        eng = New engine
+        
+        ' Create an image object
+        Local obj:ftObject = eng.CreateImage("spaceship.png", 40, 100)
+
+        ' Preload an image
+        Local tpatlas:Image = mojo.LoadImage("spritesheet.png")
+
+        ' Create an object from a TexturePacker sprite sheet
+        Local obj:ftObject = eng.CreateImage(tpatlas, "PackerFileName.txt", "SpaceShip", 320, 240)
+       
+        Return 0
+End
+
+Class engine Extends ftEngine
+        ' ...
+End
+</pre>
+# Method CreateImage:ftObject(atlas:Image, dataFileName:String, subImageName:String, xpos:Float, ypos:Float, _ucob:Object=Null)
+
+*Description*
+
+Loads a subimage from a packed texture created by the tool TexturePacker with a center at xpos/ypos.
+
+*Details*
+
+It supports rotated sub images in LibGDX files too.
+
+From version 1.52 on it supports Sparrow compatible files (.xml).
+
+Example:
+
+<pre>
+Method OnCreate:Int()
+        ' Create an instance of the engine
+        eng = New engine
+        
+        ' Create an image object
+        Local obj:ftObject = eng.CreateImage("spaceship.png", 40, 100)
+
+        ' Preload an image
+        Local tpatlas:Image = mojo.LoadImage("spritesheet.png")
+
+        ' Create an object from a TexturePacker sprite sheet
+        Local obj:ftObject = eng.CreateImage(tpatlas, "PackerFileName.txt", "SpaceShip", 320, 240)
+       
+        Return 0
+End
+
+Class engine Extends ftEngine
+        ' ...
+End
+</pre>
+# Method CreateLayer:ftLayer(_ucla:Object=Null)
+
+*Description*
+
+Creates a new layer.
+
+*Details*
+
+To create a new layer, use CreateLayer. To delete a layer, use RemoveLayer. A new layer is automatically added to the defaultScene scene.
+
+Example:
+
+<pre>
+Local myEngine:ftEngine = New ftEngine
+Local myLayer:ftLayer = myEngine.CreateLayer()
+</pre>
+# Method CreateLine:ftObject(xpos:Float, ypos:Float, x2:Float, y2:Float, _ucob:Object=Null)
+
+*Description*
+
+Creates a line object starting at xpos/ypos and ending at x/y.
+
+*Details*
+
+The objects handle is in the middle of the line by default and can be changed via a call to ftObject.SetHandle.
+
+Example:
+
+<pre>
+Local myEngine = New ftEngine
+' Create a line, that goes from the top left corner to the bottom right corner of the canvas
+Local myLine := myEngine.CreateLine(0,0, myEngine.GetCanvasWidth()-1, myEngine.GetCanvasHeight()-1)
+
+</pre>
+# Method CreateObjTimer:ftTimer(obj:ftObject, timerID:Int, duration:Int, repeatCount:Int = 0)
+
+*Description*
+
+Creates a new object timer.
+
+*Details*
+
+When the timer fires it will call OnObjectTimer. A repeatCount of -1 will let the timer run forever.
+
+Example:
+
+<pre>
+Local myEngine = New cEngine
+
+' Create a constant for the timer ID
+Const circleTimerID:Int = 222
+
+' Create now the object
+Local circle:ftObject = myEngine.CreateCircle(100, 320, 240)
+
+' Create a timer for the circle that fires after 3000 milliseconds
+Local myObjTimer := myEngine.CreateObjTimer(circle, circleTimerID, 3000)
+
+'***************************************
+' The cEngine class extends the ftEngine class to override the On... methods
+Class cEngine Extends ftEngine
+	Method OnObjectTimer:Int(timerId:Int, obj:ftObject)
+		If timerId = circleTimerID
+			' Remove the object
+			obj.Remove()
+		Endif
+		Return 0
+	End	
+End
+
+</pre>
+# Method CreateOval:ftObject(width:Float, height:Float, xpos:Float, ypos:Float, _ucob:Object=Null)
+
+*Description*
+
+Creates an oval object with the given width/height and the center at xpos/ypos.
+
+Example:
+
+<pre>
+Local myEngine = New ftEngine
+' Create an oval, located at the center of the canvas
+Local myOval := myEngine.CreateOval(30, 60, myEngine.GetCanvasWidth()/2.0, myEngine.GetCanvasHeight()/2.0)
+
+</pre>
+# Method CreatePath:ftPath(xpos:Float, ypos:Float)
+
+*Description*
+
+Creates a path with its center at the given xpos/ypos coordinates.
+
+# Method CreatePivot:ftObject(xpos:Float, ypos:Float, _ucob:Object=Null)
+
+*Description*
+
+Creates an empty object (pivot) which you can use to attach/parent child objects to.
+
+# Method CreatePoint:ftObject(xpos:Float, ypos:Float, _ucob:Object=Null)
+
+*Description*
+
+Creates a point object at the given xpos/ypos.
+
+# Method CreatePoly:ftObject(verts:Float[], xpos:Float, ypos:Float, _ucob:Object=Null)
+
+*Description*
+
+Creates a polygon object with supplied vertices pairs (Minimum of 3 pairs required).
+
+# Method CreateScene:ftScene(_ucSc:Object=Null)
+
+*Description*
+
+Creates a new scene.
+
+*Details*
+
+To create a new scene, use CreateScene. To delete a scene, use RemoveScene. A new layer is automatically added to the defaultScene scene.
+
+# Method CreateSpriteAtlas:ftSpriteAtlas(imgfileName:String, dataFileName:string)
+
+*Description*
+
+Creates/loads a sprite atlas.
+
+# Method CreateStickMan:ftObject(xpos:Float, ypos:Float, _ucob:Object=Null)
+
+*Description*
+
+Creates a stickman with top left corner at position xpos/ypos with size of width:8 / height:29
+
+# Method CreateText:ftObject(font:ftFont, txt:String, xpos:Float, ypos:Float, textmode:Int=ftEngine.taTopLeft, _ucob:Object=Null)
+
+*Description*
+
+Creates a new text object.
+
+# Method CreateTileMap:ftObject(atl:ftImage, tileSizeX:Int, tileSizeY:Int, tileCountX:Int, tileCountY:Int, xpos:Float, ypos:Float)
+
+*Description*
+
+Create a tile map which you can fill yourself.
+
+# Method CreateTileMap:ftObject(atl:Image, tileSizeX:Int, tileSizeY:Int, tileCountX:Int, tileCountY:Int, xpos:Float, ypos:Float)
+
+*Description*
+
+Create a tile map which you can fill yourself.
+
+# Method CreateTileMap:ftObject(filename:String, xpos:Float, ypos:Float, layerIndex:Int=1)
+
+*Description*
+
+Create a tile map from a JSON file exported by the tool Tiled.
+
+*Details*
+
+The layerIndex tells fantomEngine to load the tileLayer at that index. Index starts with 1.
+
+# Method CreateTimer:ftTimer(timerID:Int, duration:Int, repeatCount:Int = 0)
+
+*Description*
+
+Creates a new timer.
+
+*Details*
+
+When the timer fires it will call OnTimer. A repeatCount of -1 will let the timer run forever.
+
+# Method CreateZoneBox:ftObject(width:Float, height:Float, xpos:Float, ypos:Float)
+
+*Description*
+
+Creates a new ZoneBox object which can be used for touch and collision checks.
+
+*Details*
+
+Zone objects are invisble and can be used as collision objects. 
+
+Example:
+
+<pre>
+Method OnCreate:Int()
+        'Create the instance of the engine
+        Local eng:ftEngine = New ftEngine
+
+        ' Create now the object
+        Local zonebox:ftObject = eng.CreateZoneBox(20, 100, 320, 240)
+        Return 0
+End
+</pre>
+# Method CreateZoneCircle:ftObject(radius:Float, xpos:Float, ypos:Float)
+
+*Description*
+
+Creates a new ZoneCircle object which can be used for touch and collision checks.
+
+*Details*
+
+Zone objects are invisble and can be used as collision objects. 
+
+Example:
+
+<pre>
+Method OnCreate:Int()
+        'Create the instance of the engine
+        Local eng:ftEngine = New ftEngine
+
+        ' Create now the object
+        Local zonecircle:ftObject = eng.CreateZonecircle(50, 320, 240)
+        Return 0
+End
+</pre>
+# Method ExitApp:Int(retCode:Int=0)
+
+*Description*
+
+Ends the application.
+
+Example:
+
+<pre>
+engine.ExitApp()
+</pre>
+# Method GetAccelX:Float()
+
+*Description*
+
+Return the X-axis value of the accelerator.
+
+*Details*
+
+This command returns the current value of the accelerometer for the X-axxis. To retrieve the Y-axxis, use GetAccelY. For the Z-axxis, use GetAccelZ. 
+
+Example:
+
+<pre>
+Method OnUpdate:Int()
+    ' Determine the update factor depending on the delta time
+    Local d:Float = Float(myEngine.CalcDeltaTime())/60.0
+
+    ' Update the engine
+    myEngine.Update(Float(d))
+
+    ' Here is where you check the accelerometer values
+    Local acx := eng.GetAccelX()
+    Local acy := eng.GetAccelY()
+    Local acz := eng.GetAccelZ()
+
+    Return 0
+End
+</pre>
+# Method GetAccelXY:Float[]()
+
+*Description*
+
+Return the X and Y-axis value of the accelerator.
+
+*Details*
+
+This command returns the current values of the accelerometer for the X and Y-axxis. To retrieve the X-axxis, use GetAccelX. For the Z-axxis, use GetAccelZ. And to retrieve the Y-axxis, use GetAccelY. 
+
+Example:
+
+<pre>
+Method OnUpdate:Int()
+    ' Determine the update factor depending on the delta time
+    Local d:Float = Float(myEngine.CalcDeltaTime())/60.0
+
+    ' Update the engine
+    myEngine.Update(Float(d))
+
+    ' Here is where you check the accelerometer values
+    Local acxy:Float[] = eng.GetAccelXY()
+
+    Return 0
+End
+</pre>
+# Method GetAccelY:Float()
+
+*Description*
+
+Return the Y-axis value of the accelerator.
+
+*Details*
+
+This command returns the current value of the accelerometer for the Y-axxis. To retrieve the X-axxis, use GetAccelX. For the Z-axxis, use GetAccelZ. 
+
+# Method GetAccelZ:Float()
+
+*Description*
+
+Return the Z-axis value of the accelerator.
+
+*Details*
+
+This command returns the current value of the accelerometer for the Z-axxis. To retrieve the Y-axxis, use GetAccelY. For the X-axxis, use GetAccelX. 
+
+# Method GetCam:Float[]()
+
+*Description*
+
+Returns the cameras X and Y coordinate.
+
+# Method GetCamX:Float()
+
+*Description*
+
+Returns the cameras X coordinate.
+
+# Method GetCamY:Float()
+
+*Description*
+
+Returns the cameras Y coordinate.
+
+# Method GetCanvasHeight:Int()
+
+*Description*
+
+Returns the height of the canvas.
+
+*Details*
+
+To retrieve the current height of the canvas, use GetCanvasHeight. To get the width the canvas, use GetCanvasWidth. To set the size of the virtual canvas, use SetCanvasSize. 
+
+Example:
+
+<pre>
+Local myEngine:ftEngine = New ftEngine
+Local height:Int = myEngine.GetCanvasHeight()
+</pre>
+# Method GetCanvasWidth:Int()
+
+*Description*
+
+Returns the width of the canvas.
+
+*Details*
+
+To retrieve the current width of the canvas, use GetCanvasWidth. To get the height of the canvas, use GetCanvasHeight. To set the size of the virtual canvas, use SetCanvasSize. 
+
+Example:
+
+<pre>
+Local myEngine:ftEngine = New ftEngine
+Local width:Int = myEngine.GetCanvasWidth()
+</pre>
+# Method GetDefaultLayer:ftLayer()
+
+*Description*
+
+Returns the current default layer.
+
+*Details*
+
+If you need to get the current layer where new objects are assigned to, then use GetDefaultLayer. To set the default layer, use SetDefaultLayer.
+
+Example:
+
+<pre>
+Local myEngine:ftEngine = New ftEngine
+Local currLayer:ftLayer = myEngine.GetDefaultLayer()
+</pre>
+# Method GetDefaultScene:ftScene()
+
+*Description*
+
+Returns the current default scene.
+
+*Details*
+
+If you need to get the current scene where new layers are assigned to, then use GetDefaultScene. To set the default layer, use SetDefaultScene.
+
+# Method GetDeltaTime:Int()
+
+*Description*
+
+Returns the delta time in milliseconds which was calculated with CalcDeltaTime.
+
+Example:
+
+<pre>
+Method OnUpdate:Int()
+	Local milliSec:Int = myEngine.GetDeltaTime()
+	eng.Update()
+End
+</pre>
+# Method GetFPS:Int()
+
+*Description*
+
+Determines the current frames per second.
+
+*Details*
+
+Retrieves the current FPS value which is updated with each call of CalcDeltaTime. 
+
+Example:
+
+<pre>
+Method OnRender:Int()
+	Cls
+	Local currFPS:Int = myEngine.GetFPS()
+	eng.Render()
+	DrawText("FPS: "+currFPS, 10,10)
+End
+	
+</pre>
+# Method GetLocalX:Float(wordXPos:Float, withCam:Bool = True)
+
+*Description*
+
+Returns the device X position of a virtual X coordinate. It takes the virtual canvas size and camera position into its calculation.
+
+# Method GetLocalXY:Float[](wordXPos:Float, wordYPos:Float, withCam:Bool = True)
+
+*Description*
+
+Returns the device X/Y position of a virtual X/Y coordinate. It takes the virtual canvas size and camera position into its calculation.
+
+# Method GetLocalY:Float(wordYPos:Float, withCam:Bool = True)
+
+*Description*
+
+Returns the device Y position of a virtual Y coordinate. It takes the virtual canvas size and camera position into its calculation.
+
+# Method GetObjCount:Int(type:Int = 0)
+
+*Description*
+
+Returns the number of objects.
+
+*Details*
+
+Type=0 >>> All objects are counted
+
+Type=1 >>> Only active objects are counted
+
+Type=2 >>> Only visible objects are counted
+
+# Method GetPause:Bool()
+
+*Description*
+
+Returns the isPaused flag of the engine.
+
+# Method GetPaused:Bool()
+
+*Description*
+
+Returns the isPaused flag of the engine.
+
+# Method GetScaleX:Float()
+
+*Description*
+
+Returns the X scale factor of the engine, which is set through SetCanvasSize.
+
+*Details*
+
+Depending on which mode you used with SetCanvasSize, the scale factor for the canvas will be set. With GetScaleX you can retrieve this factor. To retrieve the Y-scale factor, use GetScaleY.
+
+Example:
+
+<pre>
+Method OnCreate:Int()
+        ' Create an instance your engine class
+        eng = New engine
+        eng.SetCanvasSize(800, 600)
+        sx = eng.GetScaleX()
+        sy = eng.GetScaleY()
+        Return 0
+End
+</pre>
+# Method GetScaleY:Float()
+
+*Description*
+
+Returns the Y scale factor of the engine, which is set through SetCanvasSize.
+
+*Details*
+
+Depending on which mode you used with SetCanvasSize, the scale factor for the canvas will be set. With GetScaleY you can retrieve this factor. To retrieve the X-scale factor, use GetScaleX. 
+
+# Method GetTime:Int()
+
+*Description*
+
+Returns engines own time.
+
+*Details*
+
+By default it is based on Millisecs and the timeScale factor. Overwrite this method to implement your own timer algorithym.
+
+# Method GetTimeScale:Float()
+
+*Description*
+
+Returns engines own timeScale.
+
+# Method GetTouchX:Float(index:Int=0)
+
+*Description*
+
+Returns the X touch coordinate scaled by the engines X scale factor.
+
+*Details*
+
+The x-position of the finger with the given touch index. If you use a virtual canvas, the return value is scaled accordingly. To retrieve the Y-position, use GetTouchY. 
+
+Example:
+
+<pre>
+Method OnUpdate:Int()
+    ' Determine the update factor depending on the delta time
+    Local d:Float = Float(myEngine.CalcDeltaTime())/60.0
+
+    ' Update the engine
+    myEngine.Update(Float(d))
+
+    ' Here is where you check the touch position
+    Local tx := eng.GetTouchX()
+    Local ty := eng.GetTouchY()
+
+    Return 0
+End
+</pre>
+# Method GetTouchXY:Float[](index:Int=0)
+
+*Description*
+
+Returns the X/Y touch coordinate scaled by the engines scale factors.
+
+*Details*
+
+The return the position of the finger with the given touch index. If you use a virtual canvas, the return value is scaled accordingly. 
+
+# Method GetTouchY:Float(index:Int=0)
+
+*Description*
+
+Returns the Y touch coordinate scaled by the engines Y scale factor.
+
+*Details*
+
+The y-position of the finger with the given touch index. If you use a virtual canvas, the return value is scaled accordingly. To retrieve the X-position, use GetTouchX. 
+
+# Method GetVolumeMUS:Float()
+
+*Description*
+
+Returns the general volume of music. Ranges from 0.0 to 1.0.
+
+# Method GetVolumeSFX:Float()
+
+*Description*
+
+Returns the general volume of sound effects. Ranges from 0.0 to 1.0.
+
+# Method GetWorldX:Float(localXPos:Float, withCam:Bool = True)
+
+*Description*
+
+Returns the world X position from a local X coordinate. It takes the virtual canvas size and camera position into its calculation.
+
+# Method GetWorldXY:Float[](localXPos:Float, localYPos:Float, withCam:Bool = True)
+
+*Description*
+
+Returns the world X/Y position from a local X/Y coordinate. It takes the virtual canvas size and camera position into its calculation.
+
+# Method GetWorldY:Float(localYPos:Float, withCam:Bool = True)
+
+*Description*
+
+Returns the world Y position from a local Y coordinate. It takes the virtual canvas size and camera position into its calculation.
+
+# Method LoadFont:ftFont(filename:String)
+
+*Description*
+
+Loads an EZGui compatible font or a packed FontMachine font. The filename has to end with a .txt extension.
+
+# Method LoadImage:Image(path:String, frameCount:Int=1, flags:Int=Image.MidHandle)
+
+*Description*
+
+Loads an image like mogo.LoadImage, but also stores it in the fantomEngine image manager.
+
+# Method LoadImage:Image(path:String,  frameWidth:Int, frameHeight:Int, frameCount:Int, flags:Int=Image.MidHandle)
+
+*Description*
+
+Loads an image like mogo.LoadImage, but also stores it in the fantomEngine image manager.
+
+# Method LoadMusic:ftSound(filename:String, loopFlag:Bool=False)
+
+*Description*
+
+Load a music file with the given filename.
+
+# Method LoadSound:ftSound(filename:String, loopFlag:Bool=False)
+
+*Description*
+
+Load a sound file with the given filename.
+
+*Details*
+
+If you don't add a fileformat to the file name, then the default file format ist used.
+
+The current default file formats are:
+
+<ul><li>GLFW = .wav
+
+<li>HTML5 = .ogg
+
+<li>FLASH = .mp3
+
+<li>Android = .ogg
+
+<li>XNA = .wav
+
+<li>IOS = .m4a
+
+<li>all the rest = .wav</ul> 
+
+# Method New:none()
+
+*Description*
+
+Creates an instance of the fantomEngine.
+
+# Method OnLayerTransition:Int(transId:Int, layer:ftLayer)
+
+*Description*
+
+This method is called when a layer finishes its update.
+
+# Method OnLayerUpdate:Int(layer:ftLayer)
+
+*Description*
+
+Callback method which is called when a layer is updated.
+
+# Method OnMarkerBounce:Int(marker:ftMarker, obj:ftObject)
+
+*Description*
+
+This method is called, when a path marker reaches the end of the path and is about to bounce backwards.
+
+# Method OnMarkerCircle:Int(marker:ftMarker, obj:ftObject)
+
+*Description*
+
+This method is called, when a path marker reaches the end of the path and is about to do another circle.
+
+# Method OnMarkerStop:Int(marker:ftMarker, obj:ftObject)
+
+*Description*
+
+This method is called, when a path marker reaches the end of the path and stops there.
+
+# Method OnMarkerWP:Int(marker:ftMarker, obj:ftObject)
+
+*Description*
+
+This method is called, when a path marker reaches a waypoint of its path.
+
+# Method OnMarkerWarp:Int(marker:ftMarker, obj:ftObject)
+
+*Description*
+
+This method is called, when a path marker reaches the end of the path and is about to warp to the start to go on.
+
+# Method OnObjectAnim:Int(obj:ftObject)
+
+*Description*
+
+This method is called when an animation of an object (obj) has finished one loop.
+
+# Method OnObjectCollision:Int(obj:ftObject, obj2:ftObject)
+
+*Description*
+
+This method is called when an object (obj) collided with another object (obj2).
+
+# Method OnObjectDelete:Int(obj:ftObject)
+
+*Description*
+
+This method is called when an object is removed.
+
+*Details*
+
+You need to activate this callback via the ftObject.ActivateDeleteEvent method. The given parameter holds the instance of the object.
+
+# Method OnObjectRender:Int(obj:ftObject)
+
+*Description*
+
+This method is called when an object was being rendered.
+
+*Details*
+
+The OnObjectRender method is called, when an object got rendered via a call to ftEngine.Render, ftLayer.Render or ftObject.Render. The given parameter holds the instance of the object. 
+
+You need to activate this callback via the ftObject.ActivateRenderEvent method.
+
+Example:
+
+<pre>
+' The engine class extends the ftEngine class to override the On... methods
+Class engine Extends ftEngine
+	Method OnObjectRender:Int(obj:ftObject)
+	        ' Check if the group ID of the object is 222
+	        If obj.GetGroupID() = 222 Then
+	
+	                ' Set alpha to 0.5
+	                mojo.SetAlpha(0.5)
+	                
+	                ' Determine the position of the object
+	                Local pos[]:Float = obj.GetPos()
+	
+	                ' Draw a circle at the objects position and set the alpha back to 1.0
+	                mojo.DrawCircle (pos[0], pos[1], 30.0)
+	                mojo.SetAlpha(1.0)
+	
+	        Endif
+	        Return 0
+	End
+End
+</pre>
+# Method OnObjectSort:Int(obj1:ftObject, obj2:ftObject)
+
+*Description*
+
+This method is called when objects are compared during a sort of its layer list.
+
+*Details*
+
+By default, objects are sorted ascending by the Z position.
+
+Overwrite this method with your own logic if you need something else. 
+
+Return TRUE if you want obj2 sorted infront of obj1.
+
+Example:
+
+<pre>
+' The engine class extends the ftEngine class to override the On... methods
+Class engine Extends ftEngine
+	Method OnObjectSort:Int(obj1:ftObject, obj2:ftObject)
+		' This method is called when objects are compared during a sort of its layer list
+		
+		' We compare the bottom (yPos+Height/2) of each object, the ones with a smaller result will
+		' be sort infront of the other object and so appear behind the over object.
+		If (obj1.yPos + obj1.GetHeight()/2) < (obj2.yPos + obj2.GetHeight()/2) Then 
+			Return False
+		Else
+			Return True
+		Endif
+	End	
+End
+
+</pre>
+# Method OnObjectTimer:Int(timerId:Int, obj:ftObject)
+
+*Description*
+
+This method is called when an objects' timer was being fired.
+
+# Method OnObjectTouch:Int(obj:ftObject, touchId:Int)
+
+*Description*
+
+This method is called when an object was touched.
+
+# Method OnObjectTransition:Int(transId:Int, obj:ftObject)
+
+*Description*
+
+This method is called when an object finishes its transition.
+
+# Method OnObjectUpdate:Int(obj:ftObject)
+
+*Description*
+
+This method is called when an object finishes its update.
+
+*Details*
+
+The OnObjectUpdate method is called, when an object got updated via a call to ftEngine.Update, ftLayer.Update or ftObject.Update. The given parameter holds the instance of the object. 
+
+You can deactivate this callback via the ftObject.ActivateUpdateEvent method.
+
+Example:
+
+<pre>
+' The engine class extends the ftEngine class to override the On... methods
+Class engine Extends ftEngine
+	Method OnObjectUpdate:Int(obj:ftObject)
+	        'Move the object 10 pixels to the right
+	        obj.SetPos(10.0, 0.0, True)
+	
+	        Return 0
+	End
+End
+</pre>
+# Method OnSwipeDone:Int(touchIndex:Int, sAngle:Float, sDist:Float, sSpeed:Float)
+
+*Description*
+
+This method is called when a swipe gesture was detected.
+
+# Method OnTimer:Int(timerId:Int)
+
+*Description*
+
+This method is called when an engine timer was being fired.
+
+# Method ReLoadAllImages:Void()
+
+*Description*
+
+Reloads all images. This is needed when you change the resolution in your game during runtime.
+
+# Method RemoveAllImages:Void(discard:Bool = False)
+
+*Description*
+
+Removes all images from the engine.
+
+# Method RemoveAllLayer:Void()
+
+*Description*
+
+Remove all existing layer from engine.
+
+# Method RemoveAllObjects:Void()
+
+*Description*
+
+Removes all objects from all layer.
+
+# Method RemoveAllScenes:Void()
+
+*Description*
+
+Remove all existing scenes from engine.
+
+# Method RemoveImage:Void(image:Image, discard:Bool = False)
+
+*Description*
+
+Removes an image from fantomEngine by the given Image handle.
+
+# Method RemoveImage:Void(filepath:String, discard:Bool = False)
+
+*Description*
+
+Removes an image from fantomEngine by the given filename.
+
+# Method RemoveLayer:Void(layer:ftLayer)
+
+*Description*
+
+Removes a layer.
+
+*Details*
+
+Deletes a previously created layer and all the objects that are assigned to it. To create a layer, use CreateLayer. 
+
+Example:
+
+<pre>
+Local myEngine:ftEngine = New ftEngine
+Local myLayer:ftLayer = myEngine.CreateLayer()
+myEngine.RemoveLayer(myLayer)
+</pre>
+# Method RemoveScene:Void(scene:ftScene)
+
+*Description*
+
+Removes a scene.
+
+*Details*
+
+Deletes a previously created scene. To create a scene, use CreateScene. 
+
+# Method Render:Void()
+
+*Description*
+
+Renders all active and visible layers with their objects.
+
+*Details*
+
+Renders the objects of all or just one specific layer. The layer have to be active and visible. They are rendered in their order of creation. 
+
+Example:
+
+<pre>
+Method OnRender:Int()
+	Cls
+	eng.Render()
+	Return 0
+End
+</pre>
+# Method Render:Void(layer:ftLayer)
+
+*Description*
+
+Renders all active and visible objects of a given layer.
+
+Example:
+
+<pre>
+Method OnRender:Int()
+	Cls
+	eng.Render()
+	Return 0
+End
+</pre>
+# Method RenderLoadingBar:Void()
+
+*Description*
+
+Renders all simple loading screen.
+
+*Details*
+
+Call it inside mojo's OnLoading event.
+
+Example:
+
+<pre>
+Method OnLoading:Int()
+	' If loading of assets in OnCreate takes longer, render a simple loading screen
+	fE.RenderLoadingBar()
+	Return 0
+End
+
+</pre>
+# Method RestoreAlpha:Void()
+
+*Description*
+
+Sets the current alpha to the engines stored alpha value.
+
+*Details*
+
+Use this when you have changed the alpha value manually via mojo.SetAlpha.
+
+# Method RestoreBlendmode:Void()
+
+*Description*
+
+Sets the current blendmode to the engines stored blendmode.
+
+*Details*
+
+Use this when you have changed the blendmode manually via mojo.SetBlend.
+
+# Method RestoreColor:Void()
+
+*Description*
+
+Sets the current color to the engines stored color values.
+
+*Details*
+
+Use this when you have changed the color manually via mojo.SetColor.
+
+# Method SetCam:Void(x:Float, y:Float, relative:Int = False)
+
+*Description*
+
+Sets the camera to the given canvas positions.
+
+*Details*
+
+The camera in fantomEngine is basically and offset of the view to all visible objects. This command sets the X and Y-position of the camera. 
+
+If you use the relative flag, the cameras position is changed relatively by the given amount. 
+
+With positioning the camera, you can move your character freely inside the environment and you don't need to offset its layer anymore. 
+
+To set the X-Position, use SetCamX. For setting the Y position, use SetCamY. 
+
+Example:
+
+<pre>
+Method OnUpdate:Int()
+    ' Determine the update factor depending on the delta time
+    Local d:Float = Float(myEngine.CalcDeltaTime())/60.0
+
+    ' Update the engine
+    myEngine.Update(Float(d))
+
+    ' Determine the player position
+    Local pos:Float[] = player.GetPos()
+    
+    ' Now set the camera accordingly so the player is always in the middle of the canvas
+    eng.SetCam(pos[0] - eng.GetCanvasWidth()/2, pos[1] - eng.GetCanvasHeight()/2)
+
+    Return 0
+End
+</pre>
+# Method SetCamX:Void(x:Float, relative:Int = False)
+
+*Description*
+
+Sets the cameras X coordinate to the given canvas position.
+
+*Details*
+
+The camera in fantomEngine is basically and offset of the view to all visible objects. This command sets the X-position of the camera. 
+
+If you use the relative flag, the cameras position is changed relatively by the given amount. 
+
+With positioning the camera, you can move your character freely inside the environment and you don't need to offset its layer anymore. 
+
+To set the Y-Position, use SetCamY. For setting the X and Y position together, use SetCam. 
+
+Example:
+
+<pre>
+Method OnUpdate:Int()
+    ' Determine the update factor depending on the delta time
+    Local d:Float = Float(myEngine.CalcDeltaTime())/60.0
+
+    ' Update the engine
+    myEngine.Update(Float(d))
+
+    ' Determine the player X-position
+    Local xpos:Float = player.GetPosX()
+    
+    ' Now set the camera accordingly so the player is always in the middle of the canvas
+    eng.SetCamX(xpos - eng.GetCanvasWidth()/2)
+
+    Return 0
+End
+</pre>
+# Method SetCamY:Void(y:Float, relative:Int = False)
+
+*Description*
+
+Sets the cameras Y coordinate to the given canvas position.
+
+*Details*
+
+The camera in fantomEngine is basically and offset of the view to all visible objects. This command sets the Y-position of the camera. 
+
+If you use the relative flag, the cameras position is changed relatively by the given amount. 
+
+With positioning the camera, you can move your character freely inside the environment and you don't need to offset its layer anymore. 
+
+To set the X-Position, use SetCamX. For setting the X and Y position together, use SetCam. 
+
+Example:
+
+<pre>
+Method OnUpdate:Int()
+    ' Determine the update factor depending on the delta time
+    Local d:Float = Float(myEngine.CalcDeltaTime())/60.0
+
+    ' Update the engine
+    myEngine.Update(Float(d))
+
+    ' Determine the player X-position
+    Local ypos:Float = player.GetPosY()
+    
+    ' Now set the camera accordingly so the player is always in the middle of the canvas
+    eng.SetCamY(ypos - eng.GetCanvasHeight()/2)
+
+    Return 0
+End
+</pre>
+# Method SetCanvasSize:Void(width:Int, height:Int, canvasmode:Int = ftEngine.cmLetterbox)
+
+*Description*
+
+Sets the virtual canvas size to the given width/height.
+
+*Details*
+
+With this command, you set the virtual dimensions of your canvas. If the size of your devices canvas will differ from your settings, fantomEngine will scale the drawing and touch input accordingly. 
+
+You can retrieve the scale factors with GetScaleY and GetScaleX. 
+
+If you want to act automatically on device rotations, call SetCanvasSize inside the ftEngine.OnUpdate method.
+
+<b>Canvas scale modes</b>
+
+
+
+The canvas scale modes are implemented as constants. Next you see which exist and what they do:
+
+<ul><li>ftEngine.cmZoom 	(Value=0, Old behaviour, canvas will be streched/fitted into the screen. )
+
+<li>ftEngine.cmCentered 	(Value=1, Pixel perfect, canvas will be centered into the screen space. No content scaling.  )
+
+<li>ftEngine.cmLetterbox 	(Value=2, Default. Canvas will be scaled to the smaller scale factor of X or Y. )
+
+<li>ftEngine.cmPerfect 	(Value=3, Pixel perfect (Top left). No content/Canvas scaling. )</ul>
+
+Example:
+
+<pre>
+Method OnCreate:Int()
+        ' Create an instance your engine class
+        eng = New engine
+
+        ' Set the virtual size to 800x600 and let the engine do letterbox scaling if needed
+        eng.SetCanvasSize(800, 600, eng.cmLetterbox)
+        Return 0
+End
+</pre>
+# Method SetDefaultActive:Void(active:Bool)
+
+*Description*
+
+Sets the default active flag for newly created objects.
+
+*Details*
+
+All newly created objects are active by default. Use SetDefaultActive to set the default behaviour of the fantomEngine. 
+
+Example:
+
+<pre>
+Local myEngine:ftEngine = New ftEngine
+myEngine.SetDefaultActive(False)
+</pre>
+# Method SetDefaultLayer:Void(layer:ftLayer)
+
+*Description*
+
+Sets the default layer which is assigned to all newly created objects.
+
+*Details*
+
+If you need to set the default layer where new objects are assigned to, then use <b>SetDefaultLayer</b>. To get the default layer, use <b>GetDefaultLayer</b>. 
+
+Example:
+
+<pre>
+Local myEngine:ftEngine = New ftEngine
+Local myLayer:ftLayer = myEngine.CreateLayer()
+myEngine.SetDefaultLayer(myLayer)
+</pre>
+# Method SetDefaultScene:Void(scene:ftScene)
+
+*Description*
+
+Sets the default scene which is assigned to all newly created layers.
+
+*Details*
+
+If you need to set the default scene where new layers are assigned to, then use <b>SetDefaultScene</b>. To get the default layer, use <b>GetDefaultScene</b>. 
+
+# Method SetDefaultVisible:Void(visible:Bool)
+
+*Description*
+
+Sets the default visible flag for newly created objects.
+
+*Details*
+
+All newly created objects are visible by default. Use SetDefaultVisible to set the default behaviour of the fantomEngine. 
+
+Example:
+
+<pre>
+Local myEngine:ftEngine = New ftEngine
+myEngine.SetDefaultVisible(False)
+</pre>
+# Method SetFirstSoundChannel:Void(firstChannel:Int = 0)
+
+*Description*
+
+Sets the index of the first sound channel to be used. Ranges from 0 to 31.
+
+# Method SetMaxSoundChannel:Void(maxChannel:Int = 32)
+
+*Description*
+
+Sets the maximum number of sound channels to be used. Ranges from 1 to 32.
+
+*Details*
+
+If a low end device device has performance problems, lower this setting.
+
+# Method SetPause:Void(pauseFlag:Bool)
+
+*Description*
+
+With this method, you can pause the engine or resume it.
+
+*Details*
+
+If the engine is paused, objects, timers and transitions won't be updated.
+
+# Method SetPaused:Void(pauseFlag:Bool)
+
+*Description*
+
+With this method, you can pause the engine or resume it.
+
+*Details*
+
+If the engine is paused, objects, timers and transitions won't be updated.
+
+# Method SetSwipeDeadDist:Void(deadDist:Float = 20.0)
+
+*Description*
+
+Only swipes that are longer than the dead distance are detected.
+
+# Method SetSwipeSnap:Void(degrees:Int=1)
+
+*Description*
+
+You can let the swipe angle snap to a fraction of a given degree.
+
+# Method SetTimeScale:Void(timescale:Float = 1.0)
+
+*Description*
+
+The time scale influences the update methods of objects, timers and transitions.
+
+*Details*
+
+Lower values than 1.0 slow down the engine, bigger values speed it up.
+
+# Method SetVolumeMUS:Void(volume:Float = 1.0)
+
+*Description*
+
+Sets the general volume of music. Ranges from 0.0 to 1.0.
+
+# Method SetVolumeSFX:Void(volume:Float = 1.0)
+
+*Description*
+
+Sets the general volume of sound effects. Ranges from 0.0 to 1.0.
+
+# Method SortObjects:Void()
+
+*Description*
+
+Sort the objects of all layer.
+
+*Details*
+
+Internally it will call the <b>ftEngine.OnObjectSort</b> method. Override this method with your on comparison algorythm. 
+
+# Method SortObjects:Void(layer:ftLayer)
+
+*Description*
+
+Sort the objects inside a layer.
+
+*Details*
+
+Internally it will call the <b>ftEngine.OnObjectSort</b> method. Override this method with your on comparison algorythm. 
+
+# Method SwipeUpdate:Void(index:Int = 0)
+
+*Description*
+
+Call SwipeUpdate in every mojo.OnUpdate event after the regular ftEngine.Update method.
+
+*Details*
+
+If a swipe was detected, it will call the <b>ftEngine.OnSwipeDone</b> method.
+
+# Method TouchCheck:Void(touchID:Int=0)
+
+*Description*
+
+Do a touch check over all layers and their active objects which have a touch method assigned to them.
+
+*Details*
+
+If a touch was detected, it will call the <b>ftEngine.OnObjectTouch</b> method.
+
+# Method TouchCheck:Void(layer:ftLayer, touchID:Int=0)
+
+*Description*
+
+Do a touch check over all active objects of a given layer which have a touch method assigned to them.
+
+*Details*
+
+If a touch was detected, it will call the <b>ftEngine.OnObjectTouch</b> method.
+
+# Method Update:Void(speed:Float=1.0)
+
+*Description*
+
+Updates all general timers and active layers with their transitions and objects.
+
+*Details*
+
+Update all objects of the engine which are not children of another object. That means that the objects move and turn according to their speed, speed angle and spin properties. 
+
+After an object was updated, the <b>ftEngine.OnObjectUpdate</b> method will be called. Child objects are updated together with and right after their parent objects.
+
+Example:
+
+<pre>
+Method OnUpdate:Int()
+        ' Calculate the time (in milliseconds) since the last update and devide it by 60.0
+        Local mySpeed:Float = Float(eng.CalcDeltaTime())/60.0
+
+        'Now update all objects of the engine with the given speed factor
+        eng.Update(mySpeed)
+
+        Return 0
+End
+</pre>
+# Method Update:Void(layer:ftLayer, speed:Float=1.0)
+
+*Description*
+
+Updates all general timer and a given layer with its transitions and active objects.
+
+*Details*
+
+Update all objects of the specified layer which are not children of another object. That means that the objects move and turn according to their speed, speed angle and spin properties. 
+
+After an object was updated, the <b>ftEngine.OnObjectUpdate</b> method will be called. Child objects are updated together with and right after their parent objects.
+
+Example:
+
+<pre>
+Method OnUpdate:Int()
+        ' Calculate the time (in milliseconds) since the last update and devide it by 60.0
+        Local mySpeed:Float = Float(eng.CalcDeltaTime())/60.0
+
+        'Now update all objects of the engine with the given speed factor
+        eng.Update(mySpeed)
+
+        Return 0
+End
+</pre>
+# Const cmCentered% = 1:none
+
+# Const cmLetterbox% = 2:none
+
+# Const cmPerfect% = 3:none
+
+# Const cmZoom% = 0:none
+
+# Const ctBound% = 2:none
+
+# Const ctBox% = 1:none
+
+# Const ctCircle% = 0:none
+
+# Const ctLine% = 3:none
+
+# Const oedBottom% = 1:none
+
+# Const oedLeft% = 3:none
+
+# Const oedRight% = 4:none
+
+# Const oedTop% = 2:none
+
+# Const otBox% = 3:none
+
+# Const otCircle% = 2:none
+
+# Const otImage% = 0:none
+
+# Const otLine% = 11:none
+
+# Const otOval% = 10:none
+
+# Const otPivot% = 13:none
+
+# Const otPoint% = 8:none
+
+# Const otPoly% = 12:none
+
+# Const otStickMan% = 9:none
+
+# Const otText% = 1:none
+
+# Const otTextMulti% = 7:none
+
+# Const otTileMap% = 6:none
+
+# Const otZoneBox% = 4:none
+
+# Const otZoneCircle% = 5:none
+
+# Const taBottomCenter% = 5:none
+
+# Const taBottomLeft% = 8:none
+
+# Const taBottomRight% = 6:none
+
+# Const taCenterCenter% = 3:none
+
+# Const taCenterLeft% = 7:none
+
+# Const taCenterRight% = 4:none
+
+# Const taTopCenter% = 1:none
+
+# Const taTopLeft% = 0:none
+
+# Const taTopRight% = 2:none
+
+# Const tmBound% = 2:none
+
+# Const tmBox% = 3:none
+
+# Const tmCircle% = 1:none
+
+# Const twmBounceEaseIn% = 1:none
+
+# Const twmBounceEaseInOut% = 2:none
+
+# Const twmBounceEaseOut% = 3:none
+
+# Const twmCircleEaseIn% = 4:none
+
+# Const twmCircleEaseInOut% = 5:none
+
+# Const twmCircleEaseOut% = 6:none
+
+# Const twmCubicEaseIn% = 7:none
+
+# Const twmCubicEaseInOut% = 8:none
+
+# Const twmCubicEaseOut% = 9:none
+
+# Const twmEaseIn% = 10:none
+
+# Const twmEaseInOut% = 11:none
+
+# Const twmEaseOut% = 12:none
+
+# Const twmElasticEaseIn% = 13:none
+
+# Const twmElasticEaseInOut% = 14:none
+
+# Const twmElasticEaseOut% = 15:none
+
+# Const twmExpoEaseIn% = 16:none
+
+# Const twmExpoEaseInOut% = 17:none
+
+# Const twmExpoEaseOut% = 18:none
+
+# Const twmLinear% = 0:none
+
+# Const twmQuadEaseIn% = 22:none
+
+# Const twmQuadEaseInOut% = 23:none
+
+# Const twmQuadEaseOut% = 24:none
+
+# Const twmQuartEaseIn% = 25:none
+
+# Const twmQuartEaseInOut% = 26:none
+
+# Const twmQuartEaseOut% = 27:none
+
+# Const twmQuintEaseIn% = 28:none
+
+# Const twmQuintEaseInOut% = 29:none
+
+# Const twmQuintEaseOut% = 30:none
+
+# Const twmSineEaseIn% = 19:none
+
+# Const twmSineEaseInOut% = 20:none
+
+# Const twmSineEaseOut% = 21:none
+
