@@ -4,7 +4,7 @@ Strict
 	Script:			SheetAnim.monkey
 	Description:	Sample script that shows how to use spritesheets for animated objects
 	Author: 		Michael Hartlef
-	Version:      	1.0
+	Version:      	1.01
 #End
 
 ' Set the AutoSuspend functionality to TRUE so OnResume/OnSuspend are called
@@ -32,8 +32,8 @@ Class cGame Extends App
 	
 	'------------------------------------------
 	Method OnCreate:Int()
-		' Set the update rate of Mojo's OnUpdate events to be determined by the devices refresh rate.
-		SetUpdateRate(0)
+		' Set the update rate of Mojo's OnUpdate to 60 FPS.
+		SetUpdateRate(60)
 		
 		' Create an instance of the fantomEngine, which was created via the cEngine class
 		fE = New cEngine

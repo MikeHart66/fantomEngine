@@ -1,3 +1,33 @@
+Version 1.57
+
+*New functionalities*
+
+  - GUI!!! Implemented via custom Objects and the new ftGuiMng manager class! Have fun!!! 
+  
+*Fixes*
+
+  - Fixed resizing arrays inside ftObject._Init and ftTileMap.Remove. Causes a compile bug in Android.
+  - Fixed ftEngine.New() in the creation of the default layer and scene which could cause a crash when removed.
+  - Fixed ftLayer.Remove() to take care of assigned layer transitions.
+  - Fixed Index of array error under GLFW3 and possible all C++ targets.
+  
+*Changes*
+
+  - tba  
+  
+*New example*
+
+  - Canvas/VirtualResolution/VirtualResolution.monkey
+  - Input/TouchInput/DragNDrop/DragNDrop.monkey
+  - Gui/Joysticks/Joysticks.monkey
+  - Gui/Buttons/Buttons.mokey
+  - Physics/Canon/Canon.monkey
+  
+*Fixed example*
+
+  - All examples where changed to use SetUpdateRate(60) again as Monkey-X v77 doesn't support SetUpdateRate(0).
+  
+-----------------------------------------------------------------------------------------
 Version 1.56
 
 *New functionalities*

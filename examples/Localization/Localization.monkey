@@ -4,7 +4,7 @@ Strict
 	Script:			Localization.monkey
 	Description:	Sample script that shows how to use the ftLocalization class
 	Author: 		Michael Hartlef
-	Version:      	1.02
+	Version:      	1.03
 #End
 
 ' Import the fantomEngine framework which imports mojo itself
@@ -25,8 +25,8 @@ Class cGame Extends App
 	
 	'------------------------------------------
 	Method OnCreate:Int()
-		' Set the update rate of Mojo's OnUpdate events to be determined by the devices refresh rate.
-		SetUpdateRate(0)
+		' Set the update rate of Mojo's OnUpdate to 60 FPS.
+		SetUpdateRate(60)
 		
 		' Create an instance of the fantomEngine, which was created via the cEngine class
 		fE = New cEngine

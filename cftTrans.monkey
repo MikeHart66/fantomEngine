@@ -408,6 +408,7 @@ This command sets the ease type of a transition. The ease type can be:
 				duration -= deltaTime
 				If duration <= 0 Then
 					For Local entry := Eachin entryList
+
 						entry.Update(-1, Self.tween)
 					Next
 					If finishID <> 0 Then 

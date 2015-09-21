@@ -4,7 +4,7 @@ Strict
 	Script:			Raycasting.monkey
 	'Description:	Sample script on how to do ray casting with the use of Box2D
 	Author: 		Michael Hartlef
-	Version:      	1.01
+	Version:      	1.02
 #End
 
 ' Set the AutoSuspend functionality to TRUE so OnResume/OnSuspend are called
@@ -130,8 +130,8 @@ Class cGame Extends App
 	End
 	'------------------------------------------
 	Method OnCreate:Int()
-		' Set the update rate of Mojo's OnUpdate events to be determined by the devices refresh rate.
-		SetUpdateRate(0)
+		' Set the update rate of Mojo's OnUpdate to 60 FPS.
+		SetUpdateRate(60)
 		' Set the Seed value via the current Millisecs value 
 		Seed = Millisecs()
 		' Create an instance of the fantomEngine, which was created via the engine class
@@ -233,7 +233,10 @@ Class cGame Extends App
 			Cls 
 			' Depending if the SPACE bar is pressed, render the ftObjects or the debug drawing of the box2D instance.
 			If KeyDown(KEY_SPACE) Then
+				PushMatrix
+				Translate(eng.autofitX, eng.autofitY)
 				box2D.RenderDebugDraw() 
+				PopMatrix
 			Else
 				' Render all visible objects of the engine
 				eng.Render()

@@ -4,11 +4,14 @@ Strict
 	Script:			BaseScript.monkey
 	Description:	Basic fantomEngine script
 	Author: 		Michael Hartlef
-	Version:      	1.17
+	Version:      	1.19
 #End
 
 ' Set the AutoSuspend functionality to TRUE so OnResume/OnSuspend are called
 #MOJO_AUTO_SUSPEND_ENABLED=True
+
+'Set to false to disable webaudio support for mojo audio, and to use older multimedia audio system instead.
+#HTML5_WEBAUDIO_ENABLED=True
 
 ' Import the fantomEngine framework which imports mojo itself
 Import fantomEngine
@@ -29,8 +32,8 @@ Class cGame Extends App
 	
 	'------------------------------------------
 	Method OnCreate:Int()
-		' Set the update rate of Mojo's OnUpdate events to be determined by the devices refresh rate.
-		SetUpdateRate(0)
+		' Set the update rate of Mojo's OnUpdate to 60 FPS.
+		SetUpdateRate(60)
 		
 		' Create an instance of the fantomEngine, which was created via the cEngine class
 		fE = New cEngine
@@ -43,6 +46,7 @@ Class cGame Extends App
 		
 		' Create a simple box
 		Local box := fE.CreateBox(140,10,fE.GetCanvasWidth()/2,fE.GetCanvasHeight()/2)
+		
 		' Let the box spin
 		box.SetSpin(5)
 
@@ -196,7 +200,7 @@ End
 
 '***************************************
 Function Main:Int()
-	' Create an instance of the cGame class and store it inside the global var 'g'
+	' Create an instance of the cGame class and store it inside the global var '_g'
 	_g = New cGame
 	
 	Return 0

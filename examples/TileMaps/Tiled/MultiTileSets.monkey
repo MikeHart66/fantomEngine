@@ -4,7 +4,7 @@ Strict
 	Script:			MultiTileSets.monkey
 	Description:	Example script on how to use tilemaps with more than one tile set
 	Author: 		Michael Hartlef
-	Version:      	1.01
+	Version:      	1.02
 #end
 
 ' Set the AutoSuspend functionality to TRUE so OnResume/OnSuspend are called
@@ -32,8 +32,8 @@ Class game Extends App
 	Method OnCreate:Int()
 		Local c:Int
 
-		' Set the update rate of Mojo's OnUpdate events to be determined by the devices refresh rate.
-		SetUpdateRate(0)
+		' Set the update rate of Mojo's OnUpdate to 60 FPS.
+		SetUpdateRate(60)
 		
 		' Create an instance of the fantomEngine, which was created via the cEngine class
 		fE = New cEngine

@@ -7,7 +7,7 @@
 	
 	'Website:      http://www.fantomgl.com
 	
-	'Version:      1.56
+	'Version:      1.57
 	'License:      MIT
 #End
 
@@ -26,9 +26,9 @@ Import "data/ftOrientation_changeP.png"
 Import "data/ftOrientation_changeL.png"
 'End
 
-'Import reflection
+Import reflection
 '#REFLECTION_FILTER+="|fantomEngine.cftLayer"
-'#REFLECTION_FILTER+="|fantomEngine*"
+#REFLECTION_FILTER+="|fantomEngine*"
 
 Import fantomEngine.cftMisc
 Import fantomEngine.cftFunctions
@@ -52,6 +52,7 @@ Import fantomEngine.cftSpriteAtlas
 Import fantomEngine.cftRGBA
 Import fantomEngine.cftVec2D
 Import fantomEngine.cftScene
+Import fantomEngine.cftGui
 
 #If TARGET="DocMonk"
 Import fantomEngine.cftBox2D

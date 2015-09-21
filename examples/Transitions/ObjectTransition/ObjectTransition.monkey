@@ -35,8 +35,8 @@ Class cGame Extends App
 	
 	'------------------------------------------
 	Method OnCreate:Int()
-		' Set the update rate of Mojo's OnUpdate events to be determined by the devices refresh rate.
-		SetUpdateRate(0)
+		' Set the update rate of Mojo's OnUpdate to 60 FPS.
+		SetUpdateRate(60)
 		
 		' Create an instance of the fantomEngine, which was created via the cEngine class
 		fE = New cEngine

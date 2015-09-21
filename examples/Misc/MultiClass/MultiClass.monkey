@@ -4,7 +4,7 @@ Strict
 	Script:			MultiClass.monkey
 	Description:	This sample script shows how to split your project into several classes and files
 	Author: 		Michael Hartlef
-	Version:      	1.01
+	Version:      	1.02
 #End
 
 ' Set the AutoSuspend functionality to TRUE so OnResume/OnSuspend are called

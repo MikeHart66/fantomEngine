@@ -4,7 +4,7 @@ Strict
 	Script:			TexturePacker.monkey
 	Description:	Example script on how To use packed texture images created by the tool TexturePacker 
 	Author: 		Michael Hartlef
-	Version:      	1.04
+	Version:      	1.05
 #end
 
 ' Set the AutoSuspend functionality to TRUE so OnResume/OnSuspend are called
@@ -26,8 +26,8 @@ Class game Extends App
 
 	'------------------------------------------
 	Method OnCreate:Int()
-		' Set the update rate of Mojo's OnUpdate events to be determined by the devices refresh rate.
-		SetUpdateRate(0)
+		' Set the update rate of Mojo's OnUpdate to 60 FPS.
+		SetUpdateRate(60)
 		
 		' Create an instance of the fantomEngine, which was created via the engine class
 		eng = New engine

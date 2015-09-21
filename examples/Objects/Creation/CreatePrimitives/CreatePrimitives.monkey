@@ -5,7 +5,7 @@ Strict
 	Description:	This fantomEngine sample script shows how to create the following:
 					box, circle, polygon, oval, point, stickman (with visable bound box), line
 	Author: 		Douglas Williams
-	Version:      	1.01
+	Version:      	1.02
 #End
 
 ' Set the AutoSuspend functionality to TRUE so OnResume/OnSuspend are called
@@ -34,8 +34,8 @@ Class cGame Extends App
 
 	'------------------------------------------
 	Method OnCreate:Int()
-		' Set the update rate of Mojo's OnUpdate events to be determined by the devices refresh rate.
-		SetUpdateRate(0)
+		' Set the update rate of Mojo's OnUpdate to 60 FPS.
+		SetUpdateRate(60)
 		
 		' Create an instance of the fantomEngine, which was created via the cEngine class
 		fE = New cEngine

@@ -4,7 +4,7 @@ Strict
 	Script:			FlashObject.monkey
 	Description:	This sample script shows some ways on how to flash an object 
 	Author: 		Michael Hartlef
-	Version:      	1.02
+	Version:      	1.03
 #End
 
 ' Set the AutoSuspend functionality to TRUE so OnResume/OnSuspend are called
@@ -61,8 +61,8 @@ Class cGame Extends App
 	
 	'------------------------------------------
 	Method OnCreate:Int()
-		' Set the update rate of Mojo's OnUpdate events to be determined by the devices refresh rate.
-		SetUpdateRate(0)
+		' Set the update rate of Mojo's OnUpdate to 60 FPS.
+		SetUpdateRate(60)
 		
 		' Seed the random number generator
 		Seed = Millisecs()

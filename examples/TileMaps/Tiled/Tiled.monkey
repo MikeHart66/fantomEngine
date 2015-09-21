@@ -4,7 +4,7 @@ Strict
 	Script:			Tiled.monkey
 	Description:	Example script on how to use tilemaps created by the tool Tiled
 	Author: 		Michael Hartlef
-	Version:      	1.09
+	Version:      	1.10
 #end
 
 ' Set the AutoSuspend functionality to TRUE so OnResume/OnSuspend are called
@@ -31,7 +31,7 @@ Class game Extends App
 		Local c:Int
 
 		' Set the update rate of Mojo's OnUpdate events to be determined by the devices refresh rate.
-		SetUpdateRate(0)
+		SetUpdateRate(60)
 		' Create an instance of the fantomEngine, which was created via the engine class
 		eng = New engine
 		'Set the canvas size of a usual Android canvas

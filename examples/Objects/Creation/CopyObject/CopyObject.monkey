@@ -4,7 +4,7 @@ Strict
 	Script:			CopyObject.monkey
 	Description:	Sample script that shows how To copy an Object with most of its parameters at runtime  
 	Author: 		Michael Hartlef
-	Version:      	1.03
+	Version:      	1.04
 #End
 
 Import fantomEngine
@@ -22,8 +22,8 @@ Class game Extends App
 
 	'------------------------------------------
 	Method OnCreate:Int()
-		' Set the update rate of Mojo's OnUpdate events to be determined by the devices refresh rate.
-		SetUpdateRate(0)
+		' Set the update rate of Mojo's OnUpdate to 60 FPS.
+		SetUpdateRate(60)
 		
 		' Create an instance of the fantomEngine, which was created via the engine class
 		eng = New engine

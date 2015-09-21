@@ -498,9 +498,11 @@ It returns -1 if there is no tile.
 		Return retVal
 	End
 	'-----------------------------------------------------------------------------
+'changes:Fixed in v1.57
 'summery:Removes the tilemap from the corresponding ftObject.
 	Method Remove:Void()
-		tiles.Resize(0)
+		'tiles.Resize(0)
+		tiles = tiles.Resize(0)
 		tileCount= 0
 		tileCountX = 0
 		tileCountY = 0

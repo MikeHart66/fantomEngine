@@ -112,6 +112,7 @@ Class ftEngine
 	Const otLine% = 11
 	Const otPoly% = 12
 	Const otPivot% = 13
+	Const otGUI% = 100
 
 '**-----------------------------------**
 
@@ -486,7 +487,7 @@ This command copies a given object and returns the copy. The new object contains
 	End
 #End
 	'-----------------------------------------------------------------------------
-'changes:Changed in v1.56
+'changes:Fixed in v1.57
 #Rem
 'summery:Creates an animated image object (sprite) from the given sprite atlas with a center at xPos/yPos. 
 The texture will be grabbed from frameStartX/frameStartY with the given frameWidth/frameHeight. The number of frames will be taken from the given frameCount.
@@ -507,6 +508,9 @@ It creates a DEFAULT animation automatically.
 		obj.type = otImage
 		'obj.isAnimated = True
 
+		If obj.objImg.Length() = 0
+		  obj.objImg = obj.objImg.Resize(1)
+		Endif
 		obj.objImg[0] = imgMng.GrabImage(atl,frameStartX,frameStartY,frameWidth,frameHeight,frameCount,Image.MidHandle )
 		'obj.SetAnimated(True)
 		'obj.frameCount = obj.objImg[0].img.Frames()
@@ -534,7 +538,7 @@ It creates a DEFAULT animation automatically.
 	End
 
 	'-----------------------------------------------------------------------------
-'changes:Changed in v1.56
+'changes:Fixed in v1.57
 #Rem
 'summery:Creates an animated image object (sprite) from the given sprite atlas with a center at xPos/yPos. 
 The texture will be grabbed from frameStartX/frameStartY with the given frameWidth/frameHeight. The number of frames will be taken from the given frameCount.
@@ -555,6 +559,9 @@ It creates a DEFAULT animation automatically.
 		obj.type = otImage
 		'obj.isAnimated = True
 
+		If obj.objImg.Length() = 0
+		  obj.objImg = obj.objImg.Resize(1)
+		Endif
 		obj.objImg[0] = imgMng.GrabImage( atl, frameStartX,frameStartY,frameWidth,frameHeight,frameCount,Image.MidHandle )
 		'obj.SetAnimated(True)
 		'obj.frameCount = obj.objImg[0].img.Frames()
@@ -650,7 +657,33 @@ It creates a DEFAULT animation automatically.
 	End
 
 	'------------------------------------------
-'changes:Changed in v1.56
+'changes:New in v1.57
+#Rem
+'summery:Creates an custom GUI manager object which you can use to GUI child objects to. 
+#End
+'seeAlso:...
+	Method CreateGUI:ftGuiMng(xpos:Float=0.0, ypos:Float=0.0)
+		Local obj:ftGuiMng = New ftGuiMng
+		obj.engine = Self
+		obj.xPos = xpos
+		obj.yPos = ypos
+		obj.type = otGUI
+		obj.radius = 1
+		obj.w = 1
+		obj.h = 1
+		
+		obj.rw = obj.w
+		obj.rh = obj.h
+		
+		obj.SetLayer(Self.defaultLayer)
+		obj.SetActive(Self.defaultActive)
+		obj.SetVisible(Self.defaultVisible)
+		obj.collType = 0
+		obj.internal_RotateSpriteCol()
+		Return obj
+	End
+	'------------------------------------------
+'changes:Fxied in v1.57
 #Rem
 'summery:Creates an image object (sprite) from the given filename with a center at xpos/ypos. 
 'To load an animated image object, use CreateAnimImage. 
@@ -668,6 +701,9 @@ It creates a DEFAULT animation automatically.
 		obj.xPos = xpos
 		obj.yPos = ypos
 		obj.type = otImage
+		If obj.objImg.Length() = 0
+		  obj.objImg = obj.objImg.Resize(1)
+		Endif
 		obj.objImg[0] = Self.imgMng.LoadImage(filename, 1, Image.MidHandle)
 #If CONFIG="debug"
 		If obj.objImg[0] = Null Then Error("~n~nError in file fantomEngine.cftEngine, Method ftEngine.CreateImage:ftObject(filename:String, xpos:Float, ypos:Float, _ucob:Object=Null):~n~nImage "+filename+" not found!")
@@ -689,7 +725,7 @@ It creates a DEFAULT animation automatically.
 	End
 
 	'------------------------------------------
-'changes:Changed in v1.56
+'changes:Fixed in v1.57
 #Rem
 'summery:Creates an image object (sprite) from the given image with a center at xpos/ypos. 
 #End
@@ -706,6 +742,9 @@ It creates a DEFAULT animation automatically.
 		obj.xPos = xpos
 		obj.yPos = ypos
 		obj.type = otImage
+		If obj.objImg.Length() = 0
+		  obj.objImg = obj.objImg.Resize(1)
+		Endif
 		obj.objImg[0] = imgMng.LoadImage(image)
 
 		'obj.radius = (Max(obj.objImg.img.Height(), obj.objImg.img.Width())*1.42)/2.0
@@ -725,7 +764,7 @@ It creates a DEFAULT animation automatically.
 	End
 
 	'-----------------------------------------------------------------------------
-'changes:Changed in v1.56
+'changes:Fixed in v1.57
 #Rem
 'summery:Creates an image object (sprite) from the given sprite atlas with a center at xPos/yPos. The texture will be grabbed from x/y with the given width/height.
 #End
@@ -742,6 +781,9 @@ It creates a DEFAULT animation automatically.
 		obj.xPos = xpos
 		obj.yPos = ypos
 		obj.type = otImage
+		If obj.objImg.Length() = 0
+		  obj.objImg = obj.objImg.Resize(1)
+		Endif
 		obj.objImg[0] = imgMng.GrabImage(atlas, x,y,width,height,1,Image.MidHandle )
 	
 		'obj.radius = (Max(obj.objImg.img.Height(), obj.objImg.img.Width())*1.42)/2.0
@@ -761,7 +803,7 @@ It creates a DEFAULT animation automatically.
 	End
 
 	'-----------------------------------------------------------------------------
-'changes:Changed in v1.56
+'changes:Fixed in v1.57
 #Rem
 'summery:Loads a subimage from a packed texture created by the tool TexturePacker with a center at xpos/ypos. 
 It supports rotated sub images in LibGDX files too.
@@ -868,6 +910,9 @@ From version 1.52 on it supports Sparrow compatible files (.xml).
 		obj.yPos = ypos
 		obj.type = otImage
 	
+		If obj.objImg.Length() = 0
+		  obj.objImg = obj.objImg.Resize(1)
+		Endif
 		If strRot.ToLower = "true" Then
 			obj.objImg[0] = imgMng.GrabImage(atlas, tpXPos,tpYPos,tpHeight,tpWidth,1,Image.MidHandle )
 		Else
@@ -1324,7 +1369,7 @@ When the timer fires it will call OnObjectTimer. A repeatCount of -1 will let th
 		Return obj
 	End
 	'-----------------------------------------------------------------------------
-'changes:Changed in v1.56 to support multiple tilesets
+'changes:Fixed in v1.57
 #Rem
 'summery:Create a tile map which you can fill yourself.
 #End
@@ -1383,6 +1428,9 @@ When the timer fires it will call OnObjectTimer. A repeatCount of -1 will let th
 			Next
 		Next
 		'obj.img = atl.GrabImage( 0,0,obj.tileSizeX,obj.tileSizeY,obj.tileCount,Image.MidHandle )
+		If obj.objImg.Length() = 0
+		  obj.objImg = obj.objImg.Resize(1)
+		Endif
 		obj.objImg[0] = imgMng.GrabImage( atl,0,0,obj.tileMap.tileSizeX,obj.tileMap.tileSizeY,obj.frameCount,Image.MidHandle )
 		obj.frameCount = obj.objImg[0].img.Frames()
 		obj.frameStart = 1
@@ -2260,17 +2308,22 @@ The current default file formats are:
 	End
 
 	'------------------------------------------
+'changes:Fixed in version 1.57
 #Rem
 'summery:Creates an instance of the fantomEngine.
 #End
 	Method New()
-		Self.defaultLayer = New ftLayer
-		Self.defaultLayer.engine = Self
-		layerList.AddLast(Self.defaultLayer)
+		'Self.defaultLayer = New ftLayer
+		'Self.defaultLayer.engine = Self
+		'layerList.AddLast(Self.defaultLayer)
+		
 
-		Self.defaultScene = New ftScene
-		Self.defaultScene.engine = Self
-		sceneList.AddLast(Self.defaultScene)
+		'Self.defaultScene = New ftScene
+		'Self.defaultScene.engine = Self
+		'sceneList.AddLast(Self.defaultScene)
+		
+		Self.defaultScene = Self.CreateScene()
+		Self.defaultLayer = Self.CreateLayer()
 
 		screenWidth = DeviceWidth()
 		screenHeight = DeviceHeight()

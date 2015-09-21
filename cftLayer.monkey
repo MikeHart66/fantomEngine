@@ -294,9 +294,13 @@ Class ftLayer
 		Return isVisible
 	End 
 	'------------------------------------------
+'changes:Fixed in version 1.57
 'summery:Removes this layer from the engine. If the delObjects flag is set to TRUE, then it will remove all attached objects too.
 	Method Remove:Void(delObjects:Bool = False)
 		If Self.engine <> Null Then
+			For Local trans := Eachin transitionList.Backwards()    '1.5.7
+				trans.Cancel()
+			Next
 			If delObjects = True Then
 				Self.RemoveAllObjects()
 			Endif
@@ -364,9 +368,21 @@ Class ftLayer
 			Endif
 			For Local obj := Eachin objList
 				If Self.isGUI = True Then
-					If obj.isVisible And obj.isActive And obj.parentObj = Null Then obj.Render(Self.xPos, Self.yPos)
+					If obj.isVisible And obj.isActive And obj.parentObj = Null
+						If obj.type = ftEngine.otGUI
+							ftGuiMng(obj).Render(Self.xPos, Self.yPos)
+						Else
+							obj.Render(Self.xPos, Self.yPos)
+						Endif
+					Endif
 				Else
-					If obj.isVisible And obj.isActive And obj.parentObj = Null Then obj.Render(Self.xPos-engine.camX, Self.yPos-engine.camY)
+					If obj.isVisible And obj.isActive And obj.parentObj = Null
+						If obj.type = ftEngine.otGUI
+							ftGuiMng(obj).Render(Self.xPos-engine.camX, Self.yPos-engine.camY)
+						Else
+							obj.Render(Self.xPos-engine.camX, Self.yPos-engine.camY)
+						Endif
+					Endif
 				Endif
 			Next
 			If _scissor = True
@@ -524,7 +540,13 @@ Overwrite that method to get a different sorting. The default sorting will sort 
 		Endif
 		
 		For Local obj := Eachin objList
-			If obj.parentObj = Null Then obj.Update(speed)
+			If obj.parentObj = Null
+				If obj.type = ftEngine.otGUI 
+					ftGuiMng(obj).Update(speed)
+				Else
+					obj.Update(speed)
+				Endif
+			Endif
 		Next
 	
 		If engine.isPaused = False Then engine.OnLayerUpdate(Self)

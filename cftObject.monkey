@@ -2068,6 +2068,7 @@ The stored height is the result of the given parameter divided by the current Y 
 'summery:Set the objects X/Y position.
 'seeAlso:GetPos
 	Method SetPos:Void (x:Float, y:Float, relative:Int = False )
+'Print("SetPos "+Self.GetName()+"="+x+":"+y)
 		Local xd:Float
 		Local yd:Float
 		If relative = True Then
@@ -2094,6 +2095,7 @@ The stored height is the result of the given parameter divided by the current Y 
 'seeAlso:GetPosX
 	Method SetPosX:Void (x:Float, relative:Int = False )
 		Local xd:Float
+'Print("SetPosX "+Self.GetName()+"="+x)
 		If relative = True Then
 			For Local child := Eachin childObjList
 				child.SetPosX(x, relative)
@@ -2109,12 +2111,14 @@ The stored height is the result of the given parameter divided by the current Y 
 		Else
 			xPos = x
 		Endif
+'Print("SetPosX "+Self.GetName()+"="+Self.GetChildCount()+" children")
 	End
 	'-----------------------------------------------------------------------------
 'summery:Set the Y-position of an object.
 'seeAlso:GetPosY
 	Method SetPosY:Void (y:Float, relative:Int = False )
 		Local yd:Float
+'Print("SetPosY "+Self.GetName()+"="+y)
 		If relative = True Then
 			For Local child := Eachin childObjList
 				child.SetPosY(y, relative)
@@ -2579,6 +2583,7 @@ The stored width is the result of the given parameter divided by the current X s
 	End
 	'-----------------------------------------------------------------------------
 '#DOCOFF#	
+'changes:Fixed in version 1.57
 	Method _Init:ftObject()
 		xPos = 0.0
 		yPos = 0.0
@@ -2588,7 +2593,8 @@ The stored width is the result of the given parameter divided by the current X s
 
 		x2 = 0.0								'Render -- case ftEngine.otLine
 		y2 = 0.0								'Render -- case ftEngine.otLine
-		verts.Resize(0)
+		'verts.Resize(0)
+		verts = verts.Resize(0)
 		rw = 0.0
 		rh = 0.0
 		rox = 0.0
@@ -2616,7 +2622,8 @@ The stored width is the result of the given parameter divided by the current X s
 		alpha = 1.0
 		blendMode = 0 
 			
-		objImg.Resize(0)
+		'objImg.Resize(0)
+		objImg = objImg.Resize(0)
 			
 			'Field animTime:Float = 0.0
 		frameCount = 1

@@ -53,6 +53,8 @@ The forum is also a good place to ask your questions about how to use <b>fantomE
 
 # Import fantomEngine.cftFunctions
 
+# Import fantomEngine.cftGui
+
 # Import fantomEngine.cftHighscore
 
 # Import fantomEngine.cftImageMng
@@ -92,4 +94,6 @@ The forum is also a good place to ask your questions about how to use <b>fantomE
 # Import json
 
 # Import mojo
+
+# Import reflection
 

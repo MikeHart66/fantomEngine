@@ -4,7 +4,7 @@ Strict
 	Script:			ParentChild.monkey
 	Description:	Sample script to show how to use parent/child relationships.
 	Author: 		Michael Hartlef
-	Version:      	1.03
+	Version:      	1.04
 #End
 
 ' Import the fantomEngine framework which imports mojo itself
@@ -37,8 +37,8 @@ Class game Extends App
 	End
 	'------------------------------------------
 	Method OnCreate:Int()
-		' Set the update rate of Mojo's OnUpdate events to be determined by the devices refresh rate.
-		SetUpdateRate(0)
+		' Set the update rate of Mojo's OnUpdate to 60 FPS.
+		SetUpdateRate(60)
 		
 		' Create an instance of the fantomEngine, which was created via the engine class
 		eng = New engine

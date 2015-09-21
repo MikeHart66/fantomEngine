@@ -1,0 +1,252 @@
+# Module cftGui
+
+The class *ftGuiGadget* is the base class for each gui object/gadget.
+
+# Import fantomEngine
+
+# Class cftGui.ftGuiButton
+
+# Method CheckTouchHit:Bool(px:Float, py:Float)
+
+# Method GetPressed:Bool()
+
+*Description*
+
+Returns TRUE if the button just got pressed.
+
+# Class cftGui.ftGuiCheckbox
+
+# Method CheckTouchHit:Bool(px:Float, py:Float)
+
+# Method SetState:Void(checkState:Bool)
+
+*Description*
+
+Sets the check state of the checkbox. TRUE means it is checked.
+
+# Class cftGui.ftGuiGadget
+
+# Method GetState:Bool()
+
+*Description*
+
+Returns the state of the control.
+
+# Method SetSmoothness:Void(smoothFactor:Float = 0.9)
+
+*Description*
+
+Sets the smoothness factor for the control.
+
+# Method SetState:Void(newState:Bool)
+
+*Description*
+
+Sets the state of the control.
+
+# Class cftGui.ftGuiJoystick
+
+# Method CheckTouchHit:Bool(px:Float, py:Float)
+
+# Method GetJoyX:Float(raw:Bool = False)
+
+*Description*
+
+Returns the X offset of the joystick
+
+# Method GetJoyY:Float(raw:Bool = False)
+
+*Description*
+
+Returns the Y offset of the joystick
+
+# Method SetDeadZone:Void(deadZone:Float = 0.1)
+
+*Description*
+
+Sets the deadzone of the joystick. Affects relative values less or equal the deadzone value.
+
+# Method SetMaxZone:Void(maxZone:Float = 0.9)
+
+*Description*
+
+Sets the deadzone of the joystick. Affects relative values less or equal the deadzone value.
+
+# Method isHit:Bool()
+
+*Description*
+
+Returns the hit state of the joystick
+
+# Class cftGui.ftGuiLabel
+
+# Method Render:Void(xoff:Float=0.0, yoff:Float=0.0)
+
+# Method SetShadowOffset:Void(xOff:Float, yOff:Float)
+
+# Field hasShadow:Bool
+
+# Field shadowX:Float
+
+# Field shadowY:Float
+
+# Class cftGui.ftGuiListview
+
+# Method AddItem:ftGuiListviewItem(t:string)
+
+# Method CheckTouchHit:Bool(px:Float, py:Float)
+
+# Method GetItem:ftGuiListviewItem(index:Int = 0)
+
+# Method GetItemText:String(index:Int)
+
+# Method GetSelected:Int()
+
+# Method Render:Void(xoff:Float=0.0, yoff:Float=0.0)
+
+# Method SetLines:Void(newLines:String)
+
+# Method SetLines:Void(newLines:String[])
+
+# Method SetScrollXY:Void(sx:Float, sy:Float, relative:Int = False)
+
+*Description*
+
+Set the X/Y offset position of the list items.
+
+# Method SetSelected:Void(selectedID:Int = -1)
+
+# Field font:ftFont
+
+# Field itemList:= New List<ftGuiListviewItem>
+
+# Field scrollX:Float
+
+# Field scrollY:Float
+
+# Field selItem:Int
+
+# Class cftGui.ftGuiListviewItem
+
+# Method GetImage:ftImage()
+
+# Method GetText:String()
+
+# Method SetImage:Void(lviImage:ftImage)
+
+# Method SetText:Void(lviText:String)
+
+# Field img:ftImage
+
+# Field text:String
+
+# Class cftGui.ftGuiMng
+
+# Method CreateButton:ftGuiButton(imgBtn:String)
+
+*Description*
+
+Creates a new joypad button.
+
+# Method CreateCheckbox:ftGuiCheckbox(imgChecked:String,imgUnchecked:String, checkState:Bool = True)
+
+*Description*
+
+Creates a new checkbox.
+
+# Method CreateJoyStick:ftGuiJoystick(imgRing:String, imgStick:String)
+
+*Description*
+
+Creates a new analog joystick.
+
+# Method CreateLabel:ftGuiLabel(txt:String, shadowed:Bool = False)
+
+*Description*
+
+Creates a new label.
+
+# Method CreateListview:ftGuiListview(x:Float, y:Float, w:Float, h:Float, newLines:String)
+
+*Description*
+
+Creates a new listview.
+
+# Method CreateSlider:ftGuiSlider(imgSliderBar:String, imgSliderKnob:String, startVal:Float, rangeVal:Float, orientation:Int = ftGuiMng.slHorizontal)
+
+*Description*
+
+Creates a slider.
+
+# Method CreateSwitch:ftGuiSwitch(imgSwitchOn:String,imgSwitchOff:String, switchState:Bool = True)
+
+*Description*
+
+Creates a new switch.
+
+# Method New:none(eng:ftEngine)
+
+*Description*
+
+Creates a new joypad manager.
+
+# Method Update:Void(delta:Float=1.0)
+
+*Description*
+
+Updates all states of gui elements.
+
+# Const idButton:Int
+
+# Const idChkBox:Int
+
+# Const idJoyStick:Int
+
+# Const idLabel:Int
+
+# Const idListview:Int
+
+# Const idSlider:Int
+
+# Const idSwitch:Int
+
+# Const slHorizontal:Int
+
+# Const slVertical:Int
+
+# Field font1:ftFont
+
+# Field objList:= New List<ftObject>
+
+# Class cftGui.ftGuiSlider
+
+# Method CheckTouchHit:Bool(px:Float, py:Float)
+
+# Method GetValue:Float()
+
+*Description*
+
+Returns the current value of the slider
+
+# Method SetRange:Void(startVal:Float, rangeVal:Float)
+
+*Description*
+
+Sets the range of the slider.
+
+# Method isHit:Bool()
+
+*Description*
+
+Returns the hit state of the slider
+
+# Class cftGui.ftGuiSwitch
+
+# Method CheckTouchHit:Bool(px:Float, py:Float)
+
+# Method SetState:Void(switchState:Bool)
+
+*Description*
+
+Sets the switch state of the switch. TRUE means it is ON.
+

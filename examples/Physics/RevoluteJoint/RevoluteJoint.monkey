@@ -4,7 +4,7 @@ Strict
 	Script:			RevoluteJoint.monkey
 	'Description:	Sample script on how to use a Box2D revolute joint with fantomEngine 
 	Author: 		Michael Hartlef
-	Version:      	1.03
+	Version:      	1.04
 #End
 
 ' Set the AutoSuspend functionality to TRUE so OnResume/OnSuspend are called
@@ -108,8 +108,8 @@ Class game Extends App
 	End
 	'------------------------------------------
 	Method OnCreate:Int()
-		' Set the update rate of Mojo's OnUpdate events to be determined by the devices refresh rate.
-		SetUpdateRate(0)
+		' Set the update rate of Mojo's OnUpdate to 60 FPS.
+		SetUpdateRate(60)
 		' Set the Seed value via the current Millisecs value 
 		Seed = Millisecs()
 		' Create an instance of the fantomEngine, which was created via the engine class
@@ -172,7 +172,10 @@ Class game Extends App
 			Cls 
 			' Depending if the SPACE bar is pressed, render the ftObjects or the debug drawing of the box2D instance.
 			If KeyDown(KEY_SPACE) Then
+				PushMatrix
+				Translate(eng.autofitX, eng.autofitY)
 				box2D.RenderDebugDraw() 
+				PopMatrix
 			Else
 				' Render all visible objects of the engine
 				eng.Render() 
