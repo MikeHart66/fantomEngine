@@ -1,15 +1,15 @@
 Strict
 
 #rem
-	Script:			Joysticks.monkey
-	Description:	fantomEngine sample script that shows how to use the custom gui joystick object 
+	Script:			Textfield.monkey
+	Description:	fantomEngine sample script that shows how to use the custom gui textfield object
 	Author: 		Michael Hartlef
 	Version:      	1.0
 #End
 
 ' Set the AutoSuspend functionality to TRUE so OnResume/OnSuspend are called
 #MOJO_AUTO_SUSPEND_ENABLED=True
-#MOJO_IMAGE_FILTERING_ENABLED=TRUE
+#MOJO_IMAGE_FILTERING_ENABLED=FALSE
 
 ' Import the fantomEngine framework which imports mojo itself
 Import fantomEngine
@@ -24,24 +24,15 @@ Class cGame Extends App
 	' of the ftEngine class itself
 	Field fE:cEngine
 	
-	Field guiStickL:ftGuiJoystick = Null
-	Field guiStickR:ftGuiJoystick = Null
+	' Create a field for the default scene and layer of the engine
+	Field defLayer:ftLayer
+	Field defScene:ftScene
 	
 	Field guiMng:ftGuiMng = Null
-	
-	Field objLeft:ftObject
-	Field objRight:ftObject
+	Field guiTextfield:ftGuiTextfield = Null
 	
 	Field font1:ftFont
 
-	'------------------------------------------
-	Method CreateJoystick:ftGuiJoystick(guiM:ftGuiMng, imgRing:String, imgStick:String, xPos:Float, yPos:Float, smoothFactor:Float = 0.9, maxZone:Float = 1.0)
-		Local js := guiM.CreateJoyStick(imgRing, imgStick)
-		js.SetPos(xPos, yPos)
-		js.SetSmoothness(smoothFactor)
-		js.SetMaxZone(maxZone)
-		Return js
-	End
 	'------------------------------------------
 	Method OnClose:Int()
 		fE.ExitApp()
@@ -58,7 +49,7 @@ Class cGame Extends App
 		Local y:Float
 		
 		' Set the update rate to the maximum FPS of the device
-		SetUpdateRate(0)
+		SetUpdateRate(60)
 		
 		fE = New cEngine
 		fE.SetCanvasSize(640,480)
@@ -68,19 +59,17 @@ Class cGame Extends App
 		guiMng = fE.CreateGUI()
 		guiMng.font1 = font1
 
-		guiStickL = CreateJoystick(guiMng, "guiJoyRing.png", "guiJoyStick.png", 100, fE.GetCanvasHeight()-100, 0.5, 0.5) 
+		guiTextfield = guiMng.CreateTextfield("Type here...",True)
+		guiTextfield.SetPos(20, fE.GetCanvasHeight()/2)
 		
-		guiStickR = CreateJoystick(guiMng, "guiJoyRing.png", "guiJoyStick.png", fE.GetCanvasWidth() - 100, fE.GetCanvasHeight()-100, 0.5) 
-		
-		objLeft = fE.CreateCircle(20,guiStickL.GetPosX(), fE.GetCanvasHeight()/2.0)
-		objLeft.SetWrapScreen(True)
-		objLeft.SetName("CIRCLE")
-		
-		objRight = fE.CreateBox(40,40,guiStickR.GetPosX(), fE.GetCanvasHeight()/2.0)
-		objRight.SetWrapScreen(True)
-		objRight.SetName("BOX")
-		
-		
+
+		' Get the default scene of the engine
+		defScene = fE.GetDefaultScene()
+
+		' Get the default layer of the engine
+		defLayer = fE.GetDefaultLayer()
+		'defLayer.SetAlpha(0.8)
+
 		Return 0
 	End
 	'------------------------------------------
@@ -94,31 +83,28 @@ Class cGame Extends App
 		' Update all objects of the engine
 		If fE.GetPaused() = False Then
 			fE.Update(timeDelta)
+			' Do a touch check for the first 4 fingers
 			For Local index:Int = 0 To 3
 				If TouchDown(index) Then fE.TouchCheck(index)
 			Next
-			
 		Endif
+
+		
 		
 		Return 0
 	End
 	'------------------------------------------
 	Method OnRender:Int()
 		' Check if the engine is not paused
-		Local a:Bool = True
-		If fE.GetPaused() = False Then
+		If fE.GetPaused() = False 
 			' Clear the screen 
 			Cls 200,0,0
 			' Render all visible objects of the engine
 			fE.Render()
+			SetAlpha(1.0)
 			' Draw the current FramesPerSecond value to the canvas
 			DrawText("FPS: "+fE.GetFPS(), Int(fE.GetLocalX(20)),Int(fE.GetLocalY(10)))
-			
-			DrawText(_g.guiStickL.GetJoyX(), fE.GetLocalX(20), fE.GetLocalY(fE.GetCanvasHeight()-40))
-			DrawText(_g.guiStickL.GetJoyY(), fE.GetLocalX(20), fE.GetLocalY(fE.GetCanvasHeight()-30))
-			DrawText(_g.guiStickR.GetJoyX(), fE.GetLocalX(fE.GetCanvasWidth()-40), fE.GetLocalY(fE.GetCanvasHeight()-40))
-			DrawText(_g.guiStickR.GetJoyY(), fE.GetLocalX(fE.GetCanvasWidth()-40), fE.GetLocalY(fE.GetCanvasHeight()-30))
-
+			fE.RestoreAlpha()
 		Else
 			DrawText("**** PAUSED ****",fE.GetLocalX(fE.GetCanvasWidth()/2.0),fE.GetLocalY(fE.GetCanvasHeight()/2.0),0.5, 0.5)
 		Endif
@@ -151,17 +137,11 @@ End
 ' The cEngine class extends the ftEngine class to override the On... methods
 Class cEngine Extends ftEngine
 	'------------------------------------------
-	Method OnObjectTouch:Int(obj:ftObject, touchId:Int)
-		' This method is called when an object was touched
-		Local timeDelta:Float = Float(Self.GetDeltaTime())/60.0
-		Select obj 
-			Case _g.guiStickL
-				_g.objLeft.SetPos(_g.guiStickL.GetJoyX()*timeDelta*15, _g.guiStickL.GetJoyY()*timeDelta*15, True)
-			Case _g.guiStickR
-				_g.objRight.SetPos(_g.guiStickR.GetJoyX()*timeDelta*15, _g.guiStickR.GetJoyY()*timeDelta*15, True)
-		End
-		Return True
-	End
+    'Callback method which is called when a layer is updated.
+	Method OnLayerUpdate:Int(layer:ftLayer)
+		'_g.guiTextfield.SetText("FPS: "+_g.fE.GetFPS())
+		Return 0
+	End	
 End
 
 '***************************************

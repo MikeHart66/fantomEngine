@@ -1,15 +1,15 @@
 Strict
 
 #rem
-	Script:			Joysticks.monkey
-	Description:	fantomEngine sample script that shows how to use the custom gui joystick object 
+	Script:			Checkbox.monkey
+	Description:	fantomEngine sample script that shows how to use the custom gui checkbox object
 	Author: 		Michael Hartlef
 	Version:      	1.0
 #End
 
 ' Set the AutoSuspend functionality to TRUE so OnResume/OnSuspend are called
 #MOJO_AUTO_SUSPEND_ENABLED=True
-#MOJO_IMAGE_FILTERING_ENABLED=TRUE
+#MOJO_IMAGE_FILTERING_ENABLED=FALSE
 
 ' Import the fantomEngine framework which imports mojo itself
 Import fantomEngine
@@ -24,24 +24,15 @@ Class cGame Extends App
 	' of the ftEngine class itself
 	Field fE:cEngine
 	
-	Field guiStickL:ftGuiJoystick = Null
-	Field guiStickR:ftGuiJoystick = Null
+	' Create a field for the default scene and layer of the engine
+	Field defLayer:ftLayer
+	Field defScene:ftScene
 	
 	Field guiMng:ftGuiMng = Null
+	Field guiChkBox:ftGuiCheckbox = Null
 	
-	Field objLeft:ftObject
-	Field objRight:ftObject
-	
-	Field font1:ftFont
+	Field chkbState:String ="CHECKED!"
 
-	'------------------------------------------
-	Method CreateJoystick:ftGuiJoystick(guiM:ftGuiMng, imgRing:String, imgStick:String, xPos:Float, yPos:Float, smoothFactor:Float = 0.9, maxZone:Float = 1.0)
-		Local js := guiM.CreateJoyStick(imgRing, imgStick)
-		js.SetPos(xPos, yPos)
-		js.SetSmoothness(smoothFactor)
-		js.SetMaxZone(maxZone)
-		Return js
-	End
 	'------------------------------------------
 	Method OnClose:Int()
 		fE.ExitApp()
@@ -58,29 +49,28 @@ Class cGame Extends App
 		Local y:Float
 		
 		' Set the update rate to the maximum FPS of the device
-		SetUpdateRate(0)
+		SetUpdateRate(60)
+
+
 		
 		fE = New cEngine
 		fE.SetCanvasSize(640,480)
 		
-		font1 = fE.LoadFont("font_20")
-
 		guiMng = fE.CreateGUI()
-		guiMng.font1 = font1
+		
+		guiChkBox = guiMng.CreateCheckbox("chkBoxOn.png","chkBoxOff.png", False)
+		guiChkBox.SetPos(50,80)
+		guiChkBox.SetState(True)
+		
+		
 
-		guiStickL = CreateJoystick(guiMng, "guiJoyRing.png", "guiJoyStick.png", 100, fE.GetCanvasHeight()-100, 0.5, 0.5) 
-		
-		guiStickR = CreateJoystick(guiMng, "guiJoyRing.png", "guiJoyStick.png", fE.GetCanvasWidth() - 100, fE.GetCanvasHeight()-100, 0.5) 
-		
-		objLeft = fE.CreateCircle(20,guiStickL.GetPosX(), fE.GetCanvasHeight()/2.0)
-		objLeft.SetWrapScreen(True)
-		objLeft.SetName("CIRCLE")
-		
-		objRight = fE.CreateBox(40,40,guiStickR.GetPosX(), fE.GetCanvasHeight()/2.0)
-		objRight.SetWrapScreen(True)
-		objRight.SetName("BOX")
-		
-		
+		' Get the default scene of the engine
+		defScene = fE.GetDefaultScene()
+
+		' Get the default layer of the engine
+		defLayer = fE.GetDefaultLayer()
+		'defLayer.SetAlpha(0.8)
+
 		Return 0
 	End
 	'------------------------------------------
@@ -94,10 +84,10 @@ Class cGame Extends App
 		' Update all objects of the engine
 		If fE.GetPaused() = False Then
 			fE.Update(timeDelta)
+			' Do a touch check for the first 4 fingers
 			For Local index:Int = 0 To 3
 				If TouchDown(index) Then fE.TouchCheck(index)
 			Next
-			
 		Endif
 		
 		Return 0
@@ -105,23 +95,22 @@ Class cGame Extends App
 	'------------------------------------------
 	Method OnRender:Int()
 		' Check if the engine is not paused
-		Local a:Bool = True
 		If fE.GetPaused() = False Then
 			' Clear the screen 
 			Cls 200,0,0
 			' Render all visible objects of the engine
 			fE.Render()
+			
+			SetAlpha(1.0)
 			' Draw the current FramesPerSecond value to the canvas
 			DrawText("FPS: "+fE.GetFPS(), Int(fE.GetLocalX(20)),Int(fE.GetLocalY(10)))
 			
-			DrawText(_g.guiStickL.GetJoyX(), fE.GetLocalX(20), fE.GetLocalY(fE.GetCanvasHeight()-40))
-			DrawText(_g.guiStickL.GetJoyY(), fE.GetLocalX(20), fE.GetLocalY(fE.GetCanvasHeight()-30))
-			DrawText(_g.guiStickR.GetJoyX(), fE.GetLocalX(fE.GetCanvasWidth()-40), fE.GetLocalY(fE.GetCanvasHeight()-40))
-			DrawText(_g.guiStickR.GetJoyY(), fE.GetLocalX(fE.GetCanvasWidth()-40), fE.GetLocalY(fE.GetCanvasHeight()-30))
-
+			DrawText(chkbState,Int(fE.GetLocalX(guiChkBox.GetPosX())+guiChkBox.GetWidth()/2.0+10),Int(fE.GetLocalY(guiChkBox.GetPosY())))
+			fE.RestoreAlpha()
 		Else
 			DrawText("**** PAUSED ****",fE.GetLocalX(fE.GetCanvasWidth()/2.0),fE.GetLocalY(fE.GetCanvasHeight()/2.0),0.5, 0.5)
 		Endif
+		
 		Return 0
 	End
 	'------------------------------------------
@@ -155,10 +144,12 @@ Class cEngine Extends ftEngine
 		' This method is called when an object was touched
 		Local timeDelta:Float = Float(Self.GetDeltaTime())/60.0
 		Select obj 
-			Case _g.guiStickL
-				_g.objLeft.SetPos(_g.guiStickL.GetJoyX()*timeDelta*15, _g.guiStickL.GetJoyY()*timeDelta*15, True)
-			Case _g.guiStickR
-				_g.objRight.SetPos(_g.guiStickR.GetJoyX()*timeDelta*15, _g.guiStickR.GetJoyY()*timeDelta*15, True)
+			Case _g.guiChkBox
+				If _g.guiChkBox.GetState()=True
+					_g.chkbState = "Checked!"
+				Else
+					_g.chkbState = "UnChecked!"
+				Endif
 		End
 		Return True
 	End

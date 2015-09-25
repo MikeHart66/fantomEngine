@@ -420,12 +420,12 @@ Class ftGuiMng Extends ftObject
 	Const idChkBox:Int			= 1114
 	Const idListview:Int		= 1115
 	Const idLabel:Int			= 1116
-	'Const idGroup:Int			= 1116
-	'Const idRadioBtn:Int		= 1117
-	Const idSlider:Int			= 1118
-	'Const idProgessbar:Int		= 1119
-	'Const idLabel:Int			= 1120
-	'Const idTextfield:Int		= 1121
+	'Const idGroup:Int			= 1117
+	'Const idRadioBtn:Int		= 1118
+	Const idSlider:Int			= 1119
+	'Const idProgessbar:Int		= 1120
+
+	Const idTextfield:Int		= 1121
 	'Const idTextbox:Int			= 1122
 	'Const idListbox:Int			= 1123
 	'Const idComboBox:Int		= 1124
@@ -571,6 +571,21 @@ Class ftGuiMng Extends ftObject
 	End
 
 	'------------------------------------------
+'summery:Creates a new textfield.
+	Method CreateTextfield:ftGuiTextfield(txt:String, shadowed:Bool = False)
+		Local obj:ftObject = engine.CreateText(Self.font1, txt, Self.engine.GetCanvasWidth()/2, Self.engine.GetCanvasHeight()/2,ftEngine.taTopLeft, New ftGuiTextfield)
+		ftGuiTextfield(obj).hasShadow = shadowed
+		ftGuiTextfield(obj).vjMng = Self
+		'ftGuiLabel(obj).listNode = Self.objList.AddLast(obj)
+		obj.SetID(Self.idTextfield)
+
+		obj.SetLayer(Self.GetLayer())
+		obj.SetParent(Self)
+
+		Return ftGuiTextfield(obj)
+	End
+	
+	'------------------------------------------
 'summery:Updates all states of gui elements.
 	Method Update:Void(delta:Float=1.0)
 		Super.Update(delta)
@@ -703,6 +718,62 @@ Class ftGuiSwitch Extends ftGuiGadget
 		Else
 			Self.SetCurrImage(2,1)
 		Endif			
+	End
+End
+
+'***************************************
+'changes:New in version 1.57.
+Class ftGuiTextfield Extends ftGuiGadget
+	Field hasShadow:Bool = False
+	Field shadowX:Float = 2.0
+	Field shadowY:Float = 2.0
+	Field hasFocus:Bool = True
+	'-----------------------------------------------------------------------------
+	Method GetFocus:bool()
+		Return Self.hasFocus
+	End
+	'-----------------------------------------------------------------------------
+	Method Render:Void(xoff:Float=0.0, yoff:Float=0.0)
+		Local xAlpha:Float = Self.GetAlpha()
+		Local xColor:Float[]
+		
+		If Self.hasShadow = True
+			xAlpha = Self.GetAlpha()
+			xColor = Self.GetColor()
+			Self.SetColor(50,50,50)
+			Self.SetAlpha(xAlpha-0.3)
+			Super.Render(xoff+Self.shadowX, yoff+Self.shadowY)
+			Self.SetColor(xColor[0],xColor[1],xColor[2])
+			Self.SetAlpha(xAlpha)
+		Endif
+		Super.Render(xoff, yoff)
+	End
+	'-----------------------------------------------------------------------------
+	Method SetFocus:Void(focus:Bool = True)
+		Self.hasFocus = focus
+	End
+	'-----------------------------------------------------------------------------
+	Method SetShadowOffset:Void(xOff:Float, yOff:Float)
+		Self.shadowX = xOff
+		Self.shadowY = yOff
+	End
+	'------------------------------------------
+	Method Update:Void(delta:Float=1.0)
+		Super.Update(delta)
+		If Self.GetFocus()= False Then Return
+		Local char:Int
+		Local s:string
+		Repeat
+			char=GetChar()
+			If Not char Exit
+			'Print char
+			s = Self.GetText()
+			If char = 8
+				Self.SetText(s[0..(s.Length()-1)])
+			Elseif char>=32
+				Self.SetText(s+String.FromChar( char ))
+			Endif
+		Forever
 	End
 End
 
