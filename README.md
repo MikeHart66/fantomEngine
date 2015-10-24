@@ -40,3 +40,4 @@ fantomEngine provides a lot of feature like these:
   * **Easy scene/room management**.
   * Objects can be composed of several single images.
   * **Automatic object pooling**.
+  * **Custom GUI elements**
