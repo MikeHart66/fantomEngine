@@ -289,6 +289,9 @@ Class cEngine Extends ftEngine
 		Endif
 		If obj.GetID()=_g.grpShot
 			_g.box2D.UpdateObj(obj)
+			Local lv := _g.box2D.GetLinearVelocity(obj)
+			Local v := New ftVec2D(lv[0], lv[1])
+			Print ("Speed="+v.Length())
 		Endif
 		Return 0
 	End

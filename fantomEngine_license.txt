@@ -1,6 +1,6 @@
 fantomEngine - A 2D game framework module for the Monkey programming language
 
-Copyright (c) 2011-2015 Michael Hartlef
+Copyright (c) 2011-2016 Michael Hartlef
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), 
 to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, 

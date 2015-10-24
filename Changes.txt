@@ -21,12 +21,15 @@ Version 1.57
   - Input/TouchInput/DragNDrop/DragNDrop.monkey
   - Gui/Joysticks/Joysticks.monkey
   - Gui/Buttons/Buttons.mokey
+  - Gui/Checkbox/Checkbox.mokey
+  - Gui/Label/Label.mokey
+  - Gui/Listview/Listview.mokey
+  - Gui/Slider/Slider.mokey
+  - Gui/Switch/Switch.mokey
+  - Gui/Textfield/Textfield.mokey
   - Physics/Canon/Canon.monkey
   
-*Fixed example*
-
-  - All examples where changed to use SetUpdateRate(60) again as Monkey-X v77 doesn't support SetUpdateRate(0).
-  
+ 
 -----------------------------------------------------------------------------------------
 Version 1.56
 

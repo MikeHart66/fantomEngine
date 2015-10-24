@@ -184,6 +184,12 @@ Creates a slider.
 
 Creates a new switch.
 
+# Method CreateTextfield:ftGuiTextfield(txt:String, shadowed:Bool = False)
+
+*Description*
+
+Creates a new textfield.
+
 # Method New:none(eng:ftEngine)
 
 *Description*
@@ -209,6 +215,8 @@ Updates all states of gui elements.
 # Const idSlider:Int
 
 # Const idSwitch:Int
+
+# Const idTextfield:Int
 
 # Const slHorizontal:Int
 
@@ -249,4 +257,24 @@ Returns the hit state of the slider
 *Description*
 
 Sets the switch state of the switch. TRUE means it is ON.
+
+# Class cftGui.ftGuiTextfield
+
+# Method GetFocus:bool()
+
+# Method Render:Void(xoff:Float=0.0, yoff:Float=0.0)
+
+# Method SetFocus:Void(focus:Bool = True)
+
+# Method SetShadowOffset:Void(xOff:Float, yOff:Float)
+
+# Method Update:Void(delta:Float=1.0)
+
+# Field hasFocus:Bool
+
+# Field hasShadow:Bool
+
+# Field shadowX:Float
+
+# Field shadowY:Float
 

@@ -26,9 +26,9 @@ Import "data/ftOrientation_changeP.png"
 Import "data/ftOrientation_changeL.png"
 'End
 
-Import reflection
+'Import reflection
 '#REFLECTION_FILTER+="|fantomEngine.cftLayer"
-#REFLECTION_FILTER+="|fantomEngine*"
+'#REFLECTION_FILTER+="|fantomEngine*"
 
 Import fantomEngine.cftMisc
 Import fantomEngine.cftFunctions
@@ -68,7 +68,7 @@ Import json
 '-INCLFILE#docInclude/changes.txt
 #rem
 footer:This fantomEngine framework is released under the MIT license:
-[quote]Copyright (c) 2011-2015 Michael Hartlef
+[quote]Copyright (c) 2011-2016 Michael Hartlef
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the software, and to permit persons to whom the software is furnished to do so, subject to the following conditions:
 
