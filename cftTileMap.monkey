@@ -259,7 +259,6 @@ Class ftTileMap
 	End
 '#DOCOFF#
 'bitofgold changes: 
-'changes:Changed in v1.54
 '-----------------------------------------------------------------------------
 'summary:Returns the tile index at the given canvas coordinates, starting from zero.
 'even higher performance, only divisions
@@ -453,7 +452,6 @@ It returns -1 if there is no tile.
 '#DOCOFF#
 'bitofgold changes: 
 '-----------------------------------------------------------------------------
-'changes:Changed in v1.54
 'summary: Returns the ID of the tiles texture, at the given canvas coordinates, starting from zero.
 'It returns -1 If there is no tile.
 'even higher performance, only divisions
@@ -486,7 +484,6 @@ It returns -1 if there is no tile.
 		Return Self.tiles[index].sizeY * obj.scaleY
 	End
 	'-----------------------------------------------------------------------------
-'changes:New in v1.56
 'summery:Returns the tileSetIndex of a given tile ID
 	Method GetTileSetIndex:Int(tileID:Int)
 		Local retVal:Int = -1
@@ -498,7 +495,6 @@ It returns -1 if there is no tile.
 		Return retVal
 	End
 	'-----------------------------------------------------------------------------
-'changes:Fixed in v1.57
 'summery:Removes the tilemap from the corresponding ftObject.
 	Method Remove:Void()
 		'tiles.Resize(0)
@@ -534,7 +530,6 @@ It returns -1 if there is no tile.
 '#DOCOFF#
 'bitofgold changed function
 '-----------------------------------------------------------------------------
-'changed in version 1.54
 'Summary:Sets the ID of the tiles texture, at the given canvas coordinates, starting from zero.
 	Method SetTileIDAt_NEW:Void(xp:Int,yp:Int, id:Int=-1)
 		Local tilePos:Int = GetTileAt(xp,yp)
@@ -557,7 +552,6 @@ It returns -1 if there is no tile.
 '#DOCOFF#
 
 'start of bitofgold changes:
-'changes:New in v1.54
 'bitofgold new function: 
 '-----------------------------------------------------------------------------
 'summary: converts world coordinates to tile coordinates. Use Floor() to get integer tile position values from zero! (eg. returns 0.5 at half of first tile)

@@ -19,7 +19,6 @@ Import fantomEngine
 
 '***************************************
 'summery:The class [b]ftEngine[/b] is the heart of the fantomEngine. After you have created one instance of it, you can let it deal with scenes, layers, objects and all the stuff a game needs.
-'changes:Fixed in v1.56
 Class ftEngine
 '#DOCOFF#
 	Field _imgLoading:Image = Null
@@ -487,7 +486,6 @@ This command copies a given object and returns the copy. The new object contains
 	End
 #End
 	'-----------------------------------------------------------------------------
-'changes:Fixed in v1.57
 #Rem
 'summery:Creates an animated image object (sprite) from the given sprite atlas with a center at xPos/yPos. 
 The texture will be grabbed from frameStartX/frameStartY with the given frameWidth/frameHeight. The number of frames will be taken from the given frameCount.
@@ -538,7 +536,6 @@ It creates a DEFAULT animation automatically.
 	End
 
 	'-----------------------------------------------------------------------------
-'changes:Fixed in v1.57
 #Rem
 'summery:Creates an animated image object (sprite) from the given sprite atlas with a center at xPos/yPos. 
 The texture will be grabbed from frameStartX/frameStartY with the given frameWidth/frameHeight. The number of frames will be taken from the given frameCount.
@@ -589,7 +586,6 @@ It creates a DEFAULT animation automatically.
 	End
 
 	'------------------------------------------
-'changes:Changed in v1.56
 #Rem
 'summery:Creates a rectangle with the given width/height and the center at xpos/ypos.
 #End
@@ -623,7 +619,6 @@ It creates a DEFAULT animation automatically.
 	End
 
 	'------------------------------------------
-'changes:Changed in v1.56
 #Rem
 'summery:Creates a circle with the given radius and the center at xpos/ypos. 
 #End
@@ -657,7 +652,6 @@ It creates a DEFAULT animation automatically.
 	End
 
 	'------------------------------------------
-'changes:New in v1.57
 #Rem
 'summery:Creates an custom GUI manager object which you can use to GUI child objects to. 
 #End
@@ -683,7 +677,6 @@ It creates a DEFAULT animation automatically.
 		Return obj
 	End
 	'------------------------------------------
-'changes:Fxied in v1.57
 #Rem
 'summery:Creates an image object (sprite) from the given filename with a center at xpos/ypos. 
 'To load an animated image object, use CreateAnimImage. 
@@ -725,7 +718,6 @@ It creates a DEFAULT animation automatically.
 	End
 
 	'------------------------------------------
-'changes:Fixed in v1.57
 #Rem
 'summery:Creates an image object (sprite) from the given image with a center at xpos/ypos. 
 #End
@@ -764,7 +756,6 @@ It creates a DEFAULT animation automatically.
 	End
 
 	'-----------------------------------------------------------------------------
-'changes:Fixed in v1.57
 #Rem
 'summery:Creates an image object (sprite) from the given sprite atlas with a center at xPos/yPos. The texture will be grabbed from x/y with the given width/height.
 #End
@@ -803,7 +794,6 @@ It creates a DEFAULT animation automatically.
 	End
 
 	'-----------------------------------------------------------------------------
-'changes:Fixed in v1.57
 #Rem
 'summery:Loads a subimage from a packed texture created by the tool TexturePacker with a center at xpos/ypos. 
 It supports rotated sub images in LibGDX files too.
@@ -961,7 +951,6 @@ From version 1.52 on it supports Sparrow compatible files (.xml).
 	End
 
 	'------------------------------------------
-'changes:Changed in v1.56
 #Rem
 'summery:Creates a line object starting at xpos/ypos and ending at x/y. 
 The objects handle is in the middle of the line by default and can be changed via a call to ftObject.SetHandle.
@@ -1017,7 +1006,6 @@ When the timer fires it will call OnObjectTimer. A repeatCount of -1 will let th
 	End
 
 	'------------------------------------------
-'changes:Changed in v1.56
 'summery:Creates an oval object with the given width/height and the center at xpos/ypos. 
 'Provided by Douglas Williams
 'seeAlso:CreateAnimImage,CreateBox,CreateCircle,CreateImage,CreateLine,CreatePoint,CreatePoly,CreateStickman,CreateTileMap,CreateText
@@ -1062,7 +1050,6 @@ When the timer fires it will call OnObjectTimer. A repeatCount of -1 will let th
 	End
 
 	'------------------------------------------
-'changes:Changed in v1.56
 #Rem
 'summery:Creates an empty object (pivot) which you can use to attach/parent child objects to. 
 #End
@@ -1094,7 +1081,6 @@ When the timer fires it will call OnObjectTimer. A repeatCount of -1 will let th
 		Return obj
 	End
 	'------------------------------------------
-'changes:Changed in v1.56
 'summery:Creates a point object at the given xpos/ypos.
 'Provided by Douglas Williams
 'seeAlso:CreateAnimImage,CreateBox,CreateCircle,CreateImage,CreateLine,CreateOval,CreatePoly,CreateStickman,CreateTileMap,CreateText
@@ -1126,9 +1112,8 @@ When the timer fires it will call OnObjectTimer. A repeatCount of -1 will let th
 		Return obj
 	End
 	'------------------------------------------
-'changes:Changed in v1.56
-'provided by Douglas Williams
 'summery:Creates a polygon object with supplied vertices pairs (Minimum of 3 pairs required).
+'Provided by Douglas Williams
 'seeAlso:CreateAnimImage,CreateBox,CreateCircle,CreateImage,CreateLine,CreateOval,CreatePoint,CreateStickman,CreateTileMap,CreateText
 	Method CreatePoly:ftObject(verts:Float[], xpos:Float, ypos:Float, _ucob:Object=Null)
 		Local minX:Float = 99999,maxX:Float=-99999, minY:Float=99999, maxY:Float=-99999
@@ -1193,7 +1178,6 @@ When the timer fires it will call OnObjectTimer. A repeatCount of -1 will let th
 		Return scene
 	End
 	'------------------------------------------
-'changes:New in v1.55
 #Rem
 'summery:Creates/loads a sprite atlas.
 #End
@@ -1205,8 +1189,6 @@ When the timer fires it will call OnObjectTimer. A repeatCount of -1 will let th
 		Return newAtlas
 	End
 	'------------------------------------------
-'changes:Changed in v1.56
-'provided by Douglas Williams
 #Rem
 'summery:Creates a stickman with top left corner at position xpos/ypos with size of width:8 / height:29
 #End
@@ -1241,7 +1223,6 @@ When the timer fires it will call OnObjectTimer. A repeatCount of -1 will let th
 		Return obj
 	End
 	'------------------------------------------
-'changes:Changed in v1.56
 #Rem
 'summery:Creates a new text object. 
 #End
@@ -1289,7 +1270,6 @@ When the timer fires it will call OnObjectTimer. A repeatCount of -1 will let th
 	End
 
 	'-----------------------------------------------------------------------------
-'changes:Changed in v1.56 to support multiple tilesets
 #Rem
 'summery:Create a tile map which you can fill yourself.
 #End
@@ -1369,7 +1349,6 @@ When the timer fires it will call OnObjectTimer. A repeatCount of -1 will let th
 		Return obj
 	End
 	'-----------------------------------------------------------------------------
-'changes:Fixed in v1.57
 #Rem
 'summery:Create a tile map which you can fill yourself.
 #End
@@ -1454,7 +1433,6 @@ When the timer fires it will call OnObjectTimer. A repeatCount of -1 will let th
 		Return obj
 	End
 	'-----------------------------------------------------------------------------
-'changes:Changed in v1.56 to support multiple tilesets
 #Rem
 'summery:Create a tile map from a JSON file exported by the tool Tiled.
 The layerIndex tells fantomEngine to load the tileLayer at that index. Index starts with 1.
@@ -1463,7 +1441,7 @@ The layerIndex tells fantomEngine to load the tileLayer at that index. Index sta
 	Method CreateTileMap:ftObject(filename:String, xpos:Float, ypos:Float, layerIndex:Int=1 )
 		Local obj:ftObject = New ftObject
 		Local imgH:Int
-		Local imgW:int
+		Local imgW:Int
 		Local tlH:Int
 		Local tlW:Int
 		Local path:String =""
@@ -1747,7 +1725,6 @@ The layerIndex tells fantomEngine to load the tileLayer at that index. Index sta
 		
 		obj.collType = -1
 		obj.internal_RotateSpriteCol()
-		
 		Return obj
 	End
 	'-----------------------------------------------------------------------------
@@ -1908,7 +1885,6 @@ When the timer fires it will call OnTimer. A repeatCount of -1 will let the time
 	End
 
 	'-----------------------------------------------------------------------------
-'changes:New in version 1.56
 'summery:Returns the cameras X and Y coordinate.
 'seeAlso:GetCamX,GetCamY,SetCam,SetCamX,SetCamY
 	Method GetCam:Float[] ()
@@ -1918,14 +1894,12 @@ When the timer fires it will call OnTimer. A repeatCount of -1 will let the time
 		Return [retX, retY]
 	End
 	'-----------------------------------------------------------------------------
-'changes:New in version 1.56
 'summery:Returns the cameras X coordinate.
 'seeAlso:GetCam,GetCamY,SetCam,SetCamX,SetCamY
 	Method GetCamX:Float ()
 		Return Self.camX
 	End
 	'-----------------------------------------------------------------------------
-'changes:New in version 1.56
 'summery:Returns the cameras Y coordinate.
 'seeAlso:GetCam,GetCamX,SetCam,SetCamX,SetCamY
 	Method GetCamY:Float ()
@@ -1998,7 +1972,6 @@ When the timer fires it will call OnTimer. A repeatCount of -1 will let the time
 	End
 
 	'-----------------------------------------------------------------------------
-'changes:New in v1.55
 'summery:Returns the device X position of a virtual X coordinate. It takes the virtual canvas size and camera position into its calculation.
 'seeAlso:GetLocalXY,GetLocalY,GetWorldX,GetWorldXY,GetWorldY
 	Method GetLocalX:Float(wordXPos:Float, withCam:Bool = True)
@@ -2012,7 +1985,6 @@ When the timer fires it will call OnTimer. A repeatCount of -1 will let the time
 	End
 	
 	'-----------------------------------------------------------------------------
-'changes:New in v1.55
 'summery:Returns the device X/Y position of a virtual X/Y coordinate. It takes the virtual canvas size and camera position into its calculation.
 'seeAlso:GetLocalX,GetLocalY,GetWorldX,GetWorldXY,GetWorldY
 	Method GetLocalXY:Float[](wordXPos:Float, wordYPos:Float, withCam:Bool = True)
@@ -2029,7 +2001,6 @@ When the timer fires it will call OnTimer. A repeatCount of -1 will let the time
 	End
 	
 	'-----------------------------------------------------------------------------
-'changes:New in v1.55
 'summery:Returns the device Y position of a virtual Y coordinate. It takes the virtual canvas size and camera position into its calculation.
 'seeAlso:GetLocalX,GetLocalXY,GetWorldX,GetWorldXY,GetWorldY
 	Method GetLocalY:Float(wordYPos:Float, withCam:Bool = True)
@@ -2168,7 +2139,6 @@ When the timer fires it will call OnTimer. A repeatCount of -1 will let the time
 		Return Self.volumeSFX
 	End
 	'------------------------------------------
-'changes:Added support for FontMachine in v1.54.
 #Rem
 'summery:Loads an EZGui compatible font or a packed FontMachine font. The filename has to end with a .txt extension.
 #End
@@ -2180,7 +2150,6 @@ When the timer fires it will call OnTimer. A repeatCount of -1 will let the time
 	End
 
 	'-----------------------------------------------------------------------------
-'changes:New in v1.55
 'summery:Returns the world X position from a local X coordinate. It takes the virtual canvas size and camera position into its calculation.
 'seeAlso:GetLocalX,GetLocalXY,GetLocalY,GetWorldXY,GetWorldY
 	Method GetWorldX:Float(localXPos:Float, withCam:Bool = True)
@@ -2194,7 +2163,6 @@ When the timer fires it will call OnTimer. A repeatCount of -1 will let the time
 	End
 
 	'-----------------------------------------------------------------------------
-'changes:New in v1.55
 'summery:Returns the world X/Y position from a local X/Y coordinate. It takes the virtual canvas size and camera position into its calculation.
 'seeAlso:GetLocalX,GetLocalXY,GetLocalY,GetWorldX,GetWorldY
 	Method GetWorldXY:Float[](localXPos:Float, localYPos:Float, withCam:Bool = True)
@@ -2211,7 +2179,6 @@ When the timer fires it will call OnTimer. A repeatCount of -1 will let the time
 	End
 
 	'-----------------------------------------------------------------------------
-'changes:New in v1.55
 'summery:Returns the world Y position from a local Y coordinate. It takes the virtual canvas size and camera position into its calculation.
 'seeAlso:GetLocalX,GetLocalXY,GetLocalY,GetWorldX,GetWorldXY
 	Method GetWorldY:Float(localYPos:Float, withCam:Bool = True)
@@ -2225,7 +2192,6 @@ When the timer fires it will call OnTimer. A repeatCount of -1 will let the time
 	End
 	
 	'-----------------------------------------------------------------------------
-'changes:Changed in v1.55 to use Image.MidHandle as the default flag.
 #Rem
 'summery:Loads an image like mogo.LoadImage, but also stores it in the fantomEngine image manager.
 #End
@@ -2235,7 +2201,6 @@ When the timer fires it will call OnTimer. A repeatCount of -1 will let the time
 	End
 
 	'-----------------------------------------------------------------------------
-'changes:Changed in v1.55 to use Image.MidHandle as the default flag.
 '#Rem
 'summery:Loads an image like mogo.LoadImage, but also stores it in the fantomEngine image manager.
 '#End
@@ -2308,7 +2273,6 @@ The current default file formats are:
 	End
 
 	'------------------------------------------
-'changes:Fixed in version 1.57
 #Rem
 'summery:Creates an instance of the fantomEngine.
 #End
@@ -2364,7 +2328,6 @@ The current default file formats are:
 		Return 0
 	End	
 	'------------------------------------------
-'changes:New in version 1.54
 #Rem
 'summery:This method is called when an animation of an object (obj) has finished one loop.
 #End
@@ -2945,7 +2908,6 @@ Lower values than 1.0 slow down the engine, bigger values speed it up.
 		Endif
 	End
 	'------------------------------------------
-'changes:Changed in v1.56
 #Rem
 'summery:Do a touch check over all layers and their active objects which have a touch method assigned to them.
 'If a touch was detected, it will call the [b]ftEngine.OnObjectTouch[/b] method.

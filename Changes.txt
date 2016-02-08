@@ -1,3 +1,21 @@
+Version 1.58
+
+*Changes*
+
+   - Added children flag to ftObject.SetActive so it affects children too
+   - ftLayer.SetLayerScissor now works with virtual values, no offsets anymore
+
+*Fixes*
+
+  - Fixed/Changed ftLayer.Render regarding layer scaling.
+  - Fixed ftObject.Render regarding layer scaling and also object culling.
+  
+*New example*
+
+  - Layer/LayerScaling/LayerScaling.monkey
+  - TileMaps/Platformer_Physics/Platformer_Physics.monkey
+
+-----------------------------------------------------------------------------------------
 Version 1.57
 
 *New functionalities*

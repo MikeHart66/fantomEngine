@@ -271,8 +271,9 @@ Class ftBox2D
 		fixtureDef.density = 0.7
 		fixtureDef.friction = 0.1
 		fixtureDef.restitution = 0.9
-        'bodyDef.angle = (tmpObj.GetAngle())* 0.0174533
-        bodyDef.angle = (tmpObj.GetAngle()+90)* 0.0174533
+        bodyDef.angle = (tmpObj.GetAngle())* 0.0174533
+        'bodyDef.angle = (tmpObj.GetAngle()+90)* 0.0174533
+'Print (tmpObj.GetWidth()+":"+tmpObj.GetHeight()+":"+tmpObj.GetAngle()+":"+(bodyDef.angle/0.0174533))			
 	                
         bodyDef.position.Set( tmpObj.GetPosX()/m_physScale, tmpObj.GetPosY()/m_physScale)
         body = m_world.CreateBody(bodyDef)

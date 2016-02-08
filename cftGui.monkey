@@ -18,7 +18,6 @@ Import fantomEngine
 #End
 
 '***************************************
-'changes:New in version 1.57.
 Class ftGuiGadget Extends ftObject
 '#DOCOFF#
 	Field gotHit:Bool = False
@@ -65,7 +64,6 @@ Class ftGuiGadget Extends ftObject
 End
 
 '***************************************
-'changes:New in version 1.57.
 Class ftGuiButton Extends ftGuiGadget
 	'-----------------------------------------------------------------------------
 	' Overriding the default method so it will handle the fading effect.
@@ -91,7 +89,6 @@ Class ftGuiButton Extends ftGuiGadget
 End
 
 '***************************************
-'changes:New in version 1.57
 Class ftGuiCheckbox Extends ftGuiGadget
 	'-----------------------------------------------------------------------------
 	' Overriding the default method so it will handle the fading effect.
@@ -131,7 +128,6 @@ Class ftGuiCheckbox Extends ftGuiGadget
 End
 
 '***************************************
-'changes:New in version 1.57.
 Class ftGuiJoystick Extends ftGuiGadget
 '#DOCOFF#
 	Field xStickOff:Float = 0.0
@@ -227,7 +223,6 @@ Class ftGuiJoystick Extends ftGuiGadget
 
 End
 '***************************************
-'changes:New in version 1.57.
 Class ftGuiLabel Extends ftGuiGadget
 	Field hasShadow:Bool = False
 	Field shadowX:Float = 2.0
@@ -257,7 +252,6 @@ Class ftGuiLabel Extends ftGuiGadget
 End
 
 '***************************************
-'changes:New in version 1.57.
 Class ftGuiListviewItem
 	Field text:String = ""
 	Field img:ftImage = Null
@@ -280,7 +274,6 @@ Class ftGuiListviewItem
 End	
 
 '***************************************
-'changes:New in version 1.57.
 Class ftGuiListview Extends ftGuiGadget
 	Field itemList:= New List<ftGuiListviewItem>
 	Field scrollX:Float = 0.0
@@ -408,7 +401,6 @@ Class ftGuiListview Extends ftGuiGadget
 End
 
 '***************************************
-'changes:New in version 1.57.
 Class ftGuiMng Extends ftObject
 	'Field engine:ftEngine
 	Field objList := New List<ftObject>
@@ -618,7 +610,6 @@ Class ftGuiMng Extends ftObject
 End
 
 '***************************************
-'changes:New in version 1.57.
 Class ftGuiSlider Extends ftGuiGadget
 '#DOCOFF#
 	Field xKnobOff:Float = 0.0
@@ -684,7 +675,6 @@ Class ftGuiSlider Extends ftGuiGadget
 End
 
 '***************************************
-'changes:New in version 1.57.
 Class ftGuiSwitch Extends ftGuiGadget
 	'-----------------------------------------------------------------------------
 	' Overriding the default method so it will handle the fading effect.
@@ -722,7 +712,6 @@ Class ftGuiSwitch Extends ftGuiGadget
 End
 
 '***************************************
-'changes:New in version 1.57.
 Class ftGuiTextfield Extends ftGuiGadget
 	Field hasShadow:Bool = False
 	Field shadowX:Float = 2.0

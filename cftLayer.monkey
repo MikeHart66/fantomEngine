@@ -52,10 +52,10 @@ Class ftLayer
 	Field tag:Int = 0
 	Field isGUI:Bool = False
 	
-	Field scissorOffX:Float = 0.0
-	Field scissorOffY:Float = 0.0
-	Field scissorOffWidth:Float = 0.0
-	Field scissorOffHeight:Float = 0.0
+	Field scissorX:Float = 0.0
+	Field scissorY:Float = 0.0
+	Field scissorWidth:Float = 0.0
+	Field scissorHeight:Float = 0.0
 	
 	'-----------------------------------------------------------------------------
 	Method CleanupLists:Void()
@@ -69,7 +69,6 @@ Class ftLayer
 '#DOCON#
 
 	'------------------------------------------
-'changes:changed in v1.56
 #Rem
 'summery:Does a collision check on all active objects of this layer with a assigned collision group. 
 'If a collision appears, ftEngine.OnObjectCollision is called.	
@@ -94,7 +93,6 @@ Class ftLayer
 		CleanupLists()
 	End
 	'------------------------------------------
-'changes:changed in v1.56
 #Rem
 'summery:Does a collision check on the given object. 
 'The object needs to be active. If a collision appears, ftEngine.OnObjectCollision is called.
@@ -282,7 +280,6 @@ Class ftLayer
 		Return tag
 	End	
 	'-----------------------------------------------------------------------------
-'changes:New in version 1.55
 'summery:Returns the amount of active transitions of the layer.
 	Method GetTransitionCount:Int ()
 		Return transitionList.Count()
@@ -294,7 +291,6 @@ Class ftLayer
 		Return isVisible
 	End 
 	'------------------------------------------
-'changes:Fixed in version 1.57
 'summery:Removes this layer from the engine. If the delObjects flag is set to TRUE, then it will remove all attached objects too.
 	Method Remove:Void(delObjects:Bool = False)
 		If Self.engine <> Null Then
@@ -336,7 +332,7 @@ Class ftLayer
 		Next
 	End
 	'------------------------------------------
-'changes:Changed in v1.55.
+'changes:Changed/Fixed in v1.58 regarding layer scaling and layerScissor.
 #Rem
 'summery:Render all visible and active objects of a layer.
 'Objects are normally rendered in their order of creation, unless you have sorted the objects of a layer via the ftLayer.SortObjects method. 
@@ -344,6 +340,7 @@ Class ftLayer
 #End
 'seeAlso:SetVisible,SetGUI,SetLayerScissor
 	Method Render:Void()
+		Local sc:Float[4] 
 		Local _scissor:Bool = False
 		PushMatrix
 		'If xPos <> 0.0 Or yPos <> 0.0 Then Translate (xPos, yPos) 
@@ -358,12 +355,16 @@ Class ftLayer
 		engine.lastLayerAngle = angle
 		
 		If scale <> engine.lastLayerScale Then 
-			Scale(scale, scale)
+			'Scale(scale, scale)
 			engine.lastLayerScale = scale
 		Endif
 		If isVisible=True Then
-			If Self.scissorOffX <> 0.0 Or Self.scissorOffY <> 0.0 Or Self.scissorOffWidth <> 0.0 Or Self.scissorOffHeight <> 0.0 Then
-				mojo.SetScissor( engine.autofitX+Self.scissorOffX, engine.autofitY+Self.scissorOffY, (engine.canvasWidth+Self.scissorOffWidth)*engine.scaleX, (engine.canvasHeight+Self.scissorOffHeight)*engine.scaleY )
+			If Self.scissorX <> 0.0 Or Self.scissorY <> 0.0 Or Self.scissorWidth <> 0.0 Or Self.scissorHeight <> 0.0
+				sc = mojo.GetScissor()
+
+				'mojo.SetScissor( engine.autofitX+Self.scissorOffX, engine.autofitY+Self.scissorOffY, (engine.canvasWidth+Self.scissorOffWidth)*engine.scaleX, (engine.canvasHeight+Self.scissorOffHeight)*engine.scaleY )
+				mojo.SetScissor( engine.autofitX + Self.scissorX * engine.scaleX, engine.autofitY + Self.scissorY * engine.scaleY, Self.scissorWidth * engine.scaleX, Self.scissorHeight * engine.scaleY )
+           
 				_scissor = True
 			Endif
 			For Local obj := Eachin objList
@@ -379,14 +380,18 @@ Class ftLayer
 					If obj.isVisible And obj.isActive And obj.parentObj = Null
 						If obj.type = ftEngine.otGUI
 							ftGuiMng(obj).Render(Self.xPos-engine.camX, Self.yPos-engine.camY)
+							'ftGuiMng(obj).Render((Self.xPos-engine.camX)/Self.scale, (Self.yPos-engine.camY)/Self.scale)
 						Else
 							obj.Render(Self.xPos-engine.camX, Self.yPos-engine.camY)
+							'obj.Render((Self.xPos-engine.camX)/Self.scale, (Self.yPos-engine.camY)/Self.scale)
 						Endif
 					Endif
 				Endif
 			Next
 			If _scissor = True
-				mojo.SetScissor( engine.autofitX, engine.autofitY, (engine.canvasWidth)*engine.scaleX, (engine.canvasHeight)*engine.scaleY )
+				'mojo.SetScissor( engine.autofitX, engine.autofitY, (engine.canvasWidth)*engine.scaleX, (engine.canvasHeight)*engine.scaleY )
+'mojo.SetScissor( 0, 0 ,DeviceWidth() , DeviceHeight() )
+mojo.SetScissor( sc[0], sc[1] ,sc[2] , sc[3] )
 			Endif
 		Endif
 		PopMatrix
@@ -432,14 +437,14 @@ Class ftLayer
 		Self.id = layerID
 	End	
 	'------------------------------------------
-'changes:New in v1.55.
-'summery:Sets the offset of the scissor for this layer.
+'changes:Changed in v1.58. No offset but real sizes.
+'summery:Sets the position and the size of the scissor for this layer. Width and Height take a virtual canvas size into account.
 'seeAlso:Render
-	Method SetLayerScissor:Void(offX:Float = 0.0, offY:Float = 0.0, offWidth:Float = 0.0, offHeight:Float = 0.0)
-		Self.scissorOffX = offX		
-		Self.scissorOffY = offY
-		Self.scissorOffWidth = offWidth
-		Self.scissorOffHeight = offHeight
+	Method SetLayerScissor:Void(X:Float, Y:Float, Width:Float, Height:Float)
+		Self.scissorX = X		
+		Self.scissorY = Y
+		Self.scissorWidth = Width
+		Self.scissorHeight = Height
 	End
 	'-----------------------------------------------------------------------------
 'summery:Set the X and Y position of a layer.
@@ -505,7 +510,6 @@ Overwrite that method to get a different sorting. The default sorting will sort 
 		objList.Sort()
 	End
 	'------------------------------------------
-'changes:Changed in v1.56
 #Rem
 'summery:Executes a touch check to each object at the given position.
 'The object has to have a touchmode > 0 and needs to be active.

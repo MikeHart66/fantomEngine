@@ -33,7 +33,6 @@ Class ftChar
 End
 '#DOCON#
 '***************************************
-'changes:Added fontMachine support in version 1.54
 'summery:The class ftFont provides a few methods regarding the definition of a loaded font.
 Class ftFont
 '#DOCOFF#
@@ -211,7 +210,6 @@ Class ftFont
 		
 	End
 	'------------------------------------------
-'changes:Fixed in versin 1.54 to support LINUX lines delimiters (13,10)
 	Method Load:Void(url:String)
 		Local iniText:String
 		Local pageNum:Int = 0

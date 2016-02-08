@@ -16,6 +16,8 @@ The class *ftTrans* controls the way an object or layer does a transition. Start
 
 Returns TRUE if a transition is paused.
 
+Links: [[SetPaused]]
+
 # Method SetEase:none(easeType:String="EaseIn")
 
 *Description*
@@ -32,11 +34,15 @@ This command sets the ease type of a transition. The ease type can be:
 
 <li>EaseInOut</ul>
 
+Links: [[SetType]]
+
 # Method SetPaused:Void(pauseFlag:Bool = True)
 
 *Description*
 
 With this method you can pause and resume the transition.
+
+Links: [[GetPaused]]
 
 # Method SetType:none(equationType:String="Linear")
 
@@ -69,4 +75,6 @@ This command sets the equation type of a transition. The equation type can be:
 <li>Quint
 
 <li>Sine</ul>
+
+Links: [[SetEase]]
 

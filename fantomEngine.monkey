@@ -7,7 +7,7 @@
 	
 	'Website:      http://www.fantomgl.com
 	
-	'Version:      1.57
+	'Version:      1.58
 	'License:      MIT
 #End
 

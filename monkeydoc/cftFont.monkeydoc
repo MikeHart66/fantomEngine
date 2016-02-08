@@ -14,9 +14,13 @@ The class ftFont provides a few methods regarding the definition of a loaded fon
 
 Returns the maximum height of the font.
 
+Links: [[Height]]
+
 # Method Length:Int(t:String)
 
 *Description*
 
 Returns the length in pixel of the given text string.
+
+Links: [[Length]]
 

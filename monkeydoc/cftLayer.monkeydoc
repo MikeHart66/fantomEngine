@@ -38,6 +38,8 @@ Create an alpha transition for the layer.
 
 The duration is the time in milliseconds, the transition takes to complete. Only a transID > 0 will fire the <b>ftEngine.OnLayerTrans</b> method.
 
+Links: [[CreateTransPos]]
+
 # Method CreateTransPos:ftTrans(xt:Float, yt:Float, duration:Float, relative:Int, transId:Int=0)
 
 *Description*
@@ -48,11 +50,15 @@ Create a position transition.
 
 The duration is the time in milliseconds, the transition takes to complete. Only a transID > 0 will fire the <b>ftEngine.OnLayerTrans</b> method.
 
+Links: [[CreateTransAlpha]]
+
 # Method GetActive:Bool()
 
 *Description*
 
 Returns if a layer is active or not.
+
+Links: [[SetActive]]
 
 # Method GetAlpha:Float()
 
@@ -60,11 +66,15 @@ Returns if a layer is active or not.
 
 Returns the alpha value of a given layer, ranging from 0.0 to 1.0.
 
+Links: [[SetAlpha]]
+
 # Method GetID:Int()
 
 *Description*
 
 Returns the layer ID value.
+
+Links: [[SetID]]
 
 # Method GetObj:ftObject(index:Int)
 
@@ -104,11 +114,15 @@ Returns the number of active transitions from all objects in a layer.
 
 Returns the position of a layer in a 2D Float array.
 
+Links: [[SetPos]], [[GetPosX]], [[GetPosY]]
+
 # Method GetPosX:Float()
 
 *Description*
 
 Returns the X position of a layer.
+
+Links: [[SetPosX]], [[GetPosY]], [[GetPos]]
 
 # Method GetPosY:Float()
 
@@ -116,17 +130,23 @@ Returns the X position of a layer.
 
 Returns the Y position of a layer.
 
+Links: [[SetPosY]], [[GetPosX]], [[GetPos]]
+
 # Method GetScale:Float()
 
 *Description*
 
 Returns the scale factor of a layer.
 
+Links: [[SetScale]]
+
 # Method GetTag:Int()
 
 *Description*
 
 Returns the layer tag value.
+
+Links: [[SetTag]]
 
 # Method GetTransitionCount:Int()
 
@@ -139,6 +159,8 @@ Returns the amount of active transitions of the layer.
 *Description*
 
 Returns if a given layer is visible or not.
+
+Links: [[SetVisible]]
 
 # Method Remove:Void(delObjects:Bool = False)
 
@@ -170,11 +192,15 @@ Objects are normally rendered in their order of creation, unless you have sorted
 
 Child objects are rendered right after their parent.
 
+Links: [[SetVisible]], [[SetGUI]], [[SetLayerScissor]]
+
 # Method SetActive:Void(activeFlag:Bool)
 
 *Description*
 
 Set the active flag of a layer.
+
+Links: [[GetActive]]
 
 # Method SetAlpha:Void(newAlpha:Float, relative:Int=False)
 
@@ -182,11 +208,15 @@ Set the active flag of a layer.
 
 Set the alpha value of a layer, ranging from 0.0 (invisible) to 1.0 (fully visible).
 
+Links: [[GetAlpha]]
+
 # Method SetGUI:Void(guiFlag:Bool)
 
 *Description*
 
 Sets the layer GUI flag. When rendering a GUI layer, camera positions are not taken into a calculation of the position of this layer.
+
+Links: [[Render]]
 
 # Method SetID:Void(layerID:Int)
 
@@ -194,11 +224,15 @@ Sets the layer GUI flag. When rendering a GUI layer, camera positions are not ta
 
 Sets the layer ID field with any value.
 
-# Method SetLayerScissor:Void(offX:Float = 0.0, offY:Float = 0.0, offWidth:Float = 0.0, offHeight:Float = 0.0)
+Links: [[GetID]]
+
+# Method SetLayerScissor:Void(X:Float, Y:Float, Width:Float, Height:Float)
 
 *Description*
 
-Sets the offset of the scissor for this layer.
+Sets the position and the size of the scissor for this layer. Width and Height take a virtual canvas size into account.
+
+Links: [[Render]]
 
 # Method SetPos:Void(x:Float, y:Float, relative:Int = False)
 
@@ -206,11 +240,15 @@ Sets the offset of the scissor for this layer.
 
 Set the X and Y position of a layer.
 
+Links: [[GetPos]], [[SetPosXSetPosY]]
+
 # Method SetPosX:Void(x:Float, relative:Int = False)
 
 *Description*
 
 Set the X position of a layer.
+
+Links: [[GetPosX]], [[SetPos]], [[SetPosY]]
 
 # Method SetPosY:Void(y:Float, relative:Int = False)
 
@@ -218,11 +256,15 @@ Set the X position of a layer.
 
 Set the Y position of a layer.
 
+Links: [[GetPosY]], [[SetPos]], [[SetPosX]]
+
 # Method SetScale:Void(scaleFactor:Float, relative:Int = False)
 
 *Description*
 
 Set the scale factor of a layer.
+
+Links: [[GetScale]]
 
 # Method SetTag:Void(newTag:Int)
 
@@ -230,11 +272,15 @@ Set the scale factor of a layer.
 
 Sets the layer tag field with any value.
 
+Links: [[GetTag]]
+
 # Method SetVisible:Void(visibleFlag:Bool)
 
 *Description*
 
 Set the visible flag of a layer.
+
+Links: [[GetVisible]], [[Render]]
 
 # Method SortObjects:Void()
 

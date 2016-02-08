@@ -142,7 +142,6 @@ Class ftGridNode
  		Self.block = blockFlag
   	End
 	'------------------------------------------
-'changes:Changed in v1.55
 'summery:Sets the position of a node inside a grid.
 	Method SetPos:Void(xpos:Float, ypos:Float, relative:Bool = False)
 		If relative = True Then
@@ -197,7 +196,6 @@ Class ftAStar
 	End
 '#DOCON#
 	'------------------------------------------
-'changes:Changed in v1.55
 'summery:Add a node to a grid.
 	Method AddNode:ftGridNode(ID:Int, xpos:Float, ypos:Float, relative:Bool = False)
 		Local tmpNode := New ftGridNode
@@ -451,7 +449,6 @@ Class ftAStar
 		Return 0
 	End
 	'------------------------------------------
-'changes:New in v.155
 'summery:Returns the angle of the grid.
 	Method GetAngle:Float()
 		Return Self.angle	
@@ -638,13 +635,11 @@ Class ftAStar
 		Return ret
   	End
 	'------------------------------------------
-'changes:New in v.155
 'summery:Returns the X scale factor of the grid.
 	Method GetScaleX:Float()
 		Return Self.scaleX	
 	End
 	'------------------------------------------
-'changes:New in v.155
 'summery:Returns the Y scale factor of the grid.
 	Method GetScaleY:Float()
 		Return Self.scaleY	
@@ -840,7 +835,6 @@ Class ftAStar
 	End
 
 	'------------------------------------------
-'changes:Changed in v1.55
 'summery:Sets the position of a grid and its nodes.
 	Method SetPos:Void(x:Float, y:Float, relative:Bool = False)
 		If relative = True Then
@@ -863,7 +857,6 @@ Class ftAStar
 	End
 
 	'------------------------------------------
-'changes:Changed in v1.55
 'summery:Sets the X position of a grid and its nodes.
 	Method SetPosX:Void(x:Float, relative:Bool = False)
 		If relative = True Then
@@ -875,7 +868,7 @@ Class ftAStar
 			node.x = node.xDist + Self.xPos
 		Next
 		'Scale and rotate all nodes accordning to the scale factors and the angle of the grid
-		If Self.GetScaleX() <> 1.0 Or Self.GetScaleY() <> 1.0 then
+		If Self.GetScaleX() <> 1.0 Or Self.GetScaleY() <> 1.0 Then
 			Self.SetScale(0.0, 0.0, True)
 		Elseif Self.GetAngle() <> 0.0
 			Self.SetAngle(0.0, True)	
@@ -883,7 +876,6 @@ Class ftAStar
 	End
 
 	'------------------------------------------
-'changes:Changed in v1.55
 'summery:Sets the Y position of a grid and its nodes.
 	Method SetPos:Void(y:Float, relative:Bool = False)
 		If relative = True Then
@@ -895,7 +887,7 @@ Class ftAStar
 			node.y = node.yDist + Self.yPos
 		Next
 		'Scale and rotate all nodes accordning to the scale factors and the angle of the grid
-		If Self.GetScaleX() <> 1.0 Or Self.GetScaleY() <> 1.0 then
+		If Self.GetScaleX() <> 1.0 Or Self.GetScaleY() <> 1.0 Then
 			Self.SetScale(0.0, 0.0, True)
 		Elseif Self.GetAngle() <> 0.0
 			Self.SetAngle(0.0, True)	
@@ -903,7 +895,6 @@ Class ftAStar
 	End
 
 	'------------------------------------------
-'changes:Changed in v1.55.
 'summery:Sets the scale of a grid and position its nodes regarding the angle.
 	Method SetScale:Void(x:Float, y:Float, relative:Bool = False)
 		If relative = True Then

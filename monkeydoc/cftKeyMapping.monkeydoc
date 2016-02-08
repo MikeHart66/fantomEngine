@@ -24,6 +24,8 @@ This method returns the mapped key code.
 
 If no mapping is found, it will return the given key code.
 
+Links: [[SetKey]], [[LoadFromString]]
+
 # Method LoadFromString:Void(mapStr:String)
 
 *Description*
@@ -164,15 +166,21 @@ Function Main:Int()
 End
 
 </pre>
+Links: [[SaveToString]], [[GetKey]]
+
 # Method SaveToString:String()
 
 *Description*
 
 This method saves the key mapping data to a string.
 
+Links: [[LoadFromString]], [[SetKey]]
+
 # Method SetKey:Void(keyCode:Int, mapCode:Int)
 
 *Description*
 
 This method sets the mapping of a key code.
+
+Links: [[GetKey]], [[SafeToString]]
 

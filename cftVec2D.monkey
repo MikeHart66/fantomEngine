@@ -157,7 +157,6 @@ Class ftVec2D
 	End
 	
 	'------------------------------------------
-'changes:New in v1.54
 	Method Perp:Void()
 		Local xt:Float = Self.x
 		

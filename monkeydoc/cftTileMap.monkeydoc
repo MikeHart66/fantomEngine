@@ -106,6 +106,8 @@ The ftTileSet class stores tileSet information.
 
 Returns the tile index at the given canvas coordinates, starting from zero.
 
+Links: [[SetTileID]]
+
 # Method GetTileCount:Int()
 
 *Description*
@@ -130,6 +132,8 @@ Returns the number of tiles in the Y direction.
 
 Returns the height of a tile with the given index. Index starts at 0.
 
+Links: [[GetTileWidth]]
+
 # Method GetTileID:Int(index:Int)
 
 *Description*
@@ -139,6 +143,8 @@ Returns the ID of the tiles texture map, at the given index, starting from zero.
 *Details*
 
 It returns -1 if there is no tile.
+
+Links: [[SetTileID]]
 
 # Method GetTileID:Int(column:Int, row:Int)
 
@@ -150,6 +156,8 @@ Returns the ID of the tiles texture map, at the given map row and column, starti
 
 It returns -1 if there is no tile.
 
+Links: [[SetTileID]]
+
 # Method GetTileIDAt:Int(xp:Int,yp:Int)
 
 *Description*
@@ -160,17 +168,23 @@ Returns the ID of the tiles texture, at the given canvas coordinates, starting f
 
 It returns -1 if there is no tile.
 
+Links: [[SetTileIDAt]]
+
 # Method GetTilePosX:Float(index:Int)
 
 *Description*
 
 Returns the X position of a tile with the given index. Index starts with 0.
 
+Links: [[GetTilePosY]]
+
 # Method GetTilePosY:Float(index:Int)
 
 *Description*
 
 Returns the Y position of a tile with the given index. Index starts with 0.
+
+Links: [[GetTimePoX]]
 
 # Method GetTileSetIndex:Int(tileID:Int)
 
@@ -184,6 +198,8 @@ Returns the tileSetIndex of a given tile ID
 
 Returns the width of a tile with the given index. Index starts at 0.
 
+Links: [[GetTileHeight]]
+
 # Method Remove:Void()
 
 *Description*
@@ -195,6 +211,8 @@ Removes the tilemap from the corresponding ftObject.
 *Description*
 
 Sets the ID of the tiles texture map, at the given map row and column, starting from zero.
+
+Links: [[GetTileID]]
 
 # Method SetTileSModXY:Void(xMod:Float, yMod:Float)
 

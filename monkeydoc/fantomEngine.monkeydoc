@@ -40,7 +40,8 @@ The forum is also a good place to ask your questions about how to use <b>fantomE
 <li>Embedded objects inside a Tiled map will be stored and are accessable.
 <li>Easy scene/room management.
 <li>Objects can be composed of several single images.
-<li>Automatic object pooling.</ul>
+<li>Automatic object pooling.
+<li>Custom GUI elements</ul>
 # Import brl.pool
 
 # Import fantomEngine.cftAStar
@@ -94,6 +95,4 @@ The forum is also a good place to ask your questions about how to use <b>fantomE
 # Import json
 
 # Import mojo
-
-# Import reflection
 

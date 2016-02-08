@@ -14,6 +14,8 @@ The class ftHighScoreList offers a complete set of methods for storing and retri
 
 Tries to add a new entry to the list. Returns the new rank if it is in the list. Returns 0 if not.
 
+Links: [[GetName]], [[GetValue]]
+
 # Method Clear:Void()
 
 *Description*
@@ -26,11 +28,15 @@ Clears the complete high-score list.
 
 Get the numbers of entries.
 
+Links: [[AddScore]], [[LoadFromString]]
+
 # Method GetName:String(i:Int)
 
 *Description*
 
 Get the name of an entry.
+
+Links: [[GetValue]], [[AddScore]]
 
 # Method GetValue:Int(i:Int)
 
@@ -38,11 +44,15 @@ Get the name of an entry.
 
 Get the value of an entry.
 
+Links: [[GetName]], [[AddScore]]
+
 # Method LoadFromString:Void(hs:String)
 
 *Description*
 
 Load a high-score list from a string.
+
+Links: [[Count]], [[SaveToString]]
 
 # Method SaveToString:String()
 
@@ -50,9 +60,13 @@ Load a high-score list from a string.
 
 Save the high-score list to a string.
 
+Links: [[LoadFromString]]
+
 # Method SetCount:Void(count:Int = 10)
 
 *Description*
 
 Set the number of highscore entries.
+
+Links: [[Count]]
 

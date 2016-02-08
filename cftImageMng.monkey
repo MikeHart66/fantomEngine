@@ -93,7 +93,6 @@ Class ftImage
 		Self.imageNode.Remove()
 	End
 	'------------------------------------------
-'changes:New in version 1.54.
 'summery:Sets the path (filename) of a ftImage.
 	Method SetPath:String(filePath:String)
 		Self.path = filePath

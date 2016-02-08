@@ -46,7 +46,6 @@ Class ftSpriteAtlas
 		Next
 	End
 	'------------------------------------------
-'changes:Fixed in v1.54 to take account of rotated images
 	Method _Parse:Void()
 		Local s:String	
 		Local tpasLen:Int 
@@ -122,7 +121,6 @@ Class ftSpriteAtlas
 		Return img
 	End
 	'------------------------------------------
-'changes:New in v1.55
 'summery:Returns the height of the subimage with the given name.
 	Method GetImageHeight:Float(imageName:String)
 		Local retVal:Float = 0.0
@@ -133,7 +131,6 @@ Class ftSpriteAtlas
 		Return retVal
 	End
 	'------------------------------------------
-'changes:New in v1.55
 'summery:Returns the width of the subimage with the given name.
 	Method GetImageWidth:Float(imageName:String)
 		Local retVal:Float = 0.0
@@ -167,7 +164,6 @@ Class ftSpriteAtlas
 		Return 0
 	End
 	'------------------------------------------
-'changes:Fixed in version 1.54 to support LINUX lines delimiters (13,10)
 'summery:Loads a sprite atlas from the given image and data file name.
 	Method Load:Void(imgName:String, dataName:String)
 		tpStringFromFile = LoadString(dataName)

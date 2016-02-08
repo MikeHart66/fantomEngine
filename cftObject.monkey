@@ -59,6 +59,7 @@ Class ftObject
 	Field engine:ftEngine = Null
 	
 	Field red:Float   = 255.0
+	
 	Field blue:Float  = 255.0
 	Field green:Float = 255.0
 	Field alpha:Float = 1.0
@@ -466,7 +467,6 @@ ftEngine.tmBox   (Value = 3)[/list]
 	End
 '#DOCON#
 	'----------------------------------------------------------
-'changes:Changed in version 1.54
 'summery:Add a animation sequence to an object. This way an object becomes animated.
 'seeAlso:AddAnim
 	Method CreateAnim:Void(animName:String, imgIndex:Int, _frameStart:Int = 1, _frameEnd:Int = 1, _repeatCount:Int = -1)
@@ -487,7 +487,6 @@ ftEngine.tmBox   (Value = 3)[/list]
 		Self.SetAnimRepeatCount(_repeatCount)
 	End
 	'----------------------------------------------------------
-'changes:Changed in version 1.54
 'summery:Add a animation sequence to an object. This way an object becomes animated.
 'seeAlso:AddAnim
 	Method CreateAnim:Void(animName:String, imgName:String, _frameStart:Int = 1, _frameEnd:Int = 1, _repeatCount:Int = -1)
@@ -719,7 +718,6 @@ ftEngine.tmBox   (Value = 3)[/list]
 		Return collGroup
 	End	
 	'-----------------------------------------------------------------------------
-'changes:New in vesion 1.56.
 'summery:Returns the color of an object in an array.
 'seeAlso:SetColor
 	Method GetColor:Float[]()
@@ -1157,7 +1155,6 @@ It returns -1 if there is no tile.
 		Return Self.tileMap.GetTileIDAt(xp,yp)
 	End
 	'-----------------------------------------------------------------------------
-'changes:New in v1.56
 'summery:Returns the tileMap of this object. 
 	Method GetTileMap:ftTileMap()
 		Return Self.tileMap
@@ -1193,7 +1190,6 @@ It returns -1 if there is no tile.
 		Return transitionList.Count()
 	End
 	'-----------------------------------------------------------------------------
-'changes:Docs changed in v1.56
 #Rem
 'summery:Returns the type of an object.
 The value of the type of an object can be one of the following ones:
@@ -1303,7 +1299,6 @@ The returned value is the stored width multiplied by the X scale factor.
 		Next
 	End
 	'------------------------------------------
-'changes:Changed in v1.56 so it removes an attached animation and an attached tilemap too.
 'summery:Removes an object.
 	Method Remove:Void(directFlag:Bool = False)
 		For Local child := Eachin childObjList
@@ -1348,7 +1343,7 @@ The returned value is the stored width multiplied by the X scale factor.
 
 	End
 	'------------------------------------------
-'changes:Changed in v1.55. 
+'changes:Fixed in v1.58 regarding layer scaling. 
 'summery:Renders an object.
 	Method Render:Void(xoff:Float=0.0, yoff:Float=0.0)
 		Local txOff:Float
@@ -1374,9 +1369,15 @@ The returned value is the stored width multiplied by the X scale factor.
 		Local drawAngle:Float
 		Local _cw:Float
 		Local _ch:Float
+		Local layerScale:Float
 		
+		Local mxcl:Float
+		Local mxcr:Float
+		Local myct:Float
+		Local mycb:Float
+
 		If deleted = False Then
-			
+			layerScale = Self.GetLayer().GetScale()
 			'Change alpha if needed
 			mAlpha = Self.alpha * Self.layer.alpha
 			If engine.alpha <> mAlpha Then 
@@ -1399,268 +1400,403 @@ The returned value is the stored width multiplied by the X scale factor.
 			Endif
 			'If object is flipped, scale it accordingly
 			If Self.isFlipV Then
-				tempScaleY = Self.scaleY * -1
+				'tempScaleY = Self.scaleY * -1
+				tempScaleY = Self.scaleY * -1 * layerScale
 			Else
-				tempScaleY = Self.scaleY
+				'tempScaleY = Self.scaleY
+				tempScaleY = Self.scaleY * layerScale
 			Endif 
 			If Self.isFlipH Then
-				tempScaleX = Self.scaleX * -1
+				'tempScaleX = Self.scaleX * -1
+				tempScaleX = Self.scaleX * -1 * layerScale
 			Else
-				tempScaleX = Self.scaleX
+				'tempScaleX = Self.scaleX
+				tempScaleX = Self.scaleX * layerScale
 			Endif 
 			
+			px = (Self.hOffX + xPos) * layerScale + xoff
+			py = (Self.hOffY + yPos) * layerScale + yoff
+			
+			mxcl = (Self.maxX * layerScale) + px
+			mxcr = (Self.minX * layerScale) + px
+			myct = (Self.maxY * layerScale) + py
+			mycb = (Self.minY * layerScale) + py
+			
+			If type <> ftEngine.otTileMap
+			
 			'Draw the object according to its type
-			Select type
-	
-				Case ftEngine.otPivot
-					' Draw nothing
-					
-				Case ftEngine.otPoint
-					DrawPoint xPos + xoff, yPos + yoff
-
-				Case ftEngine.otStickMan
-					PushMatrix
-					Translate ((xPos+xoff), (yPos+yoff))
-					Rotate 360.0-angle
-					Scale (Self.scaleX, Self.scaleY)
-					DrawCircle (-w*(Self.handleX))+4, (-h*(Self.handleY))+4, 4						' o Head
-					DrawLine (-w*(Self.handleX))+4, (-h*(Self.handleY))+6,  (-w*(Self.handleX))+4, (-h*(Self.handleY))+25	' | Body	
-					DrawLine (-w*(Self.handleX))+4, (-h*(Self.handleY))+14, (-w*(Self.handleX))+8, (-h*(Self.handleY))+18	' \ Arm			
-					DrawLine (-w*(Self.handleX))+4, (-h*(Self.handleY))+25, (-w*(Self.handleX)),   (-h*(Self.handleY))+29	' / Leg			
-					DrawLine (-w*(Self.handleX))+4, (-h*(Self.handleY))+25, (-w*(Self.handleX))+8, (-h*(Self.handleY))+29	' \ Leg			
-					PopMatrix
-
-				Case ftEngine.otOval
-					PushMatrix
-					Translate ((xPos+xoff), (yPos+yoff)) 
-					Rotate 360.0-angle
-					DrawOval -w * (Self.handleX), -h * (Self.handleY), w, h
-					PopMatrix
-
-				Case ftEngine.otLine
-					PushMatrix
-					Translate ((xPos+xoff), (yPos+yoff)) 
-					Rotate 360.0-angle+90.0
-					DrawLine -w * (Self.handleX), 0, w - (w * Self.handleX), 0
-					PopMatrix
-
-				Case ftEngine.otPoly
-					PushMatrix
-					Translate ((xPos + xoff), (yPos + yoff))
-					Rotate 360.0-angle
-					Scale (Self.scaleX, Self.scaleY)
-					DrawPoly (verts)
-					PopMatrix								
-
-				Case ftEngine.otImage
-					px = Self.hOffX+xPos+xoff
-					py = Self.hOffY+yPos+yoff
-					If (maxX+px+w/2.0*scaleX)>=0 And (minX+px-w/2.0*scaleX) <= engine.canvasWidth Then
-						If (maxY+py+h/2.0*scaleY)>=0 And (minY+py-h/2.0*scaleY) <= engine.canvasHeight Then
-							DrawImageRect( Self.objImg[Self.currImageIndex-1].img, px, py, rox, roy, rw, rh, 360-angle+offAngle, tempScaleX, tempScaleY, Self.currImageFrame-1)
-						Endif
-					Endif
-				Case ftEngine.otTileMap
-					_cw = engine.GetCanvasWidth()
-					_ch = engine.GetCanvasHeight()
-					tempScaleX = tempScaleX + Self.tileMap.tileModSX
-					tempScaleY = tempScaleY + Self.tileMap.tileModSY
-					
-					tlW = Self.tileMap.tileSizeX * Self.scaleX
-					tlH = Self.tileMap.tileSizeY * Self.scaleY
-					tlW2 = tlW/2.0
-					tlH2 = tlH/2.0
-					drawAngle = 360.0-Self.angle
-					
-					'Determine the first and last x/y coordinate
-					Local xFirst:Int = 1
-					Local xLast:Int = Self.tileMap.tileCountX
-					Local yFirst:Int = 1
-					Local yLast:Int = Self.tileMap.tileCountY
-					
-					If Self.tileMap.tiles[0].tileType = 0
-						'Determine the first x coordinates
-						For ytX = 1 To Self.tileMap.tileCountX
-							tlxPos = xoff+xPos+Self.tileMap.tiles[ytX-1].xOff * Self.scaleX
-							If (tlxPos+tlW2)>=0 And (tlxPos-tlW2)<=_cw Then 
-								xFirst = ytX
-								Exit
-							Endif
-						Next
-						
-						'Determine the last X coordinates
-						For ytX = (xFirst+1) To Self.tileMap.tileCountX
-							tlxPos = xoff+xPos+Self.tileMap.tiles[ytX-1].xOff * Self.scaleX
-							If (tlxPos+tlW2)<0 Or (tlxPos-tlW2)>_cw Then 
-								xLast = ytX-1
-								Exit
-							Endif
-						Next
-						
-						'Determine the first y coordinates
-						For ytY = 1 To Self.tileMap.tileCountY
-							tilePos = (ytY-1)*Self.tileMap.tileCountX
-							tlyPos = yoff+yPos+Self.tileMap.tiles[tilePos].yOff * Self.scaleY
-							If (tlyPos+tlH2)>=0 And (tlyPos-tlH2)<=_ch Then 
-								yFirst = ytY
-								Exit
-							Endif
-						Next
-						
-						'Determine the last Y coordinates
-						For ytY = (yFirst+1) To Self.tileMap.tileCountY
-							tilePos = (ytY-1)*Self.tileMap.tileCountX
-							tlyPos = yoff+yPos+Self.tileMap.tiles[tilePos].yOff * Self.scaleY
-							If (tlyPos+tlH2)<0 Or (tlyPos-tlH2)>_ch Then 
-								yLast = ytY-1
-								Exit
-							Endif
-						Next
-						
-					Endif
-					
-					' Now draw the map
-					For ytY = yFirst To yLast
-						For ytX = xFirst To xLast							
-							tilePos = (ytX-1)+(ytY-1)*Self.tileMap.tileCountX
-							tileSetIndex = Self.tileMap.tiles[tilePos].tileSetIndex
-							tileIDx = Self.tileMap.tiles[tilePos].tileID
-							If tileIDx >= 0
-								tileIDx = tileIDx-Self.tileMap.tileSets[tileSetIndex].firstGID+1
-							Endif
-
-							If tileIDx <> - 1 Then
-								'tlxPos = xoff+xPos+Self.tileMap.tiles[tilePos].xOff * Self.scaleX
-								tlxPos = xoff+xPos+Self.tileMap.tiles[tilePos].xOff * Self.scaleX + (Self.tileMap.tiles[tilePos].sizeX/2-Self.tileMap.tileSizeX/2)
-								'tlyPos = yoff+yPos+Self.tileMap.tiles[tilePos].yOff * Self.scaleY
-								tlyPos = yoff+yPos+Self.tileMap.tiles[tilePos].yOff * Self.scaleY - (Self.tileMap.tiles[tilePos].sizeY/2-Self.tileMap.tileSizeY/2)
-								
-							    'DrawImageRect( Self.objImg[0].img, tlxPos, tlyPos, tileMap.tileSpacing, tileMap.tileSpacing, rw-tileMap.tileSpacing, rh-tileMap.tileSpacing, drawAngle, tempScaleX, tempScaleY, tileIDx)										
-							    'DrawImageRect( Self.objImg[tileSetIndex].img, tlxPos, tlyPos, tileMap.tileSpacing, tileMap.tileSpacing, rw-tileMap.tileSpacing, rh-tileMap.tileSpacing, drawAngle, tempScaleX, tempScaleY, tileIDx)										
-'If dbXXX = 0
-'Print("TilePos="+tilePos+" : tileSetIndex="+tileSetIndex+" : tileIDx="+tileIDx+" : X/Y="+tlxPos+":"+tlyPos+" : w/h="+Self.tileMap.tileSets[tileSetIndex].tilewidth+":"+ Self.tileMap.tileSets[tileSetIndex].tileheight)
-'Endif
-							    DrawImageRect( Self.objImg[tileSetIndex].img, tlxPos, tlyPos, tileMap.tileSpacing, tileMap.tileSpacing, Self.tileMap.tileSets[tileSetIndex].tilewidth-tileMap.tileSpacing, Self.tileMap.tileSets[tileSetIndex].tileheight-tileMap.tileSpacing, drawAngle, tempScaleX, tempScaleY, tileIDx)										
-							Endif
-						Next
-					Next	
-'dbXXX = 1			
-				Case ftEngine.otCircle
-					PushMatrix
-					Translate ((xPos+xoff), (yPos+yoff)) 
-					Rotate 360.0-angle
-					DrawCircle -w * (Self.handleX-0.5), -h * (Self.handleY-0.5), radius * Self.scaleX
-					PopMatrix
-
-				Case ftEngine.otBox
-					px = Self.hOffX+xPos+xoff
-					py = Self.hOffY+yPos+yoff
-					If (maxX+px+w/2.0*scaleX)>=0 And (minX+px-w/2.0*scaleX) <= engine.canvasWidth Then
-						If (maxY+py+h/2.0*scaleY)>=0 And (minY+py-h/2.0*scaleY) <= engine.canvasHeight Then
-						
+			If mxcl>=0 And  mxcr <= engine.canvasWidth
+				If myct>=0 And  mycb <= engine.canvasHeight Then
+					Select type
+			
+						Case ftEngine.otPivot
+							' Draw nothing
+							
+						Case ftEngine.otPoint
+							'DrawPoint xPos + xoff, yPos + yoff
+							DrawPoint xPos*layerScale + xoff, yPos*layerScale + yoff
+		
+						Case ftEngine.otStickMan
 							PushMatrix
-							Translate ((xPos+xoff), (yPos+yoff)) 
+							'Translate ((xPos+xoff), (yPos+yoff)) 
+							Translate ((xPos*layerScale+xoff), (yPos*layerScale+yoff)) 
 							Rotate 360.0-angle
-							Scale (Self.scaleX, Self.scaleY)
+							'Scale (Self.scaleX, Self.scaleY)
+							Scale (Self.scaleX*layerScale, Self.scaleY*layerScale)
+
+							DrawCircle (-w*(Self.handleX))+4, (-h*(Self.handleY))+4, 4						' o Head
+							DrawLine (-w*(Self.handleX))+4, (-h*(Self.handleY))+6,  (-w*(Self.handleX))+4, (-h*(Self.handleY))+25	' | Body	
+							DrawLine (-w*(Self.handleX))+4, (-h*(Self.handleY))+14, (-w*(Self.handleX))+8, (-h*(Self.handleY))+18	' \ Arm			
+							DrawLine (-w*(Self.handleX))+4, (-h*(Self.handleY))+25, (-w*(Self.handleX)),   (-h*(Self.handleY))+29	' / Leg			
+							DrawLine (-w*(Self.handleX))+4, (-h*(Self.handleY))+25, (-w*(Self.handleX))+8, (-h*(Self.handleY))+29	' \ Leg			
+							PopMatrix
+		
+						Case ftEngine.otOval
+							PushMatrix
+							'Translate ((xPos+xoff), (yPos+yoff)) 
+							Translate ((xPos*layerScale+xoff), (yPos*layerScale+yoff)) 
+							Rotate 360.0-angle
+							Scale (Self.scaleX*layerScale, Self.scaleY*layerScale)
+							DrawOval -w * (Self.handleX), -h * (Self.handleY), w, h
+							PopMatrix
+		
+						Case ftEngine.otLine
+							PushMatrix
+							'Translate ((xPos+xoff), (yPos+yoff)) 
+							Translate ((xPos*layerScale+xoff), (yPos*layerScale+yoff)) 
+							Rotate 360.0-angle+90.0
+							Scale (Self.scaleX*layerScale, Self.scaleY*layerScale)
+							DrawLine -w * (Self.handleX), 0, w - (w * Self.handleX), 0
+							PopMatrix
+		
+						Case ftEngine.otPoly
+							PushMatrix
+							'Translate ((xPos+xoff), (yPos+yoff)) 
+							Translate ((xPos*layerScale+xoff), (yPos*layerScale+yoff)) 
+							Rotate 360.0-angle
+							'Scale (Self.scaleX, Self.scaleY)
+							Scale (Self.scaleX*layerScale, Self.scaleY*layerScale)
+							DrawPoly (verts)
+							PopMatrix								
+		
+						Case ftEngine.otImage
+							'px = Self.hOffX+xPos+xoff
+							'py = Self.hOffY+yPos+yoff
+							'If (maxX+px+w/2.0*scaleX)>=0 And (minX+px-w/2.0*scaleX) <= engine.canvasWidth Then
+								'If (maxY+py+h/2.0*scaleY)>=0 And (minY+py-h/2.0*scaleY) <= engine.canvasHeight Then
+									DrawImageRect( Self.objImg[Self.currImageIndex-1].img, px, py, rox, roy, rw, rh, 360-angle+offAngle, tempScaleX, tempScaleY, Self.currImageFrame-1)
+								'Endif
+							'Endif
+#rem
+						Case ftEngine.otTileMap
+							_cw = engine.GetCanvasWidth()
+							_ch = engine.GetCanvasHeight()
+							'tempScaleX = tempScaleX + Self.tileMap.tileModSX
+							tempScaleX = tempScaleX + Self.tileMap.tileModSX * layerScale
+							'tempScaleY = tempScaleY + Self.tileMap.tileModSY
+							tempScaleY = tempScaleY + Self.tileMap.tileModSY * layerScale
+							
+							tlW = Self.tileMap.tileSizeX * Self.scaleX
+							tlH = Self.tileMap.tileSizeY * Self.scaleY
+							tlW2 = tlW/2.0
+							tlH2 = tlH/2.0
+							drawAngle = 360.0-Self.angle
+							
+							'Determine the first and last x/y coordinate
+							Local xFirst:Int = 1
+							Local xLast:Int = Self.tileMap.tileCountX
+							Local yFirst:Int = 1
+							Local yLast:Int = Self.tileMap.tileCountY
+							
+							If Self.tileMap.tiles[0].tileType = 0
+								'Determine the first x coordinates
+								For ytX = 1 To Self.tileMap.tileCountX
+									tlxPos = xoff+xPos+Self.tileMap.tiles[ytX-1].xOff * Self.scaleX
+									If (tlxPos+tlW2)>=0 And (tlxPos-tlW2)<=_cw Then 
+										xFirst = ytX
+										Exit
+									Endif
+								Next
+								
+								'Determine the last X coordinates
+								For ytX = (xFirst+1) To Self.tileMap.tileCountX
+									tlxPos = xoff+xPos+Self.tileMap.tiles[ytX-1].xOff * Self.scaleX
+									If (tlxPos+tlW2)<0 Or (tlxPos-tlW2)>_cw Then 
+										xLast = ytX-1
+										Exit
+									Endif
+								Next
+								
+								'Determine the first y coordinates
+								For ytY = 1 To Self.tileMap.tileCountY
+									tilePos = (ytY-1)*Self.tileMap.tileCountX
+									tlyPos = yoff+yPos+Self.tileMap.tiles[tilePos].yOff * Self.scaleY
+									If (tlyPos+tlH2)>=0 And (tlyPos-tlH2)<=_ch Then 
+										yFirst = ytY
+										Exit
+									Endif
+								Next
+								
+								'Determine the last Y coordinates
+								For ytY = (yFirst+1) To Self.tileMap.tileCountY
+									tilePos = (ytY-1)*Self.tileMap.tileCountX
+									tlyPos = yoff+yPos+Self.tileMap.tiles[tilePos].yOff * Self.scaleY
+									If (tlyPos+tlH2)<0 Or (tlyPos-tlH2)>_ch Then 
+										yLast = ytY-1
+										Exit
+									Endif
+								Next
+								
+							Endif
+							
+							' Now draw the map
+							For ytY = yFirst To yLast
+								For ytX = xFirst To xLast							
+									tilePos = (ytX-1)+(ytY-1)*Self.tileMap.tileCountX
+									tileSetIndex = Self.tileMap.tiles[tilePos].tileSetIndex
+									tileIDx = Self.tileMap.tiles[tilePos].tileID
+									If tileIDx >= 0
+										tileIDx = tileIDx-Self.tileMap.tileSets[tileSetIndex].firstGID+1
+									Endif
+		
+									If tileIDx <> - 1 Then
+										'tlxPos = xoff+xPos+Self.tileMap.tiles[tilePos].xOff * Self.scaleX
+										tlxPos = xoff+xPos+Self.tileMap.tiles[tilePos].xOff * Self.scaleX + (Self.tileMap.tiles[tilePos].sizeX/2-Self.tileMap.tileSizeX/2)
+										'tlyPos = yoff+yPos+Self.tileMap.tiles[tilePos].yOff * Self.scaleY
+										tlyPos = yoff+yPos+Self.tileMap.tiles[tilePos].yOff * Self.scaleY - (Self.tileMap.tiles[tilePos].sizeY/2-Self.tileMap.tileSizeY/2)
+										
+									    'DrawImageRect( Self.objImg[0].img, tlxPos, tlyPos, tileMap.tileSpacing, tileMap.tileSpacing, rw-tileMap.tileSpacing, rh-tileMap.tileSpacing, drawAngle, tempScaleX, tempScaleY, tileIDx)										
+									    'DrawImageRect( Self.objImg[tileSetIndex].img, tlxPos, tlyPos, tileMap.tileSpacing, tileMap.tileSpacing, rw-tileMap.tileSpacing, rh-tileMap.tileSpacing, drawAngle, tempScaleX, tempScaleY, tileIDx)										
+		'If dbXXX = 0
+		'Print("TilePos="+tilePos+" : tileSetIndex="+tileSetIndex+" : tileIDx="+tileIDx+" : X/Y="+tlxPos+":"+tlyPos+" : w/h="+Self.tileMap.tileSets[tileSetIndex].tilewidth+":"+ Self.tileMap.tileSets[tileSetIndex].tileheight)
+		'Endif
+									    DrawImageRect( Self.objImg[tileSetIndex].img, tlxPos, tlyPos, tileMap.tileSpacing, tileMap.tileSpacing, Self.tileMap.tileSets[tileSetIndex].tilewidth-tileMap.tileSpacing, Self.tileMap.tileSets[tileSetIndex].tileheight-tileMap.tileSpacing, drawAngle, tempScaleX, tempScaleY, tileIDx)										
+									Endif
+								Next
+							Next	
+		'dbXXX = 1			
+#End		
+						Case ftEngine.otCircle
+		
+							PushMatrix
+							'Translate ((xPos+xoff), (yPos+yoff)) 
+							Translate ((xPos*layerScale+xoff), (yPos*layerScale+yoff)) 
+							Rotate 360.0-angle
+							Scale (Self.scaleX*layerScale, Self.scaleY*layerScale)
+							'DrawCircle -w * (Self.handleX-0.5), -h * (Self.handleY-0.5), radius * Self.scaleX
+							DrawCircle -w * (Self.handleX-0.5), -h * (Self.handleY-0.5), radius
+							PopMatrix
+		
+		
+						Case ftEngine.otBox
+							'px = Self.hOffX+xPos+xoff
+							'py = Self.hOffY+yPos+yoff
+							
+							'If (maxX+px+w/2.0*scaleX)>=0 And (minX+px-w/2.0*scaleX) <= engine.canvasWidth Then
+								'If (maxY+py+h/2.0*scaleY)>=0 And (minY+py-h/2.0*scaleY) <= engine.canvasHeight Then
+							PushMatrix
+							'Translate ((xPos+xoff), (yPos+yoff)) 
+							Translate (xPos*layerScale+xoff, yPos*layerScale+yoff) 
+							
+							Rotate 360.0-angle
+							
+							'Scale (Self.scaleX, Self.scaleY)
+							Scale (Self.scaleX*layerScale, Self.scaleY*layerScale)
+							
 							DrawRect -w*Self.handleX, -h*Self.handleY, w, h
 							PopMatrix
+								'Endif
+							'Endif
 							
-						Endif
-					Endif
-					
-				Case ftEngine.otText
-					PushMatrix
-					Translate ((xPos+xoff), (yPos+yoff))
-					Rotate 360.0-angle
-					Scale (Self.scaleX, Self.scaleY)
-					Select Self.textMode
-						Case 0			'topLeft
-							txOff = 0.0
-							tyOff = 0.0
-						Case 1			'topCenter
-							txOff = -(Float(Self.objFont.Length(Self.text))/2.0) 
-							tyOff = 0.0
-						Case 2			'topRight
-							txOff = -Self.objFont.Length(Self.text)
-							tyOff = 0.0
+						Case ftEngine.otText
+							PushMatrix
+							'Translate ((xPos+xoff), (yPos+yoff)) 
+							Translate (xPos*layerScale+xoff, yPos*layerScale+yoff) 
+							Rotate 360.0-angle
+							'Scale (Self.scaleX, Self.scaleY)
+							Scale (Self.scaleX*layerScale, Self.scaleY*layerScale)
+							Select Self.textMode
+								Case 0			'topLeft
+									txOff = 0.0
+									tyOff = 0.0
+								Case 1			'topCenter
+									txOff = -(Float(Self.objFont.Length(Self.text))/2.0) 
+									tyOff = 0.0
+								Case 2			'topRight
+									txOff = -Self.objFont.Length(Self.text)
+									tyOff = 0.0
+									
+								Case 7			'centerLeft
+									txOff = 0.0
+									tyOff = -(Float(Self.objFont.Height())/2.0) 
+								Case 3			'centerCenter
+									txOff = -(Float(Self.objFont.Length(Self.text))/2.0) 
+									tyOff = -(Float(Self.objFont.Height())/2.0) 
+								Case 4			'centerRight
+									txOff = -Self.objFont.Length(Self.text)
+									tyOff = -(Float(Self.objFont.Height())/2.0) 
+									
+								Case 8			'bottomLeft
+									txOff = 0.0
+									tyOff = -(Float(Self.objFont.Height())) 
+								Case 5 			'bottomCenter
+									txOff = -(Float(Self.objFont.Length(Self.text))/2.0) 
+									tyOff = -(Float(Self.objFont.Height())) 
+								Case 6			'bottomRight
+									txOff = -Self.objFont.Length(Self.text)
+									tyOff = -(Float(Self.objFont.Height())) 
+							End
+							objFont.Draw(text, txOff, tyOff)
+							PopMatrix
 							
-						Case 7			'centerLeft
-							txOff = 0.0
-							tyOff = -(Float(Self.objFont.Height())/2.0) 
-						Case 3			'centerCenter
-							txOff = -(Float(Self.objFont.Length(Self.text))/2.0) 
-							tyOff = -(Float(Self.objFont.Height())/2.0) 
-						Case 4			'centerRight
-							txOff = -Self.objFont.Length(Self.text)
-							tyOff = -(Float(Self.objFont.Height())/2.0) 
+						Case ftEngine.otTextMulti
+							PushMatrix
+							'Translate ((xPos+xoff), (yPos+yoff)) 
+							Translate (xPos*layerScale+xoff, yPos*layerScale+yoff) 
+							Rotate 360.0-angle
+							'Scale (Self.scaleX, Self.scaleY)
+							Scale (Self.scaleX*layerScale, Self.scaleY*layerScale)
+							Local lines:String[] = Self.text.Split("~n")
+							Local objFontHeight:Float = Self.objFont.Height()
+							Local linesCount:Int = lines.Length()
 							
-						Case 8			'bottomLeft
-							txOff = 0.0
-							tyOff = -(Float(Self.objFont.Height())) 
-						Case 5 			'bottomCenter
-							txOff = -(Float(Self.objFont.Length(Self.text))/2.0) 
-							tyOff = -(Float(Self.objFont.Height())) 
-						Case 6			'bottomRight
-							txOff = -Self.objFont.Length(Self.text)
-							tyOff = -(Float(Self.objFont.Height())) 
+							For _y = 1 To linesCount
+		
+								Select Self.textMode
+									Case 0			'topLeft
+										txOff = 0.0
+										tyOff = 0.0 + (objFontHeight*(_y-1))
+										
+									Case 1			'topCenter
+										txOff = -(Float(Self.objFont.Length(lines[_y-1]))/2.0) 
+										tyOff = 0.0 + (objFontHeight*(_y-1))
+										
+									Case 2			'topRight
+										txOff = -Self.objFont.Length(lines[_y-1])
+										tyOff = 0.0 + (objFontHeight*(_y-1))
+										
+									Case 7			'centerLeft
+										txOff = 0.0
+										tyOff = -((objFontHeight*linesCount)/2.0)  + (objFontHeight*(_y-1))
+										
+									Case 3			'centerCenter
+										txOff = -(Float(Self.objFont.Length(lines[_y-1]))/2.0) 
+										tyOff = -((objFontHeight*linesCount)/2.0)  + (objFontHeight*(_y-1))
+										 
+									Case 4			'centerRight
+										txOff = -Self.objFont.Length(lines[_y-1])
+										tyOff = -((objFontHeight*linesCount)/2.0)  + (objFontHeight*(_y-1))
+										
+									Case 8			'bottomLeft
+										txOff = 0.0
+										tyOff = -(objFontHeight*linesCount) + (objFontHeight*(_y-1))
+										
+									Case 5 			'bottomCenter
+										txOff = -(Float(Self.objFont.Length(lines[_y-1]))/2.0) 
+										tyOff = -(objFontHeight*linesCount) + (objFontHeight*(_y-1)) 
+										
+									Case 6			'bottomRight
+										txOff = -Self.objFont.Length(lines[_y-1])
+										tyOff = -(objFontHeight*linesCount) + (objFontHeight*(_y-1)) 
+										
+								End
+								objFont.Draw(lines[_y-1], txOff, tyOff)
+							Next
+							PopMatrix
 					End
-					objFont.Draw(text, txOff, tyOff)
-					PopMatrix
+				Endif
+			Endif					
+			Else
+							_cw = engine.GetCanvasWidth()
+							_ch = engine.GetCanvasHeight()
+							'tempScaleX = tempScaleX + Self.tileMap.tileModSX
+							tempScaleX = tempScaleX + Self.tileMap.tileModSX * layerScale
+							'tempScaleY = tempScaleY + Self.tileMap.tileModSY
+							tempScaleY = tempScaleY + Self.tileMap.tileModSY * layerScale
+							
+							tlW = Self.tileMap.tileSizeX * Self.scaleX
+							tlH = Self.tileMap.tileSizeY * Self.scaleY
+							tlW2 = tlW/2.0
+							tlH2 = tlH/2.0
+							drawAngle = 360.0-Self.angle
+							
+							'Determine the first and last x/y coordinate
+							Local xFirst:Int = 1
+							Local xLast:Int = Self.tileMap.tileCountX
+							Local yFirst:Int = 1
+							Local yLast:Int = Self.tileMap.tileCountY
+							
+							If Self.tileMap.tiles[0].tileType = 0
+								'Determine the first x coordinates
+								For ytX = 1 To Self.tileMap.tileCountX
+									tlxPos = xoff+xPos+Self.tileMap.tiles[ytX-1].xOff * Self.scaleX
+									If (tlxPos+tlW2)>=0 And (tlxPos-tlW2)<=_cw Then 
+										xFirst = ytX
+										Exit
+									Endif
+								Next
+								
+								'Determine the last X coordinates
+								For ytX = (xFirst+1) To Self.tileMap.tileCountX
+									tlxPos = xoff+xPos+Self.tileMap.tiles[ytX-1].xOff * Self.scaleX
+									If (tlxPos+tlW2)<0 Or (tlxPos-tlW2)>_cw Then 
+										xLast = ytX-1
+										Exit
+									Endif
+								Next
+								
+								'Determine the first y coordinates
+								For ytY = 1 To Self.tileMap.tileCountY
+									tilePos = (ytY-1)*Self.tileMap.tileCountX
+									tlyPos = yoff+yPos+Self.tileMap.tiles[tilePos].yOff * Self.scaleY
+									If (tlyPos+tlH2)>=0 And (tlyPos-tlH2)<=_ch Then 
+										yFirst = ytY
+										Exit
+									Endif
+								Next
+								
+								'Determine the last Y coordinates
+								For ytY = (yFirst+1) To Self.tileMap.tileCountY
+									tilePos = (ytY-1)*Self.tileMap.tileCountX
+									tlyPos = yoff+yPos+Self.tileMap.tiles[tilePos].yOff * Self.scaleY
+									If (tlyPos+tlH2)<0 Or (tlyPos-tlH2)>_ch Then 
+										yLast = ytY-1
+										Exit
+									Endif
+								Next
+								
+							Endif
+							
+							' Now draw the map
+							For ytY = yFirst To yLast
+								For ytX = xFirst To xLast							
+									tilePos = (ytX-1)+(ytY-1)*Self.tileMap.tileCountX
+									tileSetIndex = Self.tileMap.tiles[tilePos].tileSetIndex
+									tileIDx = Self.tileMap.tiles[tilePos].tileID
+									If tileIDx >= 0
+										tileIDx = tileIDx-Self.tileMap.tileSets[tileSetIndex].firstGID+1
+									Endif
+		
+									If tileIDx <> - 1 Then
+										'tlxPos = xoff+xPos+Self.tileMap.tiles[tilePos].xOff * Self.scaleX
+										tlxPos = xoff+xPos+Self.tileMap.tiles[tilePos].xOff * Self.scaleX + (Self.tileMap.tiles[tilePos].sizeX/2-Self.tileMap.tileSizeX/2)
+										'tlyPos = yoff+yPos+Self.tileMap.tiles[tilePos].yOff * Self.scaleY
+										tlyPos = yoff+yPos+Self.tileMap.tiles[tilePos].yOff * Self.scaleY - (Self.tileMap.tiles[tilePos].sizeY/2-Self.tileMap.tileSizeY/2)
+										
+									    'DrawImageRect( Self.objImg[0].img, tlxPos, tlyPos, tileMap.tileSpacing, tileMap.tileSpacing, rw-tileMap.tileSpacing, rh-tileMap.tileSpacing, drawAngle, tempScaleX, tempScaleY, tileIDx)										
+									    'DrawImageRect( Self.objImg[tileSetIndex].img, tlxPos, tlyPos, tileMap.tileSpacing, tileMap.tileSpacing, rw-tileMap.tileSpacing, rh-tileMap.tileSpacing, drawAngle, tempScaleX, tempScaleY, tileIDx)										
+		'If dbXXX = 0
+		'Print("TilePos="+tilePos+" : tileSetIndex="+tileSetIndex+" : tileIDx="+tileIDx+" : X/Y="+tlxPos+":"+tlyPos+" : w/h="+Self.tileMap.tileSets[tileSetIndex].tilewidth+":"+ Self.tileMap.tileSets[tileSetIndex].tileheight)
+		'Endif
+									    DrawImageRect( Self.objImg[tileSetIndex].img, tlxPos, tlyPos, tileMap.tileSpacing, tileMap.tileSpacing, Self.tileMap.tileSets[tileSetIndex].tilewidth-tileMap.tileSpacing, Self.tileMap.tileSets[tileSetIndex].tileheight-tileMap.tileSpacing, drawAngle, tempScaleX, tempScaleY, tileIDx)										
+									Endif
+								Next
+							Next	
+		'dbXXX = 1			
 					
-				Case ftEngine.otTextMulti
-					PushMatrix
-					Translate ((xPos+xoff), (yPos+yoff))
-					Rotate 360.0-angle
-					Scale (Self.scaleX, Self.scaleY)
-					Local lines:String[] = Self.text.Split("~n")
-					Local objFontHeight:Float = Self.objFont.Height()
-					Local linesCount:Int = lines.Length()
-					
-					For _y = 1 To linesCount
+			Endif
 
-						Select Self.textMode
-							Case 0			'topLeft
-								txOff = 0.0
-								tyOff = 0.0 + (objFontHeight*(_y-1))
-								
-							Case 1			'topCenter
-								txOff = -(Float(Self.objFont.Length(lines[_y-1]))/2.0) 
-								tyOff = 0.0 + (objFontHeight*(_y-1))
-								
-							Case 2			'topRight
-								txOff = -Self.objFont.Length(lines[_y-1])
-								tyOff = 0.0 + (objFontHeight*(_y-1))
-								
-							Case 7			'centerLeft
-								txOff = 0.0
-								tyOff = -((objFontHeight*linesCount)/2.0)  + (objFontHeight*(_y-1))
-								
-							Case 3			'centerCenter
-								txOff = -(Float(Self.objFont.Length(lines[_y-1]))/2.0) 
-								tyOff = -((objFontHeight*linesCount)/2.0)  + (objFontHeight*(_y-1))
-								 
-							Case 4			'centerRight
-								txOff = -Self.objFont.Length(lines[_y-1])
-								tyOff = -((objFontHeight*linesCount)/2.0)  + (objFontHeight*(_y-1))
-								
-							Case 8			'bottomLeft
-								txOff = 0.0
-								tyOff = -(objFontHeight*linesCount) + (objFontHeight*(_y-1))
-								
-							Case 5 			'bottomCenter
-								txOff = -(Float(Self.objFont.Length(lines[_y-1]))/2.0) 
-								tyOff = -(objFontHeight*linesCount) + (objFontHeight*(_y-1)) 
-								
-							Case 6			'bottomRight
-								txOff = -Self.objFont.Length(lines[_y-1])
-								tyOff = -(objFontHeight*linesCount) + (objFontHeight*(_y-1)) 
-								
-						End
-						objFont.Draw(lines[_y-1], txOff, tyOff)
-					Next
-					PopMatrix
-			End
-			
+						
 			If Self.onRenderEvent = True Then engine.OnObjectRender(Self)
 			For Local child := Eachin childObjList
 				If child.isVisible And child.isActive Then child.Render(xoff, yoff)
@@ -1684,10 +1820,16 @@ The returned value is the stored width multiplied by the X scale factor.
 		Next
 	End
 	'-----------------------------------------------------------------------------
+'changes:Changed in v1.58 -> Added a flag to affect children too.
 'summery:Set the active flag.
 'seeAlso:GetActive
-	Method SetActive:Void (activeFlag:Bool = True )
+	Method SetActive:Void (activeFlag:Bool = True, children:Bool = False )
 		isActive = activeFlag
+		If children = True
+			For Local child := Eachin childObjList
+				child.SetActive(activeFlag, children)
+			Next
+		Endif
 	End
 	'-----------------------------------------------------------------------------
 'summery:Set the current active animation.
@@ -1728,7 +1870,6 @@ The returned value is the stored width multiplied by the X scale factor.
 		internal_RotateSpriteCol()
 	End
 	'------------------------------------------
-'changes:Changed in version 1.54.
 #Rem
 'summery:Set the objects angle offset manually. 
 Normally it is set from loading an image from a sprite atlas where the image is already rotated.
@@ -1766,7 +1907,6 @@ Normally it is set from loading an image from a sprite atlas where the image is 
 		Self.animMng.isAnimPaused = pauseFlag
 	End
 	'-----------------------------------------------------------------------------
-'changes:New in version 1.54.	
 #Rem
 'summery:Set the repeat count of the current animation.
 'The default value of -1 means it runs forever. A value greater than 0 describes how many times the animation repeats itself.
@@ -1828,7 +1968,6 @@ A value of 0 will disable the collision, a value between 1 and 32 will set the c
 		Self.blue = cBlue
 	End
 	'-----------------------------------------------------------------------------
-'changes:Fixed in v1.54
 #Rem
 'summery:Sets the collision scale factor of an object.
 'The collision scale affects the calculation of the collision type objects (circle, bounding box, rotated box)
@@ -2583,7 +2722,6 @@ The stored width is the result of the given parameter divided by the current X s
 	End
 	'-----------------------------------------------------------------------------
 '#DOCOFF#	
-'changes:Fixed in version 1.57
 	Method _Init:ftObject()
 		xPos = 0.0
 		yPos = 0.0
@@ -2715,16 +2853,15 @@ The stored width is the result of the given parameter divided by the current X s
 		currImageIndex = 1
 		currImageFrame = 1
 			
-		minX = 0.0
-		minY = 0.0
-		maxX = 0.0
-		maxY = 0.0
+		Self.minX = 0.0
+		Self.minY = 0.0
+		Self.maxX = 0.0
+		Self.maxY = 0.0
 		
 		Return Self
 	End
 '#DOCON#	
 	'------------------------------------------
-'changes:Changed in v1.54
 'summery:Update an object with the given updatespeed factor.
 	Method Update:Void(delta:Float=1.0)
 
@@ -3003,7 +3140,6 @@ Local yp:Float
 	  End
 	
 	  '-----------------------------------------------------------------------------
-	  'changes:Changed in v1.54	  
 	  Method internal_Circle2CircleInBox:Bool(sp1:ftObject, sp2:ftObject)
 	      Local xf:Float, yf:Float, rf:Float
 	
@@ -3020,7 +3156,6 @@ Local yp:Float
 	  End
 
 	  '-----------------------------------------------------------------------------
-'changes:Changed in v1.54
 	  Method internal_Circle2LineObj:Bool(sp1:ftObject, sp2:ftObject)
 	      Local rf:Float
 	      Local bp1:tPointS = New tPointS
@@ -3047,7 +3182,6 @@ Local yp:Float
 	  End
 
 	  '-----------------------------------------------------------------------------
-'changes:Changed in v1.54
 	  Method internal_Bound2Bound:Bool(sp1:ftObject, sp2:ftObject)
 	      Local left1:Float, left2:Float, right1:Float, right2:Float, top1:Float, top2:Float, bottom1:Float, bottom2:Float, h:Float, w:Float
 	
@@ -3085,7 +3219,6 @@ Local yp:Float
 	      Return True
 	  End
 	  '-----------------------------------------------------------------------------
-'changes:Fixed in v1.54
 	  Method internal_Box2Box:Bool(pSpriteA:ftObject, pSpriteB:ftObject)
 		' -- Corner points
 		Local ap1:tPointS = New tPointS
@@ -3245,7 +3378,6 @@ Local yp:Float
 		Return False
 	  End
 	  '-----------------------------------------------------------------------------
-'changes:Fixed in v1.54
 	  Method internal_Box2Circle:Bool(sp2:ftObject, sp1:ftObject)
 	      Local rf:Float
 	      Local bp1:tPointS = New tPointS
@@ -3283,7 +3415,6 @@ Local yp:Float
 
 
 	  '-----------------------------------------------------------------------------
-'changes:New in v1.54
 'Adapted from Fredborg's code
 		Method internal_Line2Line( x0:Float, y0:Float , x1:Float, y1:Float,x2:Float ,y2:Float, x3:Float, y3:Float )
 			  
@@ -3317,7 +3448,6 @@ Local yp:Float
 		End
 
 	  '-----------------------------------------------------------------------------
-'changes:Changed in v1.54
 	  Method internal_Line2Circle:Bool(x1:Float, y1:Float, x2:Float, y2:Float, px:Float, py:Float, r:Float)
 	      Local sx:Float
 	      Local sy:Float
@@ -3423,7 +3553,6 @@ Local yp:Float
 	  End
 
 	  '-----------------------------------------------------------------------------
-	   'changes:Changed in v1.56
 	   Method internal_PointInsideBound:Bool(sp:ftObject, px:Float, py:Float)
 	      Local t:Float, b:Float, l:Float, r:Float, hys:Float, wxs:Float
 	      wxs = sp.w * sp.scaleX * sp.collScale
@@ -3447,7 +3576,6 @@ Local yp:Float
 	      Return True
 	   End
 	  '-----------------------------------------------------------------------------
-'changes:Changed in v1.56
 	   Method internal_PointInsideCircle:Bool(_sp:ftObject, _px:Float, _py:Float)
 	      Local xf:Float
 		  Local yf:Float
@@ -3496,7 +3624,6 @@ Local yp:Float
 	   End
 #End
 	  '-----------------------------------------------------------------------------
-		'changes:Fixed in v1.56
 		Method internal_PointInsidePolygon:Bool(sp:ftObject, px:Float, py:Float)
 			'Local iangle:Float
 			'Local x1:Float,x3:Float,y1:Float,y3:Float
@@ -3557,7 +3684,6 @@ Local yp:Float
 
 
   '*****************************************************************
-'changes:Fixed in v1.54
   Method internal_RotateSpriteCol:Void()
   '*****************************************************************
     Local cx:Float
@@ -3616,7 +3742,6 @@ Local yp:Float
 
 #Rem
   '*****************************************************************
-'changes:Fixed in v1.54
   Method internal_RotateSpriteCol_OLD:Int(pSprite:ftObject)
   '*****************************************************************
     Local cx:Float

@@ -18,11 +18,15 @@ Returns a free sound channel index.
 
 Returns the pan value of a sound.
 
+Links: [[SetPan]]
+
 # Method GetPaused:Bool()
 
 *Description*
 
 Returns the flag of a sound.
+
+Links: [[SetPaused]]
 
 # Method GetPitchRate:Float()
 
@@ -30,17 +34,23 @@ Returns the flag of a sound.
 
 Returns the pitch rate of a sound.
 
+Links: [[SetPitchRate]]
+
 # Method GetVolume:Float()
 
 *Description*
 
 Returns the volume of a sound. Ranges from 0.0 to 1.0.
 
+Links: [[SetVolume]]
+
 # Method Play:Int(c:Int = -1)
 
 *Description*
 
 Plays a sound. If no channel is provided, fantomEngine will determine the channel automatically.
+
+Links: [[Stop]]
 
 # Method SetPan:Void(channelPan:Float = 0.0)
 
@@ -52,11 +62,15 @@ Set the pan value of a sound. Ranges from -1.0 to 1.0.
 
 A value of -1.0 is on the left side, a value of 1.0 represents the right side.
 
+Links: [[GetPan]]
+
 # Method SetPaused:Void(pauseFlag:Bool)
 
 *Description*
 
 Pause/resume a sound or a music.
+
+Links: [[GetPaused]]
 
 # Method SetPitchRate:Void(channelRate:Float = 1.0)
 
@@ -68,15 +82,21 @@ Set the rate of a sound.
 
 The default base note (1.0) is 'A4'. You can use the GetPitchRate("C3") function to determine the rate from a given note.
 
+Links: [[GetPitchRate]]
+
 # Method SetVolume:Void(vol:Float = 1.0)
 
 *Description*
 
 Set the volume of a sound. Ranges from 0.0 to 1.0.
 
+Links: [[GetVolume]]
+
 # Method Stop:Void(c:Int=-1)
 
 *Description*
 
 Stop playing the sound. If a channel is given, it will stop that specific sound channel.
+
+Links: [[Play]]
 

@@ -342,7 +342,6 @@ Class ftPath
   	End
   	
 	'------------------------------------------
-'changes:Fixed in version 1.55
 #Rem
 'summery:Render all markers of a path. You can use this for debugging.
 A type value of 0 renders a square, any other value renders a circle.
@@ -359,7 +358,6 @@ A type value of 0 renders a square, any other value renders a circle.
 	End
 	
 	'------------------------------------------
-'changes:Fixed in version 1.55
 #Rem
 'summery:Render all waypoints of a path. You can use this for debugging.
 A type value of 0 renders a square, any other value renders a circle.

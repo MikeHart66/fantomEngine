@@ -127,7 +127,6 @@ Class ftObjAnimMng
 		animObj.SetCurrImage(currAnim.animFrames[currAnim.currFrame].imgIndex+1, currAnim.animFrames[currAnim.currFrame].frameIndex )
 	End
 	'-----------------------------------------------------------------------------
-'changes:New in version 1.54.
 #Rem
 'summery:Set the repeat count of the current animation.
 'The default value of -1 means it runs forever. A value greater than 0 describes how many times the animation repeats itself.

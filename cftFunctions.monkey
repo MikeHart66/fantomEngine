@@ -140,7 +140,6 @@ Public
 			Return s
 		End
 '------------------------------------------
-'changes:Changed help text in v1.54.
 #Rem
 'summery:Maximizes the HTML5 canvas.
 'HTML5 only.
@@ -150,7 +149,6 @@ Public
 			'
 		End
 '------------------------------------------
-'changes:Changed help text in v1.54.
 #Rem
 'summery:Resizes the HTML5 canvas to the given proportions.
 'HTML5 only.
@@ -160,7 +158,6 @@ Public
 			'
 		End
 '------------------------------------------
-'changes:Changed help text in v1.54.
 #Rem
 'summery:Resizes the HTML5 console to the given proportions.
 'HTML5 only.
@@ -170,7 +167,6 @@ Public
 			'
 		End
 '------------------------------------------
-'changes:Changed help text in v1.54.
 #Rem
 'summery:Hides the HTML5 console.
 'HTML5 only.

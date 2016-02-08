@@ -42,7 +42,6 @@ Class ftScene
 		layerList.AddLast(layer)
 	End
 	'-----------------------------------------------------------------------------
-'changes:fixed in v1.54
 #Rem
 'summery:Create an alpha transition for the scene.
 'The duration is the time in milliseconds, the transition takes to complete. Only a transID > 0 will fire the [b]ftEngine.OnLayerTrans[/b] method for the first layer of a scene.
@@ -63,7 +62,6 @@ Class ftScene
 		Return trans
 	End
 	'-----------------------------------------------------------------------------
-'changes:fixed in v1.54
 #Rem
 'summery:Create an position transition for the scene.
 'The duration is the time in milliseconds, the transition takes to complete. Only a transID > 0 will fire the [b]ftEngine.OnLayerTrans[/b] method for the first layer of a scene.

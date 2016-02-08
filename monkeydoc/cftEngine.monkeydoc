@@ -20,6 +20,8 @@ Example:
 Local myEngine = New ftEngine
 myEngine.ActivateMusic(True)
 </pre>
+Links: [[ActivateSound]]
+
 # Method ActivateSound:Void(onOff:Bool=True)
 
 *Description*
@@ -33,6 +35,8 @@ Local myEngine = New ftEngine
 ' Now deactivate all sound playback
 myEngine.ActivateSound(False)
 </pre>
+Links: [[ActivateMusic]]
+
 # Method ActivateSwipe:Void(onOff:Bool=True)
 
 *Description*
@@ -51,6 +55,8 @@ Example:
 Local myEngine = New ftEngine
 myEngine.ActivateSwipe(True)
 </pre>
+Links: [[SwipeUpdate]]
+
 # Method CalcDeltaTime:Int()
 
 *Description*
@@ -72,11 +78,15 @@ Method OnUpdate:Int()
   Return 0
 End
 </pre>
+Links: [[GetDeltaTime]], [[Update]]
+
 # Method CancelTimerAll:Void()
 
 *Description*
 
 Cancels all timers attached of the engine.
+
+Links: [[CreateTimer]], [[OnTimer]]
 
 # Method CollisionCheck:Void()
 
@@ -107,6 +117,8 @@ Method OnUpdate:Int()
         Return 0
 End
 </pre>
+Links: [[SetColType]], [[SetColWith]], [[SetColGroup]], [[OnObjectCollision]]
+
 # Method CollisionCheck:Void(layer:ftLayer)
 
 *Description*
@@ -126,6 +138,8 @@ Method OnUpdate:Int()
         Return 0
 End
 </pre>
+Links: [[SetColType]], [[SetColWith]], [[SetColGroup]], [[OnObjectCollision]]
+
 # Method CollisionCheck:Void(obj:ftObject)
 
 *Description*
@@ -145,6 +159,8 @@ Method OnUpdate:Int()
         Return 0
 End
 </pre>
+Links: [[SetColType]], [[SetColWith]], [[SetColGroup]], [[OnObjectCollision]]
+
 # Method CopyObject:ftObject(srcObj:ftObject)
 
 *Description*
@@ -204,6 +220,8 @@ Method OnCreate:Int()
         Return 0
 End
 </pre>
+Links: [[CreateBox]], [[CreateCircle]], [[CreateImage]], [[CreateLine]], [[CreateOval]], [[CreatePoint]], [[CreatePoly]], [[CreateStickman]], [[CreateTileMap]], [[CreateText]]
+
 # Method CreateAnimImage:ftObject(atl:Image, frameStartX:Int, frameStartY:Int, frameWidth:Int, frameHeight:Int, frameCount:Int, xpos:Float, ypos:Float, _ucob:Object=Null)
 
 *Description*
@@ -232,6 +250,8 @@ Method OnCreate:Int()
         Return 0
 End
 </pre>
+Links: [[CreateBox]], [[CreateCircle]], [[CreateImage]], [[CreateLine]], [[CreateOval]], [[CreatePoint]], [[CreatePoly]], [[CreateStickman]], [[CreateTileMap]], [[CreateText]]
+
 # Method CreateBox:ftObject(width:Float, height:Float, xpos:Float, ypos:Float, _ucob:Object=Null)
 
 *Description*
@@ -250,6 +270,8 @@ Method OnCreate:Int()
         Return 0
 End
 </pre>
+Links: [[CreateAnimImage]], [[CreateCircle]], [[CreateImage]], [[CreateLine]], [[CreateOval]], [[CreatePoint]], [[CreatePoly]], [[CreateStickman]], [[CreateTileMap]], [[CreateText]]
+
 # Method CreateCircle:ftObject(radius:Float, xpos:Float, ypos:Float, _ucob:Object=Null)
 
 *Description*
@@ -268,11 +290,15 @@ Method OnCreate:Int()
         Return 0
 End
 </pre>
+Links: [[CreateAnimImage]], [[CreateBox]], [[CreateImage]], [[CreateLine]], [[CreateOval]], [[CreatePoint]], [[CreatePoly]], [[CreateStickman]], [[CreateTileMap]], [[CreateText]]
+
 # Method CreateGUI:ftGuiMng(xpos:Float=0.0, ypos:Float=0.0)
 
 *Description*
 
 Creates an custom GUI manager object which you can use to GUI child objects to.
+
+Links: [[...]]
 
 # Method CreateImage:ftObject(filename:String, xpos:Float, ypos:Float, _ucob:Object=Null)
 
@@ -307,6 +333,8 @@ Class engine Extends ftEngine
         ' ...
 End
 </pre>
+Links: [[CreateAnimImage]], [[CreateBox]], [[CreateCircle]], [[CreateLine]], [[CreateOval]], [[CreatePoint]], [[CreatePoly]], [[CreateStickman]], [[CreateTileMap]], [[CreateText]]
+
 # Method CreateImage:ftObject(image:Image, xpos:Float, ypos:Float, _ucob:Object=Null)
 
 *Description*
@@ -336,6 +364,8 @@ Class engine Extends ftEngine
         ' ...
 End
 </pre>
+Links: [[CreateAnimImage]], [[CreateBox]], [[CreateCircle]], [[CreateLine]], [[CreateOval]], [[CreatePoint]], [[CreatePoly]], [[CreateStickman]], [[CreateTileMap]], [[CreateText]]
+
 # Method CreateImage:ftObject(atlas:Image, x:Int, y:Int, width:Int, height:Int, xpos:Float, ypos:Float, _ucob:Object=Null)
 
 *Description*
@@ -365,6 +395,8 @@ Class engine Extends ftEngine
         ' ...
 End
 </pre>
+Links: [[CreateAnimImage]], [[CreateBox]], [[CreateCircle]], [[CreateLine]], [[CreateOval]], [[CreatePoint]], [[CreatePoly]], [[CreateStickman]], [[CreateTileMap]], [[CreateText]]
+
 # Method CreateImage:ftObject(atlas:Image, dataFileName:String, subImageName:String, xpos:Float, ypos:Float, _ucob:Object=Null)
 
 *Description*
@@ -400,6 +432,8 @@ Class engine Extends ftEngine
         ' ...
 End
 </pre>
+Links: [[CreateAnimImage]], [[CreateBox]], [[CreateCircle]], [[CreateLine]], [[CreateOval]], [[CreatePoint]], [[CreatePoly]], [[CreateStickman]], [[CreateTileMap]], [[CreateText]]
+
 # Method CreateLayer:ftLayer(_ucla:Object=Null)
 
 *Description*
@@ -416,6 +450,8 @@ Example:
 Local myEngine:ftEngine = New ftEngine
 Local myLayer:ftLayer = myEngine.CreateLayer()
 </pre>
+Links: [[SetDefaultLayer]], [[GetDefaultLayer]], [[RemoveLayer]], [[RemoveAllLayer]]
+
 # Method CreateLine:ftObject(xpos:Float, ypos:Float, x2:Float, y2:Float, _ucob:Object=Null)
 
 *Description*
@@ -434,6 +470,8 @@ Local myEngine = New ftEngine
 Local myLine := myEngine.CreateLine(0,0, myEngine.GetCanvasWidth()-1, myEngine.GetCanvasHeight()-1)
 
 </pre>
+Links: [[CreateAnimImage]], [[CreateBox]], [[CreateCircle]], [[CreateImage]], [[CreateOval]], [[CreatePoint]], [[CreatePoly]], [[CreateStickman]], [[CreateTileMap]], [[CreateText]]
+
 # Method CreateObjTimer:ftTimer(obj:ftObject, timerID:Int, duration:Int, repeatCount:Int = 0)
 
 *Description*
@@ -471,6 +509,8 @@ Class cEngine Extends ftEngine
 End
 
 </pre>
+Links: [[OnObjTimer]], [[CreateTimer]]
+
 # Method CreateOval:ftObject(width:Float, height:Float, xpos:Float, ypos:Float, _ucob:Object=Null)
 
 *Description*
@@ -485,6 +525,8 @@ Local myEngine = New ftEngine
 Local myOval := myEngine.CreateOval(30, 60, myEngine.GetCanvasWidth()/2.0, myEngine.GetCanvasHeight()/2.0)
 
 </pre>
+Links: [[CreateAnimImage]], [[CreateBox]], [[CreateCircle]], [[CreateImage]], [[CreateLine]], [[CreatePoint]], [[CreatePoly]], [[CreateStickman]], [[CreateTileMap]], [[CreateText]]
+
 # Method CreatePath:ftPath(xpos:Float, ypos:Float)
 
 *Description*
@@ -497,17 +539,23 @@ Creates a path with its center at the given xpos/ypos coordinates.
 
 Creates an empty object (pivot) which you can use to attach/parent child objects to.
 
+Links: [[CreateAnimImage]], [[CreateBox]], [[CreateCircle]], [[CreateLine]], [[CreateOval]], [[CreatePoint]], [[CreatePoly]], [[CreateStickman]], [[CreateTileMap]], [[CreateText]]
+
 # Method CreatePoint:ftObject(xpos:Float, ypos:Float, _ucob:Object=Null)
 
 *Description*
 
 Creates a point object at the given xpos/ypos.
 
+Links: [[CreateAnimImage]], [[CreateBox]], [[CreateCircle]], [[CreateImage]], [[CreateLine]], [[CreateOval]], [[CreatePoly]], [[CreateStickman]], [[CreateTileMap]], [[CreateText]]
+
 # Method CreatePoly:ftObject(verts:Float[], xpos:Float, ypos:Float, _ucob:Object=Null)
 
 *Description*
 
 Creates a polygon object with supplied vertices pairs (Minimum of 3 pairs required).
+
+Links: [[CreateAnimImage]], [[CreateBox]], [[CreateCircle]], [[CreateImage]], [[CreateLine]], [[CreateOval]], [[CreatePoint]], [[CreateStickman]], [[CreateTileMap]], [[CreateText]]
 
 # Method CreateScene:ftScene(_ucSc:Object=Null)
 
@@ -519,11 +567,15 @@ Creates a new scene.
 
 To create a new scene, use CreateScene. To delete a scene, use RemoveScene. A new layer is automatically added to the defaultScene scene.
 
+Links: [[GetDefaultScene]], [[SetDefaultScene]], [[RemoveScene]], [[RemoveAllScenes]]
+
 # Method CreateSpriteAtlas:ftSpriteAtlas(imgfileName:String, dataFileName:string)
 
 *Description*
 
 Creates/loads a sprite atlas.
+
+Links: [[CreateImage]], [[CreateAnimImage]]
 
 # Method CreateStickMan:ftObject(xpos:Float, ypos:Float, _ucob:Object=Null)
 
@@ -531,11 +583,15 @@ Creates/loads a sprite atlas.
 
 Creates a stickman with top left corner at position xpos/ypos with size of width:8 / height:29
 
+Links: [[CreateAnimImage]], [[CreateBox]], [[CreateCircle]], [[CreateImage]], [[CreateLine]], [[CreateOval]], [[CreatePoint]], [[CreatePoly]], [[CreateTileMap]], [[CreateText]]
+
 # Method CreateText:ftObject(font:ftFont, txt:String, xpos:Float, ypos:Float, textmode:Int=ftEngine.taTopLeft, _ucob:Object=Null)
 
 *Description*
 
 Creates a new text object.
+
+Links: [[CreateAnimImage]], [[CreateBox]], [[CreateCircle]], [[CreateImage]], [[CreateLine]], [[CreateOval]], [[CreatePoint]], [[CreatePoly]], [[CreateStickman]], [[CreateTileMap]]
 
 # Method CreateTileMap:ftObject(atl:ftImage, tileSizeX:Int, tileSizeY:Int, tileCountX:Int, tileCountY:Int, xpos:Float, ypos:Float)
 
@@ -543,11 +599,15 @@ Creates a new text object.
 
 Create a tile map which you can fill yourself.
 
+Links: [[CreateAnimImage]], [[CreateBox]], [[CreateCircle]], [[CreateImage]], [[CreateLine]], [[CreateOval]], [[CreatePoint]], [[CreatePoly]], [[CreateStickman]], [[CreateText]]
+
 # Method CreateTileMap:ftObject(atl:Image, tileSizeX:Int, tileSizeY:Int, tileCountX:Int, tileCountY:Int, xpos:Float, ypos:Float)
 
 *Description*
 
 Create a tile map which you can fill yourself.
+
+Links: [[CreateAnimImage]], [[CreateBox]], [[CreateCircle]], [[CreateImage]], [[CreateLine]], [[CreateOval]], [[CreatePoint]], [[CreatePoly]], [[CreateStickman]], [[CreateText]]
 
 # Method CreateTileMap:ftObject(filename:String, xpos:Float, ypos:Float, layerIndex:Int=1)
 
@@ -559,6 +619,8 @@ Create a tile map from a JSON file exported by the tool Tiled.
 
 The layerIndex tells fantomEngine to load the tileLayer at that index. Index starts with 1.
 
+Links: [[CreateAnimImage]], [[CreateBox]], [[CreateCircle]], [[CreateImage]], [[CreateLine]], [[CreateOval]], [[CreatePoint]], [[CreatePoly]], [[CreateStickman]], [[CreateText]]
+
 # Method CreateTimer:ftTimer(timerID:Int, duration:Int, repeatCount:Int = 0)
 
 *Description*
@@ -568,6 +630,8 @@ Creates a new timer.
 *Details*
 
 When the timer fires it will call OnTimer. A repeatCount of -1 will let the timer run forever.
+
+Links: [[OnTimer]], [[CreateObjTimer]]
 
 # Method CreateZoneBox:ftObject(width:Float, height:Float, xpos:Float, ypos:Float)
 
@@ -591,6 +655,8 @@ Method OnCreate:Int()
         Return 0
 End
 </pre>
+Links: [[CreateZoneCircle]], [[CollisionCheck]], [[TouchCheck]]
+
 # Method CreateZoneCircle:ftObject(radius:Float, xpos:Float, ypos:Float)
 
 *Description*
@@ -613,6 +679,8 @@ Method OnCreate:Int()
         Return 0
 End
 </pre>
+Links: [[CreateZoneBox]], [[CollisionCheck]], [[TouchCheck]]
+
 # Method ExitApp:Int(retCode:Int=0)
 
 *Description*
@@ -652,6 +720,8 @@ Method OnUpdate:Int()
     Return 0
 End
 </pre>
+Links: [[GetAccelZ]], [[GetAccelXY]], [[GetAccelY]]
+
 # Method GetAccelXY:Float[]()
 
 *Description*
@@ -678,6 +748,8 @@ Method OnUpdate:Int()
     Return 0
 End
 </pre>
+Links: [[GetAccelX]], [[GetAccelY]], [[GetAccelZ]]
+
 # Method GetAccelY:Float()
 
 *Description*
@@ -687,6 +759,8 @@ Return the Y-axis value of the accelerator.
 *Details*
 
 This command returns the current value of the accelerometer for the Y-axxis. To retrieve the X-axxis, use GetAccelX. For the Z-axxis, use GetAccelZ. 
+
+Links: [[GetAccelX]], [[GetAccelXY]], [[GetAccelZ]]
 
 # Method GetAccelZ:Float()
 
@@ -698,11 +772,15 @@ Return the Z-axis value of the accelerator.
 
 This command returns the current value of the accelerometer for the Z-axxis. To retrieve the Y-axxis, use GetAccelY. For the X-axxis, use GetAccelX. 
 
+Links: [[GetAccelX]], [[GetAccelXY]], [[GetAccelY]]
+
 # Method GetCam:Float[]()
 
 *Description*
 
 Returns the cameras X and Y coordinate.
+
+Links: [[GetCamX]], [[GetCamY]], [[SetCam]], [[SetCamX]], [[SetCamY]]
 
 # Method GetCamX:Float()
 
@@ -710,11 +788,15 @@ Returns the cameras X and Y coordinate.
 
 Returns the cameras X coordinate.
 
+Links: [[GetCam]], [[GetCamY]], [[SetCam]], [[SetCamX]], [[SetCamY]]
+
 # Method GetCamY:Float()
 
 *Description*
 
 Returns the cameras Y coordinate.
+
+Links: [[GetCam]], [[GetCamX]], [[SetCam]], [[SetCamX]], [[SetCamY]]
 
 # Method GetCanvasHeight:Int()
 
@@ -732,6 +814,8 @@ Example:
 Local myEngine:ftEngine = New ftEngine
 Local height:Int = myEngine.GetCanvasHeight()
 </pre>
+Links: [[SetCanvasSize]], [[GetCanvasWidth]]
+
 # Method GetCanvasWidth:Int()
 
 *Description*
@@ -748,6 +832,8 @@ Example:
 Local myEngine:ftEngine = New ftEngine
 Local width:Int = myEngine.GetCanvasWidth()
 </pre>
+Links: [[SetCanvasSize]], [[GetCanvasHeight]]
+
 # Method GetDefaultLayer:ftLayer()
 
 *Description*
@@ -764,6 +850,8 @@ Example:
 Local myEngine:ftEngine = New ftEngine
 Local currLayer:ftLayer = myEngine.GetDefaultLayer()
 </pre>
+Links: [[SetDefaultLayer]], [[CreateLayer]], [[RemoveLayer]]
+
 # Method GetDefaultScene:ftScene()
 
 *Description*
@@ -773,6 +861,8 @@ Returns the current default scene.
 *Details*
 
 If you need to get the current scene where new layers are assigned to, then use GetDefaultScene. To set the default layer, use SetDefaultScene.
+
+Links: [[SetDefaultScene]], [[CreateScene]], [[RemoveScene]]
 
 # Method GetDeltaTime:Int()
 
@@ -788,6 +878,8 @@ Method OnUpdate:Int()
 	eng.Update()
 End
 </pre>
+Links: [[CalcDeltaTime]], [[Update]]
+
 # Method GetFPS:Int()
 
 *Description*
@@ -815,17 +907,23 @@ End
 
 Returns the device X position of a virtual X coordinate. It takes the virtual canvas size and camera position into its calculation.
 
+Links: [[GetLocalXY]], [[GetLocalY]], [[GetWorldX]], [[GetWorldXY]], [[GetWorldY]]
+
 # Method GetLocalXY:Float[](wordXPos:Float, wordYPos:Float, withCam:Bool = True)
 
 *Description*
 
 Returns the device X/Y position of a virtual X/Y coordinate. It takes the virtual canvas size and camera position into its calculation.
 
+Links: [[GetLocalX]], [[GetLocalY]], [[GetWorldX]], [[GetWorldXY]], [[GetWorldY]]
+
 # Method GetLocalY:Float(wordYPos:Float, withCam:Bool = True)
 
 *Description*
 
 Returns the device Y position of a virtual Y coordinate. It takes the virtual canvas size and camera position into its calculation.
+
+Links: [[GetLocalX]], [[GetLocalXY]], [[GetWorldX]], [[GetWorldXY]], [[GetWorldY]]
 
 # Method GetObjCount:Int(type:Int = 0)
 
@@ -853,6 +951,8 @@ Returns the isPaused flag of the engine.
 
 Returns the isPaused flag of the engine.
 
+Links: [[SetPaused]]
+
 # Method GetScaleX:Float()
 
 *Description*
@@ -875,6 +975,8 @@ Method OnCreate:Int()
         Return 0
 End
 </pre>
+Links: [[GetScaleY]], [[SetCanvasSize]]
+
 # Method GetScaleY:Float()
 
 *Description*
@@ -884,6 +986,8 @@ Returns the Y scale factor of the engine, which is set through SetCanvasSize.
 *Details*
 
 Depending on which mode you used with SetCanvasSize, the scale factor for the canvas will be set. With GetScaleY you can retrieve this factor. To retrieve the X-scale factor, use GetScaleX. 
+
+Links: [[GetScaleX]], [[SetCanvasSize]]
 
 # Method GetTime:Int()
 
@@ -900,6 +1004,8 @@ By default it is based on Millisecs and the timeScale factor. Overwrite this met
 *Description*
 
 Returns engines own timeScale.
+
+Links: [[SetTimeScale]], [[Update]]
 
 # Method GetTouchX:Float(index:Int=0)
 
@@ -928,6 +1034,8 @@ Method OnUpdate:Int()
     Return 0
 End
 </pre>
+Links: [[GetTouchY]], [[GetTouchXY]]
+
 # Method GetTouchXY:Float[](index:Int=0)
 
 *Description*
@@ -937,6 +1045,8 @@ Returns the X/Y touch coordinate scaled by the engines scale factors.
 *Details*
 
 The return the position of the finger with the given touch index. If you use a virtual canvas, the return value is scaled accordingly. 
+
+Links: [[GetTouchX]], [[GetTouchY]]
 
 # Method GetTouchY:Float(index:Int=0)
 
@@ -948,11 +1058,15 @@ Returns the Y touch coordinate scaled by the engines Y scale factor.
 
 The y-position of the finger with the given touch index. If you use a virtual canvas, the return value is scaled accordingly. To retrieve the X-position, use GetTouchX. 
 
+Links: [[GetTouchX]], [[GetTouchXY]]
+
 # Method GetVolumeMUS:Float()
 
 *Description*
 
 Returns the general volume of music. Ranges from 0.0 to 1.0.
+
+Links: [[SetVolumeMUS]], [[GetVolumeSFX]]
 
 # Method GetVolumeSFX:Float()
 
@@ -960,11 +1074,15 @@ Returns the general volume of music. Ranges from 0.0 to 1.0.
 
 Returns the general volume of sound effects. Ranges from 0.0 to 1.0.
 
+Links: [[SetVolumeSFX]], [[GetVolumeMUS]]
+
 # Method GetWorldX:Float(localXPos:Float, withCam:Bool = True)
 
 *Description*
 
 Returns the world X position from a local X coordinate. It takes the virtual canvas size and camera position into its calculation.
+
+Links: [[GetLocalX]], [[GetLocalXY]], [[GetLocalY]], [[GetWorldXY]], [[GetWorldY]]
 
 # Method GetWorldXY:Float[](localXPos:Float, localYPos:Float, withCam:Bool = True)
 
@@ -972,11 +1090,15 @@ Returns the world X position from a local X coordinate. It takes the virtual can
 
 Returns the world X/Y position from a local X/Y coordinate. It takes the virtual canvas size and camera position into its calculation.
 
+Links: [[GetLocalX]], [[GetLocalXY]], [[GetLocalY]], [[GetWorldX]], [[GetWorldY]]
+
 # Method GetWorldY:Float(localYPos:Float, withCam:Bool = True)
 
 *Description*
 
 Returns the world Y position from a local Y coordinate. It takes the virtual canvas size and camera position into its calculation.
+
+Links: [[GetLocalX]], [[GetLocalXY]], [[GetLocalY]], [[GetWorldX]], [[GetWorldXY]]
 
 # Method LoadFont:ftFont(filename:String)
 
@@ -1046,6 +1168,8 @@ This method is called when a layer finishes its update.
 
 Callback method which is called when a layer is updated.
 
+Links: [[Update]]
+
 # Method OnMarkerBounce:Int(marker:ftMarker, obj:ftObject)
 
 *Description*
@@ -1082,11 +1206,15 @@ This method is called, when a path marker reaches the end of the path and is abo
 
 This method is called when an animation of an object (obj) has finished one loop.
 
+Links: [[Update]]
+
 # Method OnObjectCollision:Int(obj:ftObject, obj2:ftObject)
 
 *Description*
 
 This method is called when an object (obj) collided with another object (obj2).
+
+Links: [[CollisionCheck]]
 
 # Method OnObjectDelete:Int(obj:ftObject)
 
@@ -1097,6 +1225,8 @@ This method is called when an object is removed.
 *Details*
 
 You need to activate this callback via the ftObject.ActivateDeleteEvent method. The given parameter holds the instance of the object.
+
+Links: [[RemoveAllObjects]]
 
 # Method OnObjectRender:Int(obj:ftObject)
 
@@ -1134,6 +1264,8 @@ Class engine Extends ftEngine
 	End
 End
 </pre>
+Links: [[Render]], [[RestoreAlpha]], [[RestoreBlendmode]], [[RestoreColor]], [[OnObjectRender]]
+
 # Method OnObjectSort:Int(obj1:ftObject, obj2:ftObject)
 
 *Description*
@@ -1167,17 +1299,23 @@ Class engine Extends ftEngine
 End
 
 </pre>
+Links: [[SortObjects]]
+
 # Method OnObjectTimer:Int(timerId:Int, obj:ftObject)
 
 *Description*
 
 This method is called when an objects' timer was being fired.
 
+Links: [[CreateObjTimer]]
+
 # Method OnObjectTouch:Int(obj:ftObject, touchId:Int)
 
 *Description*
 
 This method is called when an object was touched.
+
+Links: [[TouchCheck]]
 
 # Method OnObjectTransition:Int(transId:Int, obj:ftObject)
 
@@ -1210,17 +1348,23 @@ Class engine Extends ftEngine
 	End
 End
 </pre>
+Links: [[Update]]
+
 # Method OnSwipeDone:Int(touchIndex:Int, sAngle:Float, sDist:Float, sSpeed:Float)
 
 *Description*
 
 This method is called when a swipe gesture was detected.
 
+Links: [[SwipeUpdate]]
+
 # Method OnTimer:Int(timerId:Int)
 
 *Description*
 
 This method is called when an engine timer was being fired.
+
+Links: [[CreateTimer]]
 
 # Method ReLoadAllImages:Void()
 
@@ -1240,6 +1384,8 @@ Removes all images from the engine.
 
 Remove all existing layer from engine.
 
+Links: [[CreateLayer]], [[SetDefaultLayer]], [[RemoveLayer]]
+
 # Method RemoveAllObjects:Void()
 
 *Description*
@@ -1251,6 +1397,8 @@ Removes all objects from all layer.
 *Description*
 
 Remove all existing scenes from engine.
+
+Links: [[CreateScene]], [[SetDefaultScene]], [[RemoveScene]]
 
 # Method RemoveImage:Void(image:Image, discard:Bool = False)
 
@@ -1281,6 +1429,8 @@ Local myEngine:ftEngine = New ftEngine
 Local myLayer:ftLayer = myEngine.CreateLayer()
 myEngine.RemoveLayer(myLayer)
 </pre>
+Links: [[CreateLayer]], [[SetDefaultLayer]], [[RemoveAllLayer]]
+
 # Method RemoveScene:Void(scene:ftScene)
 
 *Description*
@@ -1290,6 +1440,8 @@ Removes a scene.
 *Details*
 
 Deletes a previously created scene. To create a scene, use CreateScene. 
+
+Links: [[CreateScene]], [[SetDefaultScene]], [[RemoveAllScenes]]
 
 # Method Render:Void()
 
@@ -1310,6 +1462,8 @@ Method OnRender:Int()
 	Return 0
 End
 </pre>
+Links: [[OnObjectRender]]
+
 # Method Render:Void(layer:ftLayer)
 
 *Description*
@@ -1325,6 +1479,8 @@ Method OnRender:Int()
 	Return 0
 End
 </pre>
+Links: [[OnObjectRender]]
+
 # Method RenderLoadingBar:Void()
 
 *Description*
@@ -1355,6 +1511,8 @@ Sets the current alpha to the engines stored alpha value.
 
 Use this when you have changed the alpha value manually via mojo.SetAlpha.
 
+Links: [[RestoreBlendmode]], [[RestoreColor]], [[OnObjectRender]]
+
 # Method RestoreBlendmode:Void()
 
 *Description*
@@ -1365,6 +1523,8 @@ Sets the current blendmode to the engines stored blendmode.
 
 Use this when you have changed the blendmode manually via mojo.SetBlend.
 
+Links: [[RestoreAlpha]], [[RestoreColor]], [[OnObjectRender]]
+
 # Method RestoreColor:Void()
 
 *Description*
@@ -1374,6 +1534,8 @@ Sets the current color to the engines stored color values.
 *Details*
 
 Use this when you have changed the color manually via mojo.SetColor.
+
+Links: [[RestoreAlpha]], [[RestoreBlendmode]], [[OnObjectRender]]
 
 # Method SetCam:Void(x:Float, y:Float, relative:Int = False)
 
@@ -1410,6 +1572,8 @@ Method OnUpdate:Int()
     Return 0
 End
 </pre>
+Links: [[SetCamX]], [[SetCamY]], [[GetCam]], [[GetCamX]], [[GetCamY]]
+
 # Method SetCamX:Void(x:Float, relative:Int = False)
 
 *Description*
@@ -1445,6 +1609,8 @@ Method OnUpdate:Int()
     Return 0
 End
 </pre>
+Links: [[SetCam]], [[SetCamY]], [[GetCam]], [[GetCamX]], [[GetCamY]]
+
 # Method SetCamY:Void(y:Float, relative:Int = False)
 
 *Description*
@@ -1480,6 +1646,8 @@ Method OnUpdate:Int()
     Return 0
 End
 </pre>
+Links: [[SetCam]], [[SetCamX]], [[GetCam]], [[GetCamX]], [[GetCamY]]
+
 # Method SetCanvasSize:Void(width:Int, height:Int, canvasmode:Int = ftEngine.cmLetterbox)
 
 *Description*
@@ -1520,6 +1688,8 @@ Method OnCreate:Int()
         Return 0
 End
 </pre>
+Links: [[GetCanvasWidth]], [[GetCanvasHeight]]
+
 # Method SetDefaultActive:Void(active:Bool)
 
 *Description*
@@ -1536,6 +1706,8 @@ Example:
 Local myEngine:ftEngine = New ftEngine
 myEngine.SetDefaultActive(False)
 </pre>
+Links: [[SetDefaultVisible]]
+
 # Method SetDefaultLayer:Void(layer:ftLayer)
 
 *Description*
@@ -1553,6 +1725,8 @@ Local myEngine:ftEngine = New ftEngine
 Local myLayer:ftLayer = myEngine.CreateLayer()
 myEngine.SetDefaultLayer(myLayer)
 </pre>
+Links: [[CreateLayer]], [[RemoveLayer]], [[GetDefaultLayer]]
+
 # Method SetDefaultScene:Void(scene:ftScene)
 
 *Description*
@@ -1562,6 +1736,8 @@ Sets the default scene which is assigned to all newly created layers.
 *Details*
 
 If you need to set the default scene where new layers are assigned to, then use <b>SetDefaultScene</b>. To get the default layer, use <b>GetDefaultScene</b>. 
+
+Links: [[CreateScene]], [[RemoveScene]], [[GetDefaultScene]]
 
 # Method SetDefaultVisible:Void(visible:Bool)
 
@@ -1579,11 +1755,15 @@ Example:
 Local myEngine:ftEngine = New ftEngine
 myEngine.SetDefaultVisible(False)
 </pre>
+Links: [[SetDefaultActive]]
+
 # Method SetFirstSoundChannel:Void(firstChannel:Int = 0)
 
 *Description*
 
 Sets the index of the first sound channel to be used. Ranges from 0 to 31.
+
+Links: [[SetMaxSoundChannel]]
 
 # Method SetMaxSoundChannel:Void(maxChannel:Int = 32)
 
@@ -1594,6 +1774,8 @@ Sets the maximum number of sound channels to be used. Ranges from 1 to 32.
 *Details*
 
 If a low end device device has performance problems, lower this setting.
+
+Links: [[SetFirstSoundChannel]]
 
 # Method SetPause:Void(pauseFlag:Bool)
 
@@ -1615,17 +1797,23 @@ With this method, you can pause the engine or resume it.
 
 If the engine is paused, objects, timers and transitions won't be updated.
 
+Links: [[GetPaused]]
+
 # Method SetSwipeDeadDist:Void(deadDist:Float = 20.0)
 
 *Description*
 
 Only swipes that are longer than the dead distance are detected.
 
+Links: [[SetSwipeSnap]]
+
 # Method SetSwipeSnap:Void(degrees:Int=1)
 
 *Description*
 
 You can let the swipe angle snap to a fraction of a given degree.
+
+Links: [[SetSwipeDeadDist]]
 
 # Method SetTimeScale:Void(timescale:Float = 1.0)
 
@@ -1637,17 +1825,23 @@ The time scale influences the update methods of objects, timers and transitions.
 
 Lower values than 1.0 slow down the engine, bigger values speed it up.
 
+Links: [[GetTimeScale]], [[Update]]
+
 # Method SetVolumeMUS:Void(volume:Float = 1.0)
 
 *Description*
 
 Sets the general volume of music. Ranges from 0.0 to 1.0.
 
+Links: [[SetVolumeSFX]]
+
 # Method SetVolumeSFX:Void(volume:Float = 1.0)
 
 *Description*
 
 Sets the general volume of sound effects. Ranges from 0.0 to 1.0.
+
+Links: [[SetVolumeMUS]]
 
 # Method SortObjects:Void()
 
@@ -1659,6 +1853,8 @@ Sort the objects of all layer.
 
 Internally it will call the <b>ftEngine.OnObjectSort</b> method. Override this method with your on comparison algorythm. 
 
+Links: [[OnObjectSort]]
+
 # Method SortObjects:Void(layer:ftLayer)
 
 *Description*
@@ -1668,6 +1864,8 @@ Sort the objects inside a layer.
 *Details*
 
 Internally it will call the <b>ftEngine.OnObjectSort</b> method. Override this method with your on comparison algorythm. 
+
+Links: [[OnObjectSort]]
 
 # Method SwipeUpdate:Void(index:Int = 0)
 
@@ -1679,6 +1877,8 @@ Call SwipeUpdate in every mojo.OnUpdate event after the regular ftEngine.Update 
 
 If a swipe was detected, it will call the <b>ftEngine.OnSwipeDone</b> method.
 
+Links: [[OnSwipeDone]]
+
 # Method TouchCheck:Void(touchID:Int=0)
 
 *Description*
@@ -1689,6 +1889,8 @@ Do a touch check over all layers and their active objects which have a touch met
 
 If a touch was detected, it will call the <b>ftEngine.OnObjectTouch</b> method.
 
+Links: [[OnObjectTouch]]
+
 # Method TouchCheck:Void(layer:ftLayer, touchID:Int=0)
 
 *Description*
@@ -1698,6 +1900,8 @@ Do a touch check over all active objects of a given layer which have a touch met
 *Details*
 
 If a touch was detected, it will call the <b>ftEngine.OnObjectTouch</b> method.
+
+Links: [[OnObjectTouch]]
 
 # Method Update:Void(speed:Float=1.0)
 
@@ -1724,6 +1928,8 @@ Method OnUpdate:Int()
         Return 0
 End
 </pre>
+Links: [[SetDefaultActive]], [[SetTimeScale]], [[OnLayerUpdate]], [[OnObjectUpdate]]
+
 # Method Update:Void(layer:ftLayer, speed:Float=1.0)
 
 *Description*
@@ -1749,6 +1955,8 @@ Method OnUpdate:Int()
         Return 0
 End
 </pre>
+Links: [[SetDefaultActive]], [[SetTimeScale]], [[OnLayerUpdate]], [[OnObjectUpdate]]
+
 # Const cmCentered% = 1:none
 
 # Const cmLetterbox% = 2:none

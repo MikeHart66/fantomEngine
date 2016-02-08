@@ -12,6 +12,8 @@ The class *ftTimer* handles ftEngine and ftObject timer objects.
 
 Returns TRUE if a transition is paused.
 
+Links: [[SetPaused]]
+
 # Method RemoveTimer:Void()
 
 *Description*
@@ -23,4 +25,6 @@ With this method removes the timer.
 *Description*
 
 With this method you can pause and resume the timer.
+
+Links: [[GetPaused]], [[Update]]
 

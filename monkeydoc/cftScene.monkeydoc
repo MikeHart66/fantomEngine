@@ -12,6 +12,8 @@ The class *ftScene* groups assigned layers and lets you manage them in a combine
 
 Add a layer to a scene.
 
+Links: [[RemoveLayer]]
+
 # Method CreateTransAlpha:ftTrans(alpha:Float, duration:Float, relative:Int, transId:Int=0)
 
 *Description*
@@ -21,6 +23,8 @@ Create an alpha transition for the scene.
 *Details*
 
 The duration is the time in milliseconds, the transition takes to complete. Only a transID > 0 will fire the <b>ftEngine.OnLayerTrans</b> method for the first layer of a scene.
+
+Links: [[CreateTransPos]]
 
 # Method CreateTransPos:ftTrans(xt:Float, yt:Float, duration:Float, relative:Int, transId:Int=0)
 
@@ -32,17 +36,23 @@ Create an position transition for the scene.
 
 The duration is the time in milliseconds, the transition takes to complete. Only a transID > 0 will fire the <b>ftEngine.OnLayerTrans</b> method for the first layer of a scene.
 
+Links: [[CreateTransAlpha]]
+
 # Method GetActive:Bool()
 
 *Description*
 
 Returns the active flag of the scene.
 
+Links: [[SetActive]]
+
 # Method GetVisible:Bool()
 
 *Description*
 
 Returns the visible flag of the scene.
+
+Links: [[SetVisible]]
 
 # Method Remove:Void()
 
@@ -56,11 +66,15 @@ Remove the scene from the engine.
 
 Remove a layer from a scene.
 
+Links: [[AddLayer]]
+
 # Method SetActive:Void(activeFlag:Bool)
 
 *Description*
 
 Set the active flag of the scenes layers.
+
+Links: [[GetActive]]
 
 # Method SetAlpha:Void(newAlpha:Float, relative:Bool = False)
 
@@ -68,15 +82,21 @@ Set the active flag of the scenes layers.
 
 Set the alpha value of each layer in the scene.
 
+Links: [[SetPos]]
+
 # Method SetPos:Void(x:Float, y:Float, relative:Bool = False)
 
 *Description*
 
 Set the position of each layer in the scene.
 
+Links: [[SetAlpha]]
+
 # Method SetVisible:Void(visibleFlag:Bool)
 
 *Description*
 
 Set the visible flag of the scenes layers.
+
+Links: [[GetVisible]]
 
