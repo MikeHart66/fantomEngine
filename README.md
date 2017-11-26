@@ -1,4 +1,4 @@
-# ![fe_logo](http://www.whiteskygames.com/files/fe_logo_small.png) fantomEngine 
+# ![fe_logo](http://files.whiteskygames.com/fe_logo_small.png) fantomEngine 
 A 2D game framework for Monkey X 
 
 ## Description
